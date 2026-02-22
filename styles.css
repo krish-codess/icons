@@ -1,0 +1,117 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #f8fafc;
+    padding: 40px;
+}
+
+h2 {
+    margin-bottom: 30px;
+}
+
+.icon-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 30px;
+}
+
+/* Colors */
+:root {
+    --blue: #4F8DFD;
+    --blue-dark: #2F6CE5;
+    --blue-bg: #EAF2FF;
+
+    --green: #22C55E;
+    --green-dark: #16A34A;
+    --green-bg: #E8F8EF;
+
+    --purple: #A855F7;
+    --purple-dark: #7E22CE;
+    --purple-bg: #F3E8FF;
+
+    --orange: #F59E0B;
+    --orange-dark: #D97706;
+    --orange-bg: #FFF4E5;
+
+    --teal: #14B8A6;
+    --teal-dark: #0D9488;
+    --teal-bg: #E6FFFA;
+}
+
+/* Icon Card */
+.icon-card {
+    width: 90px;
+    padding: 20px 10px;
+    border-radius: 16px;
+    background: white;
+    text-align: center;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.icon-card p {
+    margin-top: 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Colored container */
+.icon-card svg {
+    width: 40px;
+    height: 40px;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    transition: all 0.25s ease;
+}
+
+/* Background color blocks */
+.blue { background: var(--blue-bg); }
+.blue svg { stroke: var(--blue); }
+.blue:hover svg { stroke: var(--blue-dark); }
+
+.green { background: var(--green-bg); }
+.green svg { stroke: var(--green); }
+.green:hover svg { stroke: var(--green-dark); }
+
+.purple { background: var(--purple-bg); }
+.purple svg { stroke: var(--purple); }
+.purple:hover svg { stroke: var(--purple-dark); }
+
+.orange { background: var(--orange-bg); }
+.orange svg { stroke: var(--orange); }
+.orange:hover svg { stroke: var(--orange-dark); }
+
+.teal { background: var(--teal-bg); }
+.teal svg { stroke: var(--teal); }
+.teal:hover svg { stroke: var(--teal-dark); }
+
+/* Hover Effects */
+.icon-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+}
+
+.icon-card:hover svg {
+    transform: scale(1.1);
+}
+
+/* Micro Animations */
+.clock:hover svg {
+    transform: rotate(12deg) scale(1.1);
+}
+
+.cart:hover svg {
+    transform: translateX(4px) scale(1.1);
+}
+
+.tick:hover svg {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    animation: draw 0.4s forwards ease;
+}
+
+@keyframes draw {
+    to { stroke-dashoffset: 0; }
+}

@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Icon Style Showcase</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #09090f;
+    color: #fff;
+    padding: 60px 40px;
+    min-height: 100vh;
+  }
+
+  .page-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 42px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    margin-bottom: 8px;
+    background: linear-gradient(135deg, #ffffff 0%, #555 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .page-sub {
+    color: #444;
+    font-size: 15px;
+    margin-bottom: 70px;
+    font-weight: 300;
+    letter-spacing: 0.3px;
+  }
+
+  .section { margin-bottom: 80px; }
+
+  .section-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #333;
+    margin-bottom: 6px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 24px;
+    color: #fff;
+  }
+
+  .icon-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .icon-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .icon-wrap span {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    color: #555;
+    text-transform: uppercase;
+  }
+
+  .ico {
+    width: 44px;
+    height: 44px;
+    display: block;
+  }
+
+  /* =============================================
+     CARD BASE STYLES
+  ============================================= */
+
+  /* GLASSMORPHISM */
+  .glass-bg {
+    padding: 32px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, #0c0c18, #0a1020);
+    position: relative;
+    overflow: hidden;
+  }
+  .glass-bg::before {
+    content: '';
+    position: absolute;
+    width: 250px; height: 250px;
+    background: radial-gradient(circle, rgba(100,140,255,0.13) 0%, transparent 70%);
+    top: -60px; left: -60px; pointer-events: none;
+  }
+  .glass-bg::after {
+    content: '';
+    position: absolute;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(180,100,255,0.09) 0%, transparent 70%);
+    bottom: -40px; right: -40px; pointer-events: none;
+  }
+  .glass-card {
+    width: 84px; height: 96px;
+    border-radius: 22px;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    cursor: pointer;
+    position: relative; overflow: hidden;
+    transition: all 0.3s ease;
+    background: rgba(255,255,255,0.055);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.13);
+  }
+  .glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 45%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.07) 0%, transparent 100%);
+    border-radius: 22px 22px 0 0;
+    pointer-events: none;
+  }
+  .glass-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 24px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.22);
+    border-color: rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.09);
+  }
+
+  /* NEOMORPHISM */
+  .neo-bg { padding: 32px; border-radius: 28px; background: #dde4ed; }
+  .neo-card {
+    width: 84px; height: 96px;
+    border-radius: 22px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: #dde4ed;
+    box-shadow: 7px 7px 16px #b8bec8, -7px -7px 16px #ffffff;
+  }
+  .neo-card:hover { box-shadow: 4px 4px 10px #b8bec8, -4px -4px 10px #ffffff; transform: scale(0.97); }
+  .neo-card:active { box-shadow: inset 5px 5px 12px #b8bec8, inset -5px -5px 12px #ffffff; transform: scale(0.95); }
+  .neo-wrap span { color: #8fa0b0 !important; }
+
+  /* HOLOGRAPHIC */
+  .holo-bg {
+    padding: 32px; border-radius: 28px; background: #060610;
+    position: relative; overflow: hidden;
+  }
+  .holo-bg::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px);
+    pointer-events: none;
+  }
+  .holo-card {
+    width: 84px; height: 96px;
+    border-radius: 22px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    position: relative; overflow: hidden;
+    background: rgba(255,255,255,0.03);
+  }
+  .holo-card::before {
+    content: '';
+    position: absolute; inset: 0; border-radius: 22px; padding: 1px;
+    background: linear-gradient(135deg, #ff6ec4, #7873f5, #4adede, #ffe45e, #ff6ec4);
+    background-size: 400% 400%;
+    animation: holoShift 3s ease infinite;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude; z-index: 0;
+  }
+  .holo-card::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, rgba(255,110,196,0.06), rgba(120,115,245,0.06), rgba(74,222,222,0.06));
+    background-size: 400% 400%;
+    animation: holoShift 3s ease infinite;
+    border-radius: 22px; z-index: 0;
+  }
+  @keyframes holoShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+  .holo-card > .ico { position: relative; z-index: 1; }
+  .holo-card:hover { transform: translateY(-7px); box-shadow: 0 20px 40px rgba(120,115,245,0.3); }
+
+  /* AURORA */
+  .aurora-bg {
+    padding: 32px; border-radius: 28px; background: #06060e;
+    position: relative; overflow: hidden;
+  }
+  .aurora-bg::before {
+    content: '';
+    position: absolute;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
+    top: -80px; left: -80px; pointer-events: none;
+  }
+  .aurora-card {
+    width: 84px; height: 96px;
+    border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative; overflow: hidden;
+  }
+  .aurora-card.blue   { background: linear-gradient(145deg,#1a3a6b,#2563eb,#60a5fa); box-shadow: 0 8px 25px rgba(37,99,235,0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
+  .aurora-card.teal   { background: linear-gradient(145deg,#0a3d37,#0d9488,#5eead4); box-shadow: 0 8px 25px rgba(13,148,136,0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
+  .aurora-card.purple { background: linear-gradient(145deg,#2d1060,#7c3aed,#c084fc); box-shadow: 0 8px 25px rgba(124,58,237,0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
+  .aurora-card.green  { background: linear-gradient(145deg,#04391a,#16a34a,#4ade80); box-shadow: 0 8px 25px rgba(22,163,74,0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
+  .aurora-card.orange { background: linear-gradient(145deg,#5a2800,#d97706,#fbbf24); box-shadow: 0 8px 25px rgba(217,119,6,0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
+  .aurora-card::before {
+    content: '';
+    position: absolute;
+    top: -35%; left: -35%; width: 75%; height: 75%;
+    background: radial-gradient(circle, rgba(255,255,255,0.28) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none; transition: all 0.4s ease;
+  }
+  .aurora-card:hover::before { transform: translate(25%,25%) scale(1.3); }
+  .aurora-card:hover { transform: translateY(-8px); }
+
+  /* CLAY */
+  .clay-bg { padding: 32px; border-radius: 28px; background: linear-gradient(135deg,#f5f0ff,#eef4ff); }
+  .clay-card {
+    width: 84px; height: 96px;
+    border-radius: 24px;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    position: relative;
+  }
+  .clay-card.blue   { background: linear-gradient(145deg,#7fbfff,#4F8DFD); box-shadow: 0 10px 0 #2250cc, 0 14px 22px rgba(79,141,253,0.32), inset 0 -3px 0 rgba(0,0,0,0.1), inset 0 3px 8px rgba(255,255,255,0.45); }
+  .clay-card.teal   { background: linear-gradient(145deg,#40e0ce,#14B8A6); box-shadow: 0 10px 0 #0a7a6e, 0 14px 22px rgba(20,184,166,0.32), inset 0 -3px 0 rgba(0,0,0,0.1), inset 0 3px 8px rgba(255,255,255,0.45); }
+  .clay-card.purple { background: linear-gradient(145deg,#cc8eff,#A855F7); box-shadow: 0 10px 0 #6b1aad, 0 14px 22px rgba(168,85,247,0.32), inset 0 -3px 0 rgba(0,0,0,0.1), inset 0 3px 8px rgba(255,255,255,0.45); }
+  .clay-card.green  { background: linear-gradient(145deg,#5de88e,#22C55E); box-shadow: 0 10px 0 #0f6e34, 0 14px 22px rgba(34,197,94,0.32), inset 0 -3px 0 rgba(0,0,0,0.1), inset 0 3px 8px rgba(255,255,255,0.45); }
+  .clay-card.orange { background: linear-gradient(145deg,#ffd55a,#F59E0B); box-shadow: 0 10px 0 #b36a00, 0 14px 22px rgba(245,158,11,0.32), inset 0 -3px 0 rgba(0,0,0,0.1), inset 0 3px 8px rgba(255,255,255,0.45); }
+  .clay-card:hover  { transform: translateY(-7px); }
+  .clay-card:active { transform: translateY(4px); box-shadow: 0 3px 0 rgba(0,0,0,0.15), 0 5px 8px rgba(0,0,0,0.1), inset 0 -1px 0 rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.45); }
+  .clay-wrap span { color: #a0b0c8 !important; }
+
+
+  /* =============================================
+     ICON-SPECIFIC HOVER ANIMATIONS
+     Each icon gets a unique animation tied to its meaning
+  ============================================= */
+
+  /* CALENDAR — page flip on hover */
+  @keyframes calFlip {
+    0%   { transform: rotateX(0deg); }
+    30%  { transform: rotateX(-20deg) translateY(-3px); }
+    60%  { transform: rotateX(10deg) translateY(1px); }
+    100% { transform: rotateX(0deg); }
+  }
+  .card-calendar:hover .ico { animation: calFlip 0.55s ease forwards; transform-origin: top center; }
+
+  /* CLOCK — minute hand sweep (the .clock-hand element) */
+  @keyframes clockSpin {
+    0%   { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .card-clock:hover .clock-hand {
+    animation: clockSpin 1.2s cubic-bezier(0.4,0,0.2,1) infinite;
+    transform-origin: 22px 22px;
+  }
+
+  /* GLOBE — continuous spin on Y axis */
+  @keyframes globeSpin {
+    0%   { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+  }
+  .card-globe:hover .ico {
+    animation: globeSpin 1.8s linear infinite;
+    transform-style: preserve-3d;
+  }
+
+  /* LUNCH BOX — lid pop open (lid element slides up) */
+  @keyframes lidPop {
+    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
+    35%  { transform: translateY(-6px) rotate(-8deg); opacity: 1; }
+    65%  { transform: translateY(-8px) rotate(-12deg); opacity: 0.7; }
+    100% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  }
+  .card-lunchbox:hover .lunchbox-lid { animation: lidPop 0.7s ease forwards; transform-origin: 5px 17px; }
+
+  /* LOCATION — bounce drop */
+  @keyframes pinBounce {
+    0%   { transform: translateY(0) scaleY(1); }
+    25%  { transform: translateY(-10px) scaleY(1.05); }
+    50%  { transform: translateY(0) scaleY(0.92); }
+    70%  { transform: translateY(-5px) scaleY(1); }
+    85%  { transform: translateY(0) scaleY(0.96); }
+    100% { transform: translateY(0) scaleY(1); }
+  }
+  .card-location:hover .ico { animation: pinBounce 0.7s cubic-bezier(0.36,0.07,0.19,0.97) forwards; }
+
+  /* SEARCH — zoom in pulse + shake */
+  @keyframes searchZoom {
+    0%   { transform: scale(1) rotate(0deg); }
+    20%  { transform: scale(1.15) rotate(-8deg); }
+    40%  { transform: scale(1.15) rotate(6deg); }
+    60%  { transform: scale(1.15) rotate(-4deg); }
+    80%  { transform: scale(1.15) rotate(2deg); }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+  .card-search:hover .ico { animation: searchZoom 0.6s ease forwards; }
+
+  /* CART — roll + item added bounce */
+  @keyframes cartRoll {
+    0%   { transform: translateX(0) rotate(0deg); }
+    20%  { transform: translateX(5px) rotate(3deg); }
+    40%  { transform: translateX(-3px) rotate(-2deg); }
+    60%  { transform: translateX(4px) rotate(2deg); }
+    80%  { transform: translateX(-2px) rotate(-1deg); }
+    100% { transform: translateX(0) rotate(0deg); }
+  }
+  .card-cart:hover .ico { animation: cartRoll 0.6s ease forwards; }
+  /* Wheel spin on cart */
+  @keyframes wheelSpin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
+  .card-cart:hover .cart-wheel-l { animation: wheelSpin 0.6s linear infinite; transform-origin: 16px 34px; }
+  .card-cart:hover .cart-wheel-r { animation: wheelSpin 0.6s linear infinite; transform-origin: 29px 34px; }
+
+  /* TICK — draw checkmark stroke */
+  @keyframes tickDraw {
+    0%   { stroke-dashoffset: 40; opacity: 0.3; }
+    100% { stroke-dashoffset: 0; opacity: 1; }
+  }
+  .card-tick:hover .tick-check {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 40;
+    animation: tickDraw 0.45s ease forwards;
+  }
+  /* Shield pulse */
+  @keyframes shieldPulse {
+    0%,100% { opacity: 0.17; }
+    50%      { opacity: 0.35; }
+  }
+  .card-tick:hover .tick-shield-fill { animation: shieldPulse 0.8s ease infinite; }
+
+  /* OFFERS — gem sparkle rotate */
+  @keyframes gemSpin {
+    0%   { transform: rotate(0deg) scale(1); }
+    25%  { transform: rotate(12deg) scale(1.08); }
+    50%  { transform: rotate(-8deg) scale(1.05); }
+    75%  { transform: rotate(5deg) scale(1.1); }
+    100% { transform: rotate(0deg) scale(1); }
+  }
+  @keyframes sparkleFlash {
+    0%,100% { opacity: 0.6; r: 3.5; }
+    50%      { opacity: 1; r: 5; }
+  }
+  .card-offers:hover .ico { animation: gemSpin 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+  .card-offers:hover .offers-sparkle { animation: sparkleFlash 0.4s ease infinite; }
+
+  /* MONEY — coin stack rise wave */
+  @keyframes coinRise1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+  @keyframes coinRise2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+  @keyframes coinRise3 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-11px); } }
+  @keyframes coinRise4 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
+  .card-money:hover .coin-4 { animation: coinRise1 0.5s 0s   ease infinite; }
+  .card-money:hover .coin-3 { animation: coinRise2 0.5s 0.07s ease infinite; }
+  .card-money:hover .coin-2 { animation: coinRise3 0.5s 0.14s ease infinite; }
+  .card-money:hover .coin-1 { animation: coinRise4 0.5s 0.21s ease infinite; }
+
+</style>
+</head>
+<body>
+
+<h1 class="page-title">Icon Style Showcase</h1>
+<p class="page-sub">5 design systems · unique per-icon animations on hover</p>
+
+
+<!-- SHARED SVG SYMBOLS with named animatable parts -->
+<svg width="0" height="0" style="position:absolute;overflow:hidden">
+  <defs>
+
+    <!-- CALENDAR: animatable as whole (flip) -->
+    <symbol id="ico-calendar" viewBox="0 0 44 44">
+      <rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/>
+      <rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/>
+      <rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/>
+      <rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/>
+      <rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/>
+      <circle cx="14" cy="30" r="2.3" fill="currentColor"/>
+      <circle cx="22" cy="30" r="2.3" fill="currentColor"/>
+      <circle cx="30" cy="30" r="2.3" fill="currentColor"/>
+      <circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
+      <circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
+    </symbol>
+
+    <!-- GLOBE: whole SVG spins -->
+    <symbol id="ico-globe" viewBox="0 0 44 44">
+      <circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/>
+      <circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/>
+      <ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/>
+      <ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/>
+      <ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
+      <circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/>
+    </symbol>
+
+    <!-- LOCATION: whole bounces -->
+    <symbol id="ico-location" viewBox="0 0 44 44">
+      <ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/>
+      <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/>
+      <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/>
+      <circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/>
+      <circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/>
+    </symbol>
+
+    <!-- SEARCH: whole shakes -->
+    <symbol id="ico-search" viewBox="0 0 44 44">
+      <circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/>
+      <circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/>
+      <circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/>
+      <circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/>
+      <line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/>
+    </symbol>
+
+    <!-- OFFERS: whole spins, sparkle pulses -->
+    <symbol id="ico-offers" viewBox="0 0 44 44">
+      <polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/>
+      <polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/>
+      <polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/>
+      <line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
+      <line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
+      <line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
+      <circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/>
+      <circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/>
+    </symbol>
+
+  </defs>
+</svg>
+
+
+<!-- Inline SVGs for icons needing per-part animation — rendered as templates via JS -->
+
+
+<!-- =============================================
+     STYLE 1 — GLASSMORPHISM
+============================================= -->
+<div class="section">
+  <div class="section-label">Style 01</div>
+  <div class="section-title">✦ Glassmorphism</div>
+  <div class="glass-bg">
+    <div class="icon-row">
+
+      <!-- CALENDAR: whole icon flips -->
+      <div class="icon-wrap">
+        <div class="glass-card card-calendar">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#6FAAFF;filter:drop-shadow(0 0 8px #6FAAFF99)">
+            <rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/>
+            <rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/>
+            <rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/>
+            <rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/>
+            <rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/>
+            <circle cx="14" cy="30" r="2.3" fill="currentColor"/>
+            <circle cx="22" cy="30" r="2.3" fill="currentColor"/>
+            <circle cx="30" cy="30" r="2.3" fill="currentColor"/>
+            <circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
+            <circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
+          </svg>
+        </div><span>Calendar</span>
+      </div>
+
+      <!-- CLOCK: minute hand spins independently -->
+      <div class="icon-wrap">
+        <div class="glass-card card-clock">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#2DD4BF;filter:drop-shadow(0 0 8px #2DD4BF99)">
+            <circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/>
+            <circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/>
+            <line x1="22" y1="8"  x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="8"  y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <!-- hour hand — static -->
+            <line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <!-- minute hand — animated -->
+            <line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="22" cy="22" r="3.2" fill="currentColor"/>
+          </svg>
+        </div><span>Clock</span>
+      </div>
+
+      <!-- GLOBE: whole icon spins Y -->
+      <div class="icon-wrap">
+        <div class="glass-card card-globe">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#C084FC;filter:drop-shadow(0 0 8px #C084FC99)">
+            <circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/>
+            <circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/>
+            <ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/>
+            <ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/>
+            <ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
+            <circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/>
+          </svg>
+        </div><span>Globe</span>
+      </div>
+
+      <!-- LUNCH BOX: lid pops up -->
+      <div class="icon-wrap">
+        <div class="glass-card card-lunchbox">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#6FAAFF;filter:drop-shadow(0 0 8px #6FAAFF99)">
+            <rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/>
+            <rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/>
+            <path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
+            <rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/>
+            <rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/>
+            <rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/>
+          </svg>
+        </div><span>Lunch Box</span>
+      </div>
+
+      <!-- LOCATION: bounces -->
+      <div class="icon-wrap">
+        <div class="glass-card card-location">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#60dfff;filter:drop-shadow(0 0 8px #60dfff99)">
+            <ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/>
+            <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/>
+            <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/>
+            <circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/>
+            <circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/>
+          </svg>
+        </div><span>Location</span>
+      </div>
+
+      <!-- SEARCH: shakes -->
+      <div class="icon-wrap">
+        <div class="glass-card card-search">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#C084FC;filter:drop-shadow(0 0 8px #C084FC99)">
+            <circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/>
+            <circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/>
+            <circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/>
+            <circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/>
+            <line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/>
+          </svg>
+        </div><span>Search</span>
+      </div>
+
+      <!-- CART: rolls + wheels spin -->
+      <div class="icon-wrap">
+        <div class="glass-card card-cart">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#4ADE80;filter:drop-shadow(0 0 8px #4ADE8099)">
+            <path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/>
+            <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/>
+            <rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/>
+            <rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/>
+            <circle class="cart-wheel-l" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/>
+            <circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/>
+            <circle class="cart-wheel-r" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/>
+            <circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/>
+          </svg>
+        </div><span>Cart</span>
+      </div>
+
+      <!-- TICK: checkmark draws itself -->
+      <div class="icon-wrap">
+        <div class="glass-card card-tick">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#4ADE80;filter:drop-shadow(0 0 8px #4ADE8099)">
+            <path class="tick-shield-fill" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/>
+            <path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/>
+            <polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div><span>Tick</span>
+      </div>
+
+      <!-- OFFERS: gem spins + sparkle pulses -->
+      <div class="icon-wrap">
+        <div class="glass-card card-offers">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#FBBF24;filter:drop-shadow(0 0 8px #FBBF2499)">
+            <polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/>
+            <polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/>
+            <polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/>
+            <line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
+            <line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
+            <line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
+            <circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/>
+            <circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/>
+          </svg>
+        </div><span>Offers</span>
+      </div>
+
+      <!-- MONEY: coin stack rises in wave -->
+      <div class="icon-wrap">
+        <div class="glass-card card-money">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#4ADE80;filter:drop-shadow(0 0 8px #4ADE8099)">
+            <ellipse class="coin-4" cx="22" cy="35" rx="13" ry="4" fill="currentColor" opacity="0.18"/>
+            <ellipse class="coin-3" cx="22" cy="31" rx="13" ry="4" fill="currentColor" opacity="0.28"/>
+            <ellipse class="coin-2" cx="22" cy="27" rx="13" ry="4" fill="currentColor" opacity="0.38"/>
+            <ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="currentColor" opacity="0.7"/>
+            <ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/>
+            <line class="coin-1" x1="22" y1="19" x2="22" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
+            <path class="coin-1" d="M18 20.5 Q22 18 26 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
+            <path class="coin-1" d="M18 25 Q22 28 26 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
+          </svg>
+        </div><span>Money</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- =============================================
+     STYLE 2 — NEOMORPHISM
+============================================= -->
+<div class="section">
+  <div class="section-label">Style 02</div>
+  <div class="section-title">◈ Neomorphism</div>
+  <div class="neo-bg">
+    <div class="icon-row">
+
+      <div class="icon-wrap neo-wrap">
+        <div class="neo-card card-calendar">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#4F8DFD">
+            <rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/>
+            <rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/>
+            <rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/>
+            <rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/>
+            <rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/>
+            <circle cx="14" cy="30" r="2.3" fill="currentColor"/>
+            <circle cx="22" cy="30" r="2.3" fill="currentColor"/>
+            <circle cx="30" cy="30" r="2.3" fill="currentColor"/>
+            <circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
+            <circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
+          </svg>
+        </div><span>Calendar</span>
+      </div>
+
+      <div class="icon-wrap neo-wrap">
+        <div class="neo-card card-clock">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#14B8A6">
+            <circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/>
+            <circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/>
+            <line x1="22" y1="8"  x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="8"  y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+            <line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="22" cy="22" r="3.2" fill="currentColor"/>
+          </svg>
+        </div><span>Clock</span>
+      </div>
+
+      <div class="icon-wrap neo-wrap">
+        <div class="neo-card card-globe">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#A855F7">
+            <circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/>
+            <circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/>
+            <ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/>
+            <ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/>
+            <ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
+            <circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/>
+          </svg>
+        </div><span>Globe</span>
+      </div>
+
+      <div class="icon-wrap neo-wrap">
+        <div class="neo-card card-lunchbox">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#4F8DFD">
+            <rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/>
+            <rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/>
+            <path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
+            <rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/>
+            <rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/>
+            <rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/>
+          </svg>
+        </div><span>Lunch Box</span>
+      </div>
+
+      <div class="icon-wrap neo-wrap">
+        <div class="neo-card card-location">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#0ea5e9">
+            <ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/>
+            <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/>
+            <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/>
+            <circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/>
+            <circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/>
+          </svg>
+        </div><span>Location</span>
+      </div>
+
+      <div class="icon-wrap neo-wrap">
+        <div class="neo-card card-search">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#A855F7">
+            <circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/>
+            <circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/>
+            <circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/>
+            <circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/>
+            <line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/>
+          </svg>
+        </div><span>Search</span>
+      </div>
+
+      <div class="icon-wrap neo-wrap">
+        <div class="neo-card card-cart">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#22C55E">
+            <path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/>
+            <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/>
+            <rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/>
+            <rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/>
+            <circle class="cart-wheel-l" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/>
+            <circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/>
+            <circle class="cart-wheel-r" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/>
+            <circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/>
+          </svg>
+        </div><span>Cart</span>
+      </div>
+
+      <div class="icon-wrap neo-wrap">
+        <div class="neo-card card-tick">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#22C55E">
+            <path class="tick-shield-fill" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/>
+            <path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/>
+            <polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div><span>Tick</span>
+      </div>
+
+      <div class="icon-wrap neo-wrap">
+        <div class="neo-card card-offers">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#F59E0B">
+            <polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/>
+            <polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/>
+            <polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/>
+            <line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
+            <line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
+            <line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
+            <circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/>
+            <circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/>
+          </svg>
+        </div><span>Offers</span>
+      </div>
+
+      <div class="icon-wrap neo-wrap">
+        <div class="neo-card card-money">
+          <svg class="ico" viewBox="0 0 44 44" style="color:#22C55E">
+            <ellipse class="coin-4" cx="22" cy="35" rx="13" ry="4" fill="currentColor" opacity="0.18"/>
+            <ellipse class="coin-3" cx="22" cy="31" rx="13" ry="4" fill="currentColor" opacity="0.28"/>
+            <ellipse class="coin-2" cx="22" cy="27" rx="13" ry="4" fill="currentColor" opacity="0.38"/>
+            <ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="currentColor" opacity="0.7"/>
+            <ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/>
+            <line class="coin-1" x1="22" y1="19" x2="22" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
+            <path class="coin-1" d="M18 20.5 Q22 18 26 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
+            <path class="coin-1" d="M18 25 Q22 28 26 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
+          </svg>
+        </div><span>Money</span>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- =============================================
+     STYLE 3 — HOLOGRAPHIC
+============================================= -->
+<div class="section">
+  <div class="section-label">Style 03</div>
+  <div class="section-title">⬡ Liquid Crystal · Holographic</div>
+  <div class="holo-bg">
+    <div class="icon-row">
+
+      <div class="icon-wrap"><div class="holo-card card-calendar"><svg class="ico" viewBox="0 0 44 44" style="color:#a0c4ff;filter:drop-shadow(0 0 10px #7ec8ff)"><rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/><rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/><rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/><rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/><rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/><circle cx="14" cy="30" r="2.3" fill="currentColor"/><circle cx="22" cy="30" r="2.3" fill="currentColor"/><circle cx="30" cy="30" r="2.3" fill="currentColor"/><circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/><circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/></svg></div><span>Calendar</span></div>
+
+      <div class="icon-wrap"><div class="holo-card card-clock"><svg class="ico" viewBox="0 0 44 44" style="color:#7fffff;filter:drop-shadow(0 0 10px #4adede)"><circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/><circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/><line x1="22" y1="8" x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="8" y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="22" cy="22" r="3.2" fill="currentColor"/></svg></div><span>Clock</span></div>
+
+      <div class="icon-wrap"><div class="holo-card card-globe"><svg class="ico" viewBox="0 0 44 44" style="color:#d4b3ff;filter:drop-shadow(0 0 10px #b47fff)"><circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/><circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/><ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/><ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/><ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/></svg></div><span>Globe</span></div>
+
+      <div class="icon-wrap"><div class="holo-card card-lunchbox"><svg class="ico" viewBox="0 0 44 44" style="color:#a0c4ff;filter:drop-shadow(0 0 10px #7ec8ff)"><rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/><rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/><path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/><rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/><rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/><rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/></svg></div><span>Lunch Box</span></div>
+
+      <div class="icon-wrap"><div class="holo-card card-location"><svg class="ico" viewBox="0 0 44 44" style="color:#80dfff;filter:drop-shadow(0 0 10px #40cfff)"><ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/><circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/><circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/></svg></div><span>Location</span></div>
+
+      <div class="icon-wrap"><div class="holo-card card-search"><svg class="ico" viewBox="0 0 44 44" style="color:#d4b3ff;filter:drop-shadow(0 0 10px #b47fff)"><circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/><circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/><circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/><circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/><line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/></svg></div><span>Search</span></div>
+
+      <div class="icon-wrap"><div class="holo-card card-cart"><svg class="ico" viewBox="0 0 44 44" style="color:#a8ffcc;filter:drop-shadow(0 0 10px #3effb0)"><path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/><rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/><rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/><circle class="cart-wheel-l" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/><circle class="cart-wheel-r" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/></svg></div><span>Cart</span></div>
+
+      <div class="icon-wrap"><div class="holo-card card-tick"><svg class="ico" viewBox="0 0 44 44" style="color:#a8ffcc;filter:drop-shadow(0 0 10px #3effb0)"><path class="tick-shield-fill" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/><path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/><polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Tick</span></div>
+
+      <div class="icon-wrap"><div class="holo-card card-offers"><svg class="ico" viewBox="0 0 44 44" style="color:#ffd6a0;filter:drop-shadow(0 0 10px #ffbd59)"><polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/><polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/><polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/><line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/><line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/><circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/></svg></div><span>Offers</span></div>
+
+      <div class="icon-wrap"><div class="holo-card card-money"><svg class="ico" viewBox="0 0 44 44" style="color:#a8ffcc;filter:drop-shadow(0 0 10px #3effb0)"><ellipse class="coin-4" cx="22" cy="35" rx="13" ry="4" fill="currentColor" opacity="0.18"/><ellipse class="coin-3" cx="22" cy="31" rx="13" ry="4" fill="currentColor" opacity="0.28"/><ellipse class="coin-2" cx="22" cy="27" rx="13" ry="4" fill="currentColor" opacity="0.38"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="currentColor" opacity="0.7"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/><line class="coin-1" x1="22" y1="19" x2="22" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 20.5 Q22 18 26 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 25 Q22 28 26 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/></svg></div><span>Money</span></div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- =============================================
+     STYLE 4 — AURORA
+============================================= -->
+<div class="section">
+  <div class="section-label">Style 04</div>
+  <div class="section-title">◉ Aurora Gradient Bubble</div>
+  <div class="aurora-bg">
+    <div class="icon-row">
+
+      <div class="icon-wrap"><div class="aurora-card blue card-calendar"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/><rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/><rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/><rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/><rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/><circle cx="14" cy="30" r="2.3" fill="currentColor"/><circle cx="22" cy="30" r="2.3" fill="currentColor"/><circle cx="30" cy="30" r="2.3" fill="currentColor"/><circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/><circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/></svg></div><span>Calendar</span></div>
+
+      <div class="icon-wrap"><div class="aurora-card teal card-clock"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/><circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/><line x1="22" y1="8" x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="8" y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="22" cy="22" r="3.2" fill="currentColor"/></svg></div><span>Clock</span></div>
+
+      <div class="icon-wrap"><div class="aurora-card purple card-globe"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/><circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/><ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/><ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/><ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/></svg></div><span>Globe</span></div>
+
+      <div class="icon-wrap"><div class="aurora-card blue card-lunchbox"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/><rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/><path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/><rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/><rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/><rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/></svg></div><span>Lunch Box</span></div>
+
+      <div class="icon-wrap"><div class="aurora-card blue card-location"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/><circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/><circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/></svg></div><span>Location</span></div>
+
+      <div class="icon-wrap"><div class="aurora-card purple card-search"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/><circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/><circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/><circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/><line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/></svg></div><span>Search</span></div>
+
+      <div class="icon-wrap"><div class="aurora-card green card-cart"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/><rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/><rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/><circle class="cart-wheel-l" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/><circle class="cart-wheel-r" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/></svg></div><span>Cart</span></div>
+
+      <div class="icon-wrap"><div class="aurora-card green card-tick"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><path class="tick-shield-fill" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/><path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/><polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Tick</span></div>
+
+      <div class="icon-wrap"><div class="aurora-card orange card-offers"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/><polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/><polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/><line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/><line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/><circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/></svg></div><span>Offers</span></div>
+
+      <div class="icon-wrap"><div class="aurora-card green card-money"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><ellipse class="coin-4" cx="22" cy="35" rx="13" ry="4" fill="currentColor" opacity="0.18"/><ellipse class="coin-3" cx="22" cy="31" rx="13" ry="4" fill="currentColor" opacity="0.28"/><ellipse class="coin-2" cx="22" cy="27" rx="13" ry="4" fill="currentColor" opacity="0.38"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="currentColor" opacity="0.7"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/><line class="coin-1" x1="22" y1="19" x2="22" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 20.5 Q22 18 26 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 25 Q22 28 26 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/></svg></div><span>Money</span></div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- =============================================
+     STYLE 5 — CLAY 3D
+============================================= -->
+<div class="section">
+  <div class="section-label">Style 05</div>
+  <div class="section-title">⬤ Clay 3D Inflated</div>
+  <div class="clay-bg">
+    <div class="icon-row">
+
+      <div class="icon-wrap clay-wrap"><div class="clay-card blue card-calendar"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/><rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/><rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/><rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/><rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/><circle cx="14" cy="30" r="2.3" fill="currentColor"/><circle cx="22" cy="30" r="2.3" fill="currentColor"/><circle cx="30" cy="30" r="2.3" fill="currentColor"/><circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/><circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/></svg></div><span>Calendar</span></div>
+
+      <div class="icon-wrap clay-wrap"><div class="clay-card teal card-clock"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/><circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/><line x1="22" y1="8" x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="8" y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="22" cy="22" r="3.2" fill="currentColor"/></svg></div><span>Clock</span></div>
+
+      <div class="icon-wrap clay-wrap"><div class="clay-card purple card-globe"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/><circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/><ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/><ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/><ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/></svg></div><span>Globe</span></div>
+
+      <div class="icon-wrap clay-wrap"><div class="clay-card blue card-lunchbox"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/><rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/><path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/><rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/><rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/><rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/></svg></div><span>Lunch Box</span></div>
+
+      <div class="icon-wrap clay-wrap"><div class="clay-card blue card-location"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/><circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/><circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/></svg></div><span>Location</span></div>
+
+      <div class="icon-wrap clay-wrap"><div class="clay-card purple card-search"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/><circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/><circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/><circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/><line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/></svg></div><span>Search</span></div>
+
+      <div class="icon-wrap clay-wrap"><div class="clay-card green card-cart"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/><rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/><rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/><circle class="cart-wheel-l" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/><circle class="cart-wheel-r" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/></svg></div><span>Cart</span></div>
+
+      <div class="icon-wrap clay-wrap"><div class="clay-card green card-tick"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><path class="tick-shield-fill" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/><path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/><polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Tick</span></div>
+
+      <div class="icon-wrap clay-wrap"><div class="clay-card orange card-offers"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/><polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/><polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/><line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/><line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/><circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/></svg></div><span>Offers</span></div>
+
+      <div class="icon-wrap clay-wrap"><div class="clay-card green card-money"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><ellipse class="coin-4" cx="22" cy="35" rx="13" ry="4" fill="currentColor" opacity="0.18"/><ellipse class="coin-3" cx="22" cy="31" rx="13" ry="4" fill="currentColor" opacity="0.28"/><ellipse class="coin-2" cx="22" cy="27" rx="13" ry="4" fill="currentColor" opacity="0.38"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="currentColor" opacity="0.7"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/><line class="coin-1" x1="22" y1="19" x2="22" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 20.5 Q22 18 26 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 25 Q22 28 26 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/></svg></div><span>Money</span></div>
+
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
