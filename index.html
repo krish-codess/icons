@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Icon Style Showcase</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; padding: 60px 40px; min-height: 100vh; }
@@ -17,7 +17,8 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 .icon-wrap span { font-size: 10px; font-weight: 500; letter-spacing: 0.5px; color: #555; text-transform: uppercase; }
 .ico { width: 44px; height: 44px; display: block; }
 
-/* ── DOWNLOAD BUTTON ── */
+/* ── DOWNLOAD BUTTON & PANEL ── */
+.dl-wrap { position: relative; display: flex; justify-content: center; }
 .dl-btn {
   padding: 5px 12px;
   border-radius: 20px;
@@ -29,10 +30,48 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
   transition: all 0.2s ease;
   font-family: 'DM Sans', sans-serif;
 }
-.dl-btn:hover { background: rgba(79,141,253,0.22); border-color: rgba(79,141,253,0.5); color: #8bbfff; transform: translateY(-1px); }
-.dl-btn.done { background: rgba(34,197,94,0.18); border-color: rgba(34,197,94,0.45); color: #4ade80; }
+.dl-btn:hover, .dl-btn.active { background: rgba(79,141,253,0.22); border-color: rgba(79,141,253,0.5); color: #8bbfff; transform: translateY(-1px); }
+.dl-btn.done { background: rgba(34,197,94,0.18); border-color: rgba(34,197,94,0.45); color: #4ade80; pointer-events: none; }
 .neo-bg .dl-btn, .clay-bg .dl-btn { border-color: rgba(0,0,0,0.13); background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.38); }
-.neo-bg .dl-btn:hover, .clay-bg .dl-btn:hover { background: rgba(79,141,253,0.15); border-color: rgba(79,141,253,0.4); color: #3b7dd8; }
+.neo-bg .dl-btn:hover, .neo-bg .dl-btn.active, .clay-bg .dl-btn:hover, .clay-bg .dl-btn.active { background: rgba(79,141,253,0.15); border-color: rgba(79,141,253,0.4); color: #3b7dd8; }
+
+.dl-panel {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  background: #15151e;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 12px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+  z-index: 100;
+  min-width: 145px;
+}
+.dl-panel.show { opacity: 1; visibility: visible; transform: translateY(0); }
+.dl-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.dl-row label { font-size: 10px; color: #888; text-transform: uppercase; font-weight: 700; letter-spacing: 0.5px; }
+.dl-row select { 
+  background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.15); 
+  border-radius: 6px; padding: 4px 6px; font-size: 11px; outline: none; 
+  font-family: 'DM Sans'; cursor: pointer; flex-grow: 1;
+}
+.dl-action { 
+  background: #4f8dfd; color: #fff; border: none; border-radius: 6px; 
+  padding: 7px; font-size: 11px; font-weight: 600; cursor: pointer; 
+  margin-top: 4px; transition: background 0.2s; 
+}
+.dl-action:hover { background: #3b7dd8; }
+
+/* Light Theme Adjustments for Panel */
+.neo-bg .dl-panel, .clay-bg .dl-panel { background: #fff; border-color: rgba(0,0,0,0.08); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+.neo-bg .dl-row label, .clay-bg .dl-row label { color: #888; }
+.neo-bg .dl-row select, .clay-bg .dl-row select { background: #f5f6f8; color: #333; border-color: rgba(0,0,0,0.08); }
 
 /* ── GLASS ── */
 .glass-bg { padding: 32px; border-radius: 28px; background: linear-gradient(135deg,#0c0c18,#0a1020); position: relative; overflow: hidden; }
@@ -149,15 +188,8 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 <body>
 
 <h1 class="page-title">Icon Style Showcase</h1>
-<p class="page-sub">5 design systems · hover to animate · click ↓ SVG to download animated file</p>
+<p class="page-sub">5 design systems · hover to animate · multiple formats and resolutions</p>
 
-
-<!-- ═══════════════════════════════════════════
-     MACRO: builds one icon card + download btn
-     Usage: called by JS after page load
-════════════════════════════════════════════ -->
-
-<!-- ── GLASSMORPHISM ── -->
 <div class="section">
   <div class="section-label">Style 01</div>
   <div class="section-title">✦ Glassmorphism</div>
@@ -166,7 +198,6 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
   </div>
 </div>
 
-<!-- ── NEOMORPHISM ── -->
 <div class="section">
   <div class="section-label">Style 02</div>
   <div class="section-title">◈ Neomorphism</div>
@@ -175,7 +206,6 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
   </div>
 </div>
 
-<!-- ── HOLOGRAPHIC ── -->
 <div class="section">
   <div class="section-label">Style 03</div>
   <div class="section-title">⬡ Liquid Crystal · Holographic</div>
@@ -184,7 +214,6 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
   </div>
 </div>
 
-<!-- ── AURORA ── -->
 <div class="section">
   <div class="section-label">Style 04</div>
   <div class="section-title">◉ Aurora Gradient Bubble</div>
@@ -193,7 +222,6 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
   </div>
 </div>
 
-<!-- ── CLAY 3D ── -->
 <div class="section">
   <div class="section-label">Style 05</div>
   <div class="section-title">⬤ Clay 3D Inflated</div>
@@ -203,14 +231,6 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 </div>
 
 <script>
-
-// ═══════════════════════════════════════════════════════
-//  ICON DEFINITIONS
-//  Each icon has:
-//    svgInner  — the inner SVG markup for the preview (uses currentColor)
-//    smil      — the standalone animated SVG string (hardcoded color, SMIL animations)
-//    cardClass — card-* class for CSS hover animations
-// ═══════════════════════════════════════════════════════
 const ICONS = [
   {
     name: 'Calendar',
@@ -419,31 +439,22 @@ const ICONS = [
 </svg>`
   },
   {
-    // OFFERS: Bold lightning bolt — pulse rings + zap flash
     name: 'Offers',
     cardClass: 'card-offers',
     svgInner: `
-      <!-- outer pulse ring -->
       <circle class="offers-ring2" cx="22" cy="22" r="18" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.15"/>
-      <!-- inner pulse ring -->
       <circle class="offers-ring1" cx="22" cy="22" r="13" fill="none" stroke="currentColor" stroke-width="2" opacity="0.25"/>
-      <!-- filled circle bg -->
       <circle cx="22" cy="22" r="9" fill="currentColor" opacity="0.18"/>
-      <!-- lightning bolt — fat & chunky -->
-      <path class="offers-bolt" d="M25 4 L13 23 H20 L17 40 L31 18 H23 Z"
-            fill="currentColor" opacity="0.95" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round"/>`,
+      <path class="offers-bolt" d="M25 4 L13 23 H20 L17 40 L31 18 H23 Z" fill="currentColor" opacity="0.95" stroke="currentColor" stroke-width="0.5" stroke-linejoin="round"/>`,
     smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
-  <!-- outer pulse ring -->
   <circle cx="22" cy="22" r="18" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.15">
     <animate attributeName="r" values="14;20;14" dur="1.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
     <animate attributeName="opacity" values="0.35;0;0.35" dur="1.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
   </circle>
-  <!-- inner pulse ring -->
   <circle cx="22" cy="22" r="13" fill="none" stroke="${c}" stroke-width="2" opacity="0.25">
     <animate attributeName="r" values="10;15;10" dur="1.4s" begin="0.15s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
     <animate attributeName="opacity" values="0.5;0.05;0.5" dur="1.4s" begin="0.15s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
   </circle>
-  <!-- bolt flashes bright -->
   <path d="M25 4 L13 23 H20 L17 40 L31 18 H23 Z" fill="${c}" stroke="${c}" stroke-width="0.5" stroke-linejoin="round">
     <animate attributeName="opacity" values="0.95;1;0.6;1;0.95" keyTimes="0;0.2;0.5;0.8;1" dur="1.4s" repeatCount="indefinite"/>
     <animateTransform attributeName="transform" type="scale" values="1 1;1.06 1.06;0.97 0.97;1.06 1.06;1 1" keyTimes="0;0.2;0.5;0.8;1" dur="1.4s" repeatCount="indefinite" additive="sum"/>
@@ -451,35 +462,25 @@ const ICONS = [
 </svg>`
   },
   {
-    // MONEY: Gold coin face — ring orbit + shine sweep
     name: 'Money',
     cardClass: 'card-money',
     svgInner: `
-      <!-- coin body -->
       <circle cx="22" cy="22" r="17" fill="currentColor" opacity="0.18"/>
       <circle cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2.8" opacity="0.85"/>
-      <!-- inner rim -->
       <circle cx="22" cy="22" r="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.35"/>
-      <!-- dollar sign -->
-      <text x="22" y="23" text-anchor="middle" dominant-baseline="middle"
-            font-size="15" font-weight="900" fill="currentColor" opacity="0.92"
-            font-family="system-ui,sans-serif">$</text>
-      <!-- shine arc -->
+      <text x="22" y="23" text-anchor="middle" dominant-baseline="middle" font-size="15" font-weight="900" fill="currentColor" opacity="0.92" font-family="system-ui,sans-serif">$</text>
       <path class="money-shine" d="M10 10 Q14 7 20 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>`,
-    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+    // BUG FIX: Added xmlns:xlink definition to root to prevent invalid XML when using <mpath>
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 44 44" width="44" height="44">
   <defs><style>text{font-family:system-ui,sans-serif}</style></defs>
-  <!-- coin body -->
   <circle cx="22" cy="22" r="17" fill="${c}" opacity="0.18"/>
   <circle cx="22" cy="22" r="17" fill="none" stroke="${c}" stroke-width="2.8" opacity="0.85"/>
-  <!-- inner rim -->
   <circle cx="22" cy="22" r="13" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.35"/>
-  <!-- dollar sign pulses + bobs -->
   <text x="22" text-anchor="middle" dominant-baseline="middle" font-size="15" font-weight="900" fill="${c}" opacity="0.92">$
     <animate attributeName="y" values="23;20;23" dur="1.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
     <animate attributeName="font-size" values="15;18;15" dur="1.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
     <animate attributeName="opacity" values="0.92;1;0.92" dur="1.2s" repeatCount="indefinite"/>
   </text>
-  <!-- orbiting shine dot -->
   <circle r="2.5" fill="${c}" opacity="0.7">
     <animateMotion dur="2s" repeatCount="indefinite">
       <mpath xlink:href="#coin-orbit"/>
@@ -487,7 +488,6 @@ const ICONS = [
     <animate attributeName="opacity" values="0.7;1;0.3;1;0.7" dur="2s" repeatCount="indefinite"/>
   </circle>
   <path id="coin-orbit" d="M 39,22 A 17,17 0 1 1 38.99,21.9" fill="none"/>
-  <!-- shine sweep arc -->
   <path d="M10 10 Q14 7 20 8" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round">
     <animate attributeName="opacity" values="0.55;0.9;0.2;0.9;0.55" dur="2s" repeatCount="indefinite"/>
   </path>
@@ -495,52 +495,30 @@ const ICONS = [
   }
 ];
 
-// ═══════════════════════════════════════════════════════
-//  STYLE CONFIGS — card class, color, filter per style
-// ═══════════════════════════════════════════════════════
 const STYLES = [
-  {
-    rowId: 'row-glass',
-    cardType: 'glass-card',
-    colors: ['#6FAAFF','#2DD4BF','#C084FC','#6FAAFF','#60dfff','#C084FC','#4ADE80','#4ADE80','#FBBF24','#4ADE80'],
-    filter: (c) => `drop-shadow(0 0 8px ${c}99)`
-  },
-  {
-    rowId: 'row-neo',
-    cardType: 'neo-card',
-    wrapExtra: 'neo-wrap',
-    colors: ['#4F8DFD','#14B8A6','#A855F7','#4F8DFD','#0ea5e9','#A855F7','#22C55E','#22C55E','#F59E0B','#22C55E'],
-    filter: null
-  },
-  {
-    rowId: 'row-holo',
-    cardType: 'holo-card',
-    colors: ['#a0c4ff','#7fffff','#d4b3ff','#a0c4ff','#80dfff','#d4b3ff','#a8ffcc','#a8ffcc','#ffd6a0','#a8ffcc'],
-    filter: (c) => `drop-shadow(0 0 10px ${c})`
-  },
-  {
-    rowId: 'row-aurora',
-    cardType: 'aurora-card',
-    colorClass: ['blue','teal','purple','blue','blue','purple','green','green','orange','green'],
-    colors: Array(10).fill('rgba(255,255,255,0.93)'),
-    filter: null
-  },
-  {
-    rowId: 'row-clay',
-    cardType: 'clay-card',
-    wrapExtra: 'clay-wrap',
-    colorClass: ['blue','teal','purple','blue','blue','purple','green','green','orange','green'],
-    colors: Array(10).fill('rgba(255,255,255,0.95)'),
-    filter: null
-  }
+  { rowId: 'row-glass', cardType: 'glass-card', colors: ['#6FAAFF','#2DD4BF','#C084FC','#6FAAFF','#60dfff','#C084FC','#4ADE80','#4ADE80','#FBBF24','#4ADE80'], filter: (c) => `drop-shadow(0 0 8px ${c}99)` },
+  { rowId: 'row-neo', cardType: 'neo-card', wrapExtra: 'neo-wrap', colors: ['#4F8DFD','#14B8A6','#A855F7','#4F8DFD','#0ea5e9','#A855F7','#22C55E','#22C55E','#F59E0B','#22C55E'] },
+  { rowId: 'row-holo', cardType: 'holo-card', colors: ['#a0c4ff','#7fffff','#d4b3ff','#a0c4ff','#80dfff','#d4b3ff','#a8ffcc','#a8ffcc','#ffd6a0','#a8ffcc'], filter: (c) => `drop-shadow(0 0 10px ${c})` },
+  { rowId: 'row-aurora', cardType: 'aurora-card', colorClass: ['blue','teal','purple','blue','blue','purple','green','green','orange','green'], colors: Array(10).fill('rgba(255,255,255,0.93)') },
+  { rowId: 'row-clay', cardType: 'clay-card', wrapExtra: 'clay-wrap', colorClass: ['blue','teal','purple','blue','blue','purple','green','green','orange','green'], colors: Array(10).fill('rgba(255,255,255,0.95)') }
 ];
 
-// ═══════════════════════════════════════════════════════
-//  BUILD & INJECT ALL ICON CARDS
-// ═══════════════════════════════════════════════════════
+// Utility: Trigger native download
+function triggerDownload(blob, filename) {
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+// ── BUILD AND INJECT CARDS ──
 function buildCard(icon, style, idx) {
-  const color      = style.colors[idx];
-  const filterStr  = style.filter ? `filter:${style.filter(color)};` : '';
+  const color = style.colors[idx];
+  const filterStr = style.filter ? `filter:${style.filter(color)};` : '';
   const colorClass = style.colorClass ? style.colorClass[idx] : '';
 
   const wrap = document.createElement('div');
@@ -554,50 +532,126 @@ function buildCard(icon, style, idx) {
   svg.setAttribute('viewBox', '0 0 44 44');
   svg.setAttribute('style', `color:${color};${filterStr}`);
   svg.innerHTML = icon.svgInner;
-
   card.appendChild(svg);
 
   const label = document.createElement('span');
   label.textContent = icon.name;
 
-  // ── DOWNLOAD BUTTON ──
+  // ── NEW: DOWNLOAD COMPONENT ──
+  const dlWrap = document.createElement('div');
+  dlWrap.className = 'dl-wrap';
+
   const btn = document.createElement('button');
   btn.className = 'dl-btn';
-  btn.textContent = '↓ SVG';
+  btn.textContent = '↓ Download';
 
+  const panel = document.createElement('div');
+  panel.className = 'dl-panel';
+  panel.innerHTML = `
+    <div class="dl-row">
+      <label>Format</label>
+      <select class="dl-format">
+        <option value="SVG">SVG (Anim)</option>
+        <option value="PNG">PNG (Static)</option>
+      </select>
+    </div>
+    <div class="dl-row">
+      <label>Size</label>
+      <select class="dl-size">
+        <option value="64">64px</option>
+        <option value="128">128px</option>
+        <option value="256" selected>256px</option>
+        <option value="512">512px</option>
+      </select>
+    </div>
+    <button class="dl-action">Save Icon</button>
+  `;
+
+  // Toggle Panel
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
-    // Use the SMIL version with the actual color of THIS card
-    const smilSVG = '<?xml version="1.0" encoding="UTF-8"?>\n' + icon.smil(color);
-    const blob = new Blob([smilSVG], { type: 'image/svg+xml' });
-    const a = Object.assign(document.createElement('a'), {
-      href: URL.createObjectURL(blob),
-      download: `${icon.name.toLowerCase().replace(/\s+/g,'-')}-animated.svg`
+    document.querySelectorAll('.dl-panel.show').forEach(p => {
+      if (p !== panel) {
+        p.classList.remove('show');
+        p.previousElementSibling.classList.remove('active');
+      }
     });
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(a.href);
+    panel.classList.toggle('show');
+    btn.classList.toggle('active');
+  });
 
-    // Flash feedback
+  // Prevent closing when interacting inside panel
+  panel.addEventListener('click', e => e.stopPropagation());
+
+  // Handle Export
+  const actionBtn = panel.querySelector('.dl-action');
+  actionBtn.addEventListener('click', () => {
+    const format = panel.querySelector('.dl-format').value;
+    const size = parseInt(panel.querySelector('.dl-size').value, 10);
+    const filename = icon.name.toLowerCase().replace(/\s+/g,'-');
+
+    // Close panel and show success state
+    panel.classList.remove('show');
+    btn.classList.remove('active');
     btn.textContent = '✓ Saved!';
     btn.classList.add('done');
     setTimeout(() => {
-      btn.textContent = '↓ SVG';
+      btn.textContent = '↓ Download';
       btn.classList.remove('done');
     }, 1800);
+
+    if (format === 'SVG') {
+      // Export animated SMIL SVG
+      let rawSVG = icon.smil(color);
+      const sizedSVG = rawSVG.replace(/width="44"/, `width="${size}"`).replace(/height="44"/, `height="${size}"`);
+      const blob = new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n' + sizedSVG], { type: 'image/svg+xml' });
+      triggerDownload(blob, `${filename}-${size}x${size}.svg`);
+    } else {
+      // Export Static PNG (uses the clean static 'svgInner' to avoid mid-animation snapshots)
+      const canvas = document.createElement('canvas');
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext('2d');
+      
+      const innerFilled = icon.svgInner.replace(/currentColor/g, color);
+      const staticSVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="${size}" height="${size}">${innerFilled}</svg>`;
+      const blob = new Blob([staticSVG], { type: 'image/svg+xml;charset=utf-8' });
+      
+      const url = URL.createObjectURL(blob);
+      const img = new Image();
+      img.onload = () => {
+        ctx.drawImage(img, 0, 0, size, size);
+        URL.revokeObjectURL(url);
+        canvas.toBlob(pngBlob => {
+          triggerDownload(pngBlob, `${filename}-${size}x${size}.png`);
+        }, 'image/png');
+      };
+      img.src = url;
+    }
   });
+
+  dlWrap.appendChild(btn);
+  dlWrap.appendChild(panel);
 
   wrap.appendChild(card);
   wrap.appendChild(label);
-  wrap.appendChild(btn);
+  wrap.appendChild(dlWrap);
   return wrap;
 }
 
+// Render cards
 STYLES.forEach(style => {
   const row = document.getElementById(style.rowId);
   ICONS.forEach((icon, idx) => {
     row.appendChild(buildCard(icon, style, idx));
+  });
+});
+
+// Global listener to close dropdowns when clicking outside
+document.addEventListener('click', () => {
+  document.querySelectorAll('.dl-panel.show').forEach(p => {
+    p.classList.remove('show');
+    p.previousElementSibling.classList.remove('active');
   });
 });
 </script>
