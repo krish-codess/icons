@@ -257,14 +257,37 @@
      Each icon gets a unique animation tied to its meaning
   ============================================= */
 
-  /* CALENDAR — page flip on hover */
-  @keyframes calFlip {
-    0%   { transform: rotateX(0deg); }
-    30%  { transform: rotateX(-20deg) translateY(-3px); }
-    60%  { transform: rotateX(10deg) translateY(1px); }
-    100% { transform: rotateX(0deg); }
+  /* CALENDAR — rings jiggle + date dot pulses */
+  @keyframes calRingLeft {
+    0%   { transform: translateY(0) rotate(0deg); }
+    20%  { transform: translateY(-4px) rotate(-12deg); }
+    50%  { transform: translateY(-2px) rotate(6deg); }
+    75%  { transform: translateY(-3px) rotate(-4deg); }
+    100% { transform: translateY(0) rotate(0deg); }
   }
-  .card-calendar:hover .ico { animation: calFlip 0.55s ease forwards; transform-origin: top center; }
+  @keyframes calRingRight {
+    0%   { transform: translateY(0) rotate(0deg); }
+    20%  { transform: translateY(-4px) rotate(12deg); }
+    50%  { transform: translateY(-2px) rotate(-6deg); }
+    75%  { transform: translateY(-3px) rotate(4deg); }
+    100% { transform: translateY(0) rotate(0deg); }
+  }
+  @keyframes calDotPop {
+    0%,100% { r: 2.3; opacity: 1; }
+    50%      { r: 3.5; opacity: 0.7; }
+  }
+  @keyframes calBodyShake {
+    0%   { transform: rotate(0deg); }
+    15%  { transform: rotate(-3deg); }
+    35%  { transform: rotate(3deg); }
+    55%  { transform: rotate(-2deg); }
+    75%  { transform: rotate(1deg); }
+    100% { transform: rotate(0deg); }
+  }
+  .card-calendar:hover .ico { animation: calBodyShake 0.5s ease forwards; }
+  .card-calendar:hover .cal-ring-l { animation: calRingLeft 0.5s ease forwards; transform-origin: 15px 9px; }
+  .card-calendar:hover .cal-ring-r { animation: calRingRight 0.5s ease forwards; transform-origin: 29px 9px; }
+  .card-calendar:hover .cal-dot { animation: calDotPop 0.4s ease infinite; }
 
   /* CLOCK — minute hand sweep (the .clock-hand element) */
   @keyframes clockSpin {
@@ -349,30 +372,41 @@
   }
   .card-tick:hover .tick-shield-fill { animation: shieldPulse 0.8s ease infinite; }
 
-  /* OFFERS — gem sparkle rotate */
-  @keyframes gemSpin {
-    0%   { transform: rotate(0deg) scale(1); }
-    25%  { transform: rotate(12deg) scale(1.08); }
-    50%  { transform: rotate(-8deg) scale(1.05); }
-    75%  { transform: rotate(5deg) scale(1.1); }
-    100% { transform: rotate(0deg) scale(1); }
+  /* OFFERS — tag swings like a price label on a string */
+  @keyframes tagSwing {
+    0%   { transform: rotate(0deg); }
+    20%  { transform: rotate(-18deg); }
+    45%  { transform: rotate(14deg); }
+    65%  { transform: rotate(-9deg); }
+    80%  { transform: rotate(5deg); }
+    100% { transform: rotate(0deg); }
   }
-  @keyframes sparkleFlash {
-    0%,100% { opacity: 0.6; r: 3.5; }
-    50%      { opacity: 1; r: 5; }
+  @keyframes pctPulse {
+    0%,100% { opacity: 0.9; transform: scale(1); }
+    50%      { opacity: 1; transform: scale(1.2); }
   }
-  .card-offers:hover .ico { animation: gemSpin 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards; }
-  .card-offers:hover .offers-sparkle { animation: sparkleFlash 0.4s ease infinite; }
+  .card-offers:hover .ico { animation: tagSwing 0.65s cubic-bezier(0.34,1.56,0.64,1) forwards; transform-origin: 22px 6px; }
+  .card-offers:hover .offers-pct { animation: pctPulse 0.35s ease infinite; transform-origin: 22px 26px; }
 
-  /* MONEY — coin stack rise wave */
-  @keyframes coinRise1 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-  @keyframes coinRise2 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
-  @keyframes coinRise3 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-11px); } }
-  @keyframes coinRise4 { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-14px); } }
-  .card-money:hover .coin-4 { animation: coinRise1 0.5s 0s   ease infinite; }
-  .card-money:hover .coin-3 { animation: coinRise2 0.5s 0.07s ease infinite; }
-  .card-money:hover .coin-2 { animation: coinRise3 0.5s 0.14s ease infinite; }
-  .card-money:hover .coin-1 { animation: coinRise4 0.5s 0.21s ease infinite; }
+  /* MONEY — bills fan out like cash being spread */
+  @keyframes billFan {
+    0%   { transform: rotate(0deg) translateY(0); }
+    30%  { transform: rotate(-14deg) translateY(-4px); }
+    60%  { transform: rotate(-10deg) translateY(-3px); }
+    100% { transform: rotate(0deg) translateY(0); }
+  }
+  @keyframes billLift {
+    0%,100% { transform: translateY(0) rotate(0deg); }
+    40%     { transform: translateY(-6px) rotate(3deg); }
+    70%     { transform: translateY(-4px) rotate(2deg); }
+  }
+  @keyframes dollarPop {
+    0%,100% { transform: scale(1); opacity: 0.95; }
+    50%      { transform: scale(1.3); opacity: 1; }
+  }
+  .card-money:hover .money-wallet { animation: billFan 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards; transform-origin: 4px 40px; }
+  .card-money:hover .money-card   { animation: billLift 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+  .card-money:hover text          { animation: dollarPop 0.4s ease infinite; transform-origin: 22px 30px; }
 
 </style>
 </head>
@@ -866,5 +900,92 @@
   </div>
 </div>
 
+<script>
+// ── NEW CALENDAR SVG INNER HTML ──────────────────────────────────────────────
+// A cleaner calendar: rounded rect body, distinct header bar, ring pins,
+// a bold date "14" numeral in the body, and week-row dots
+const calSVG = `
+  <!-- body -->
+  <rect x="4" y="11" width="36" height="30" rx="7" fill="currentColor" opacity="0.15"/>
+  <!-- header bar -->
+  <rect x="4" y="11" width="36" height="12" rx="7" fill="currentColor" opacity="0.6"/>
+  <rect x="4" y="18" width="36" height="5" fill="currentColor" opacity="0.6"/>
+  <!-- left ring pin -->
+  <rect class="cal-ring-l" x="13" y="5" width="5" height="11" rx="2.5" fill="currentColor"/>
+  <!-- right ring pin -->
+  <rect class="cal-ring-r" x="26" y="5" width="5" height="11" rx="2.5" fill="currentColor"/>
+  <!-- bold date "14" -->
+  <text x="22" y="34" text-anchor="middle" dominant-baseline="middle"
+        font-size="11" font-weight="800" fill="currentColor" opacity="0.85"
+        font-family="system-ui,sans-serif">14</text>
+  <!-- week dots row -->
+  <circle class="cal-dot" cx="10" cy="37" r="1.8" fill="currentColor" opacity="0.35"/>
+  <circle cx="16" cy="37" r="1.8" fill="currentColor" opacity="0.35"/>
+  <circle cx="22" cy="37" r="1.8" fill="currentColor" opacity="0.35"/>
+  <circle cx="28" cy="37" r="1.8" fill="currentColor" opacity="0.35"/>
+  <circle cx="34" cy="37" r="1.8" fill="currentColor" opacity="0.35"/>
+`;
+
+// ── NEW OFFERS SVG INNER HTML ─────────────────────────────────────────────────
+// A price / discount tag: rounded tag shape with hole + % sign + diagonal slash
+const offersSVG = `
+  <!-- tag body -->
+  <path d="M8 6 L32 6 Q38 6 38 14 L38 30 Q38 38 30 40 L22 42 L14 40 Q6 38 6 30 L6 14 Q6 6 8 6 Z"
+        fill="currentColor" opacity="0.15"/>
+  <path d="M8 6 L32 6 Q38 6 38 14 L38 30 Q38 38 30 40 L22 42 L14 40 Q6 38 6 30 L6 14 Q6 6 8 6 Z"
+        fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.75"/>
+  <!-- hang hole -->
+  <circle cx="22" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/>
+  <!-- top-left % dot -->
+  <circle cx="15" cy="20" r="3" fill="currentColor" opacity="0.8"/>
+  <!-- bottom-right % dot -->
+  <circle cx="29" cy="32" r="3" fill="currentColor" opacity="0.8"/>
+  <!-- diagonal slash -->
+  <line x1="13" y1="33" x2="31" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  <!-- pct symbol glow -->
+  <circle class="offers-pct" cx="15" cy="20" r="3" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+  <circle class="offers-pct" cx="29" cy="32" r="3" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
+`;
+
+// ── NEW MONEY SVG INNER HTML ──────────────────────────────────────────────────
+// A stacked dollar bill: two bills fanned slightly, with $ symbol, corner ovals, deco lines
+const moneySVG = `
+  <!-- back bill (slightly rotated) -->
+  <g class="money-wallet" transform="rotate(-6, 22, 26)">
+    <rect x="4" y="17" width="36" height="20" rx="5" fill="currentColor" opacity="0.18"/>
+    <rect x="4" y="17" width="36" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
+  </g>
+  <!-- front bill -->
+  <rect class="money-card" x="4" y="20" width="36" height="20" rx="5" fill="currentColor" opacity="0.25"/>
+  <rect class="money-card" x="4" y="20" width="36" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.85"/>
+  <!-- inner border lines -->
+  <rect class="money-card" x="7" y="23" width="30" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+  <!-- left corner oval -->
+  <ellipse class="money-card" cx="11" cy="30" rx="3.5" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+  <!-- right corner oval -->
+  <ellipse class="money-card" cx="33" cy="30" rx="3.5" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+  <!-- center $ symbol -->
+  <text class="money-card" x="22" y="31.5" text-anchor="middle" dominant-baseline="middle"
+        font-size="10" font-weight="900" fill="currentColor" opacity="0.95"
+        font-family="system-ui,sans-serif">$</text>
+  <!-- deco micro lines left -->
+  <line class="money-card" x1="16" y1="27" x2="20" y2="27" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+  <line class="money-card" x1="16" y1="33" x2="20" y2="33" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+  <!-- deco micro lines right -->
+  <line class="money-card" x1="24" y1="27" x2="28" y2="27" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+  <line class="money-card" x1="24" y1="33" x2="28" y2="33" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+`;
+
+// ── APPLY TO ALL .card-* CONTAINERS ─────────────────────────────────────────
+document.querySelectorAll('.card-calendar svg').forEach(svg => {
+  svg.innerHTML = calSVG;
+});
+document.querySelectorAll('.card-offers svg').forEach(svg => {
+  svg.innerHTML = offersSVG;
+});
+document.querySelectorAll('.card-money svg').forEach(svg => {
+  svg.innerHTML = moneySVG;
+});
+</script>
 </body>
 </html>
