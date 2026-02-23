@@ -5,1381 +5,572 @@
 <title>Icon Style Showcase</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; padding: 60px 40px; min-height: 100vh; }
+.page-title { font-family: 'Syne', sans-serif; font-size: 42px; font-weight: 800; letter-spacing: -1.5px; margin-bottom: 8px; background: linear-gradient(135deg,#fff 0%,#555 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.page-sub { color: #444; font-size: 15px; margin-bottom: 70px; font-weight: 300; letter-spacing: 0.3px; }
+.section { margin-bottom: 80px; }
+.section-label { font-family: 'Syne', sans-serif; font-size: 10px; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; color: #333; margin-bottom: 6px; }
+.section-title { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; margin-bottom: 24px; color: #fff; }
+.icon-row { display: flex; flex-wrap: wrap; gap: 18px; align-items: flex-start; }
+.icon-wrap { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.icon-wrap span { font-size: 10px; font-weight: 500; letter-spacing: 0.5px; color: #555; text-transform: uppercase; }
+.ico { width: 44px; height: 44px; display: block; }
 
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: #09090f;
-    color: #fff;
-    padding: 60px 40px;
-    min-height: 100vh;
-  }
+/* ── DOWNLOAD BUTTON ── */
+.dl-btn {
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.5);
+  font-size: 10px; font-weight: 600; letter-spacing: 0.4px;
+  cursor: pointer; white-space: nowrap;
+  transition: all 0.2s ease;
+  font-family: 'DM Sans', sans-serif;
+}
+.dl-btn:hover { background: rgba(79,141,253,0.22); border-color: rgba(79,141,253,0.5); color: #8bbfff; transform: translateY(-1px); }
+.dl-btn.done { background: rgba(34,197,94,0.18); border-color: rgba(34,197,94,0.45); color: #4ade80; }
+.neo-bg .dl-btn, .clay-bg .dl-btn { border-color: rgba(0,0,0,0.13); background: rgba(0,0,0,0.06); color: rgba(0,0,0,0.38); }
+.neo-bg .dl-btn:hover, .clay-bg .dl-btn:hover { background: rgba(79,141,253,0.15); border-color: rgba(79,141,253,0.4); color: #3b7dd8; }
 
-  .page-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 42px;
-    font-weight: 800;
-    letter-spacing: -1.5px;
-    margin-bottom: 8px;
-    background: linear-gradient(135deg, #ffffff 0%, #555 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
+/* ── GLASS ── */
+.glass-bg { padding: 32px; border-radius: 28px; background: linear-gradient(135deg,#0c0c18,#0a1020); position: relative; overflow: hidden; }
+.glass-bg::before { content:''; position:absolute; width:250px; height:250px; background:radial-gradient(circle,rgba(100,140,255,0.13) 0%,transparent 70%); top:-60px; left:-60px; pointer-events:none; }
+.glass-bg::after  { content:''; position:absolute; width:200px; height:200px; background:radial-gradient(circle,rgba(180,100,255,0.09) 0%,transparent 70%); bottom:-40px; right:-40px; pointer-events:none; }
+.glass-card { width:84px; height:96px; border-radius:22px; display:flex; flex-direction:column; align-items:center; justify-content:center; cursor:pointer; position:relative; overflow:hidden; transition:all 0.3s ease; background:rgba(255,255,255,0.055); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.12); box-shadow:0 8px 32px rgba(0,0,0,0.35),inset 0 1px 0 rgba(255,255,255,0.13); }
+.glass-card::before { content:''; position:absolute; top:0; left:0; right:0; height:45%; background:linear-gradient(180deg,rgba(255,255,255,0.07) 0%,transparent 100%); border-radius:22px 22px 0 0; pointer-events:none; }
+.glass-card:hover { transform:translateY(-7px); box-shadow:0 24px 48px rgba(0,0,0,0.5),inset 0 1px 0 rgba(255,255,255,0.22); border-color:rgba(255,255,255,0.22); background:rgba(255,255,255,0.09); }
 
-  .page-sub {
-    color: #444;
-    font-size: 15px;
-    margin-bottom: 70px;
-    font-weight: 300;
-    letter-spacing: 0.3px;
-  }
+/* ── NEO ── */
+.neo-bg { padding:32px; border-radius:28px; background:#dde4ed; }
+.neo-card { width:84px; height:96px; border-radius:22px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.2s ease; background:#dde4ed; box-shadow:7px 7px 16px #b8bec8,-7px -7px 16px #ffffff; }
+.neo-card:hover { box-shadow:4px 4px 10px #b8bec8,-4px -4px 10px #ffffff; transform:scale(0.97); }
+.neo-card:active { box-shadow:inset 5px 5px 12px #b8bec8,inset -5px -5px 12px #ffffff; transform:scale(0.95); }
+.neo-wrap span { color:#8fa0b0 !important; }
 
-  .section { margin-bottom: 80px; }
+/* ── HOLO ── */
+.holo-bg { padding:32px; border-radius:28px; background:#060610; position:relative; overflow:hidden; }
+.holo-bg::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(255,255,255,0.012) 3px,rgba(255,255,255,0.012) 4px); pointer-events:none; }
+.holo-card { width:84px; height:96px; border-radius:22px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.4s ease; position:relative; overflow:hidden; background:rgba(255,255,255,0.03); }
+.holo-card::before { content:''; position:absolute; inset:0; border-radius:22px; padding:1px; background:linear-gradient(135deg,#ff6ec4,#7873f5,#4adede,#ffe45e,#ff6ec4); background-size:400% 400%; animation:holoShift 3s ease infinite; -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; z-index:0; }
+.holo-card::after { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(255,110,196,0.06),rgba(120,115,245,0.06),rgba(74,222,222,0.06)); background-size:400% 400%; animation:holoShift 3s ease infinite; border-radius:22px; z-index:0; }
+@keyframes holoShift { 0%{background-position:0% 50%} 50%{background-position:100% 50%} 100%{background-position:0% 50%} }
+.holo-card>.ico { position:relative; z-index:1; }
+.holo-card:hover { transform:translateY(-7px); box-shadow:0 20px 40px rgba(120,115,245,0.3); }
 
-  .section-label {
-    font-family: 'Syne', sans-serif;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: #333;
-    margin-bottom: 6px;
-  }
+/* ── AURORA ── */
+.aurora-bg { padding:32px; border-radius:28px; background:#06060e; position:relative; overflow:hidden; }
+.aurora-bg::before { content:''; position:absolute; width:300px; height:300px; background:radial-gradient(circle,rgba(99,102,241,0.12) 0%,transparent 70%); top:-80px; left:-80px; pointer-events:none; }
+.aurora-card { width:84px; height:96px; border-radius:24px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1); position:relative; overflow:hidden; }
+.aurora-card.blue   { background:linear-gradient(145deg,#1a3a6b,#2563eb,#60a5fa); box-shadow:0 8px 25px rgba(37,99,235,0.45),inset 0 1px 0 rgba(255,255,255,0.22); }
+.aurora-card.teal   { background:linear-gradient(145deg,#0a3d37,#0d9488,#5eead4); box-shadow:0 8px 25px rgba(13,148,136,0.45),inset 0 1px 0 rgba(255,255,255,0.22); }
+.aurora-card.purple { background:linear-gradient(145deg,#2d1060,#7c3aed,#c084fc); box-shadow:0 8px 25px rgba(124,58,237,0.45),inset 0 1px 0 rgba(255,255,255,0.22); }
+.aurora-card.green  { background:linear-gradient(145deg,#04391a,#16a34a,#4ade80); box-shadow:0 8px 25px rgba(22,163,74,0.45),inset 0 1px 0 rgba(255,255,255,0.22); }
+.aurora-card.orange { background:linear-gradient(145deg,#5a2800,#d97706,#fbbf24); box-shadow:0 8px 25px rgba(217,119,6,0.45),inset 0 1px 0 rgba(255,255,255,0.22); }
+.aurora-card::before { content:''; position:absolute; top:-35%; left:-35%; width:75%; height:75%; background:radial-gradient(circle,rgba(255,255,255,0.28) 0%,transparent 70%); border-radius:50%; pointer-events:none; transition:all 0.4s ease; }
+.aurora-card:hover::before { transform:translate(25%,25%) scale(1.3); }
+.aurora-card:hover { transform:translateY(-8px); }
 
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: 24px;
-    font-weight: 800;
-    margin-bottom: 24px;
-    color: #fff;
-  }
+/* ── CLAY ── */
+.clay-bg { padding:32px; border-radius:28px; background:linear-gradient(135deg,#f5f0ff,#eef4ff); }
+.clay-card { width:84px; height:96px; border-radius:24px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1); position:relative; }
+.clay-card.blue   { background:linear-gradient(145deg,#7fbfff,#4F8DFD); box-shadow:0 10px 0 #2250cc,0 14px 22px rgba(79,141,253,0.32),inset 0 -3px 0 rgba(0,0,0,0.1),inset 0 3px 8px rgba(255,255,255,0.45); }
+.clay-card.teal   { background:linear-gradient(145deg,#40e0ce,#14B8A6); box-shadow:0 10px 0 #0a7a6e,0 14px 22px rgba(20,184,166,0.32),inset 0 -3px 0 rgba(0,0,0,0.1),inset 0 3px 8px rgba(255,255,255,0.45); }
+.clay-card.purple { background:linear-gradient(145deg,#cc8eff,#A855F7); box-shadow:0 10px 0 #6b1aad,0 14px 22px rgba(168,85,247,0.32),inset 0 -3px 0 rgba(0,0,0,0.1),inset 0 3px 8px rgba(255,255,255,0.45); }
+.clay-card.green  { background:linear-gradient(145deg,#5de88e,#22C55E); box-shadow:0 10px 0 #0f6e34,0 14px 22px rgba(34,197,94,0.32),inset 0 -3px 0 rgba(0,0,0,0.1),inset 0 3px 8px rgba(255,255,255,0.45); }
+.clay-card.orange { background:linear-gradient(145deg,#ffd55a,#F59E0B); box-shadow:0 10px 0 #b36a00,0 14px 22px rgba(245,158,11,0.32),inset 0 -3px 0 rgba(0,0,0,0.1),inset 0 3px 8px rgba(255,255,255,0.45); }
+.clay-card:hover  { transform:translateY(-7px); }
+.clay-card:active { transform:translateY(4px); }
+.clay-wrap span   { color:#a0b0c8 !important; }
 
-  .icon-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 18px;
-    align-items: flex-start;
-  }
+/* ── ICON HOVER ANIMATIONS (CSS) ── */
+@keyframes calBodyShake { 0%{transform:rotate(0)} 15%{transform:rotate(-3deg)} 35%{transform:rotate(3deg)} 55%{transform:rotate(-2deg)} 75%{transform:rotate(1deg)} 100%{transform:rotate(0)} }
+@keyframes calRingL { 0%{transform:rotate(0) translateY(0)} 20%{transform:rotate(-12deg) translateY(-4px)} 50%{transform:rotate(6deg) translateY(-2px)} 75%{transform:rotate(-4deg) translateY(-3px)} 100%{transform:rotate(0) translateY(0)} }
+@keyframes calRingR { 0%{transform:rotate(0) translateY(0)} 20%{transform:rotate(12deg) translateY(-4px)} 50%{transform:rotate(-6deg) translateY(-2px)} 75%{transform:rotate(4deg) translateY(-3px)} 100%{transform:rotate(0) translateY(0)} }
+.card-calendar:hover .ico { animation:calBodyShake 0.5s ease forwards; }
+.card-calendar:hover .cal-ring-l { animation:calRingL 0.5s ease forwards; transform-origin:15px 9px; }
+.card-calendar:hover .cal-ring-r { animation:calRingR 0.5s ease forwards; transform-origin:29px 9px; }
 
-  .icon-wrap {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-  }
+@keyframes clockSpin { to { transform:rotate(360deg); } }
+.card-clock:hover .clock-hand { animation:clockSpin 1.2s linear infinite; transform-origin:22px 22px; }
 
-  .icon-wrap span {
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    color: #555;
-    text-transform: uppercase;
-  }
+@keyframes globeSpin { to { transform:rotateY(360deg); } }
+.card-globe:hover .ico { animation:globeSpin 1.8s linear infinite; }
 
-  .ico {
-    width: 44px;
-    height: 44px;
-    display: block;
-  }
+@keyframes lidPop { 0%{transform:translateY(0)} 35%{transform:translateY(-8px)} 65%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
+.card-lunchbox:hover .lunchbox-lid { animation:lidPop 0.7s ease infinite; }
 
-  /* =============================================
-     DOWNLOAD UI
-  ============================================= */
-  .icon-wrap { position: relative; }
+@keyframes pinBounce { 0%{transform:translateY(0) scaleY(1)} 25%{transform:translateY(-10px) scaleY(1.05)} 50%{transform:translateY(0) scaleY(0.92)} 70%{transform:translateY(-5px)} 85%{transform:translateY(0) scaleY(0.96)} 100%{transform:translateY(0) scaleY(1)} }
+.card-location:hover .ico { animation:pinBounce 0.7s ease forwards; }
 
-  .dl-btn {
-    position: absolute;
-    bottom: 28px;
-    left: 50%;
-    transform: translateX(-50%) translateY(6px);
-    opacity: 0;
-    pointer-events: none;
-    background: rgba(255,255,255,0.13);
-    border: 1px solid rgba(255,255,255,0.22);
-    backdrop-filter: blur(10px);
-    color: #fff;
-    font-family: 'Syne', sans-serif;
-    font-size: 9px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    padding: 5px 10px;
-    border-radius: 20px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: opacity 0.2s ease, transform 0.2s ease;
-    z-index: 10;
-  }
-  .neo-wrap .dl-btn {
-    background: rgba(0,0,0,0.08);
-    border-color: rgba(0,0,0,0.12);
-    color: #4a5568;
-  }
-  .clay-wrap .dl-btn {
-    background: rgba(255,255,255,0.5);
-    border-color: rgba(255,255,255,0.7);
-    color: #334155;
-  }
-  .icon-wrap:hover .dl-btn {
-    opacity: 1;
-    pointer-events: auto;
-    transform: translateX(-50%) translateY(0);
-  }
+@keyframes searchShake { 0%{transform:rotate(0)} 15%{transform:rotate(-8deg)} 35%{transform:rotate(7deg)} 55%{transform:rotate(-5deg)} 75%{transform:rotate(3deg)} 100%{transform:rotate(0)} }
+.card-search:hover .ico { animation:searchShake 0.6s ease forwards; }
 
-  /* MODAL OVERLAY */
-  #dl-modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.75);
-    backdrop-filter: blur(8px);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-  }
-  #dl-modal.open { display: flex; }
+@keyframes cartWobble { 0%{transform:translateX(0)} 20%{transform:translateX(4px)} 40%{transform:translateX(-3px)} 60%{transform:translateX(3px)} 80%{transform:translateX(-2px)} 100%{transform:translateX(0)} }
+@keyframes wheelSpin { to { transform:rotate(360deg); } }
+.card-cart:hover .ico { animation:cartWobble 0.6s ease forwards; }
+.card-cart:hover .cart-wl { animation:wheelSpin 0.6s linear infinite; transform-origin:16px 34px; }
+.card-cart:hover .cart-wr { animation:wheelSpin 0.6s linear infinite; transform-origin:29px 34px; }
 
-  #dl-panel {
-    background: #12121e;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 24px;
-    padding: 32px;
-    width: 380px;
-    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
-    position: relative;
-    animation: panelIn 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards;
-  }
-  @keyframes panelIn {
-    from { transform: scale(0.88) translateY(20px); opacity: 0; }
-    to   { transform: scale(1) translateY(0); opacity: 1; }
-  }
+@keyframes tickDraw { from{stroke-dashoffset:42;opacity:0.3} to{stroke-dashoffset:0;opacity:1} }
+@keyframes shieldPulse { 0%,100%{opacity:0.17} 50%{opacity:0.35} }
+.card-tick:hover .tick-check { animation:tickDraw 0.45s ease forwards; stroke-dasharray:42; stroke-dashoffset:42; }
+.card-tick:hover .tick-shield { animation:shieldPulse 0.8s ease infinite; }
 
-  #dl-close {
-    position: absolute;
-    top: 16px; right: 16px;
-    width: 30px; height: 30px;
-    border-radius: 50%;
-    border: 1px solid rgba(255,255,255,0.12);
-    background: rgba(255,255,255,0.06);
-    color: #888;
-    font-size: 14px;
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-  }
-  #dl-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+@keyframes tagSwing { 0%{transform:rotate(0)} 18%{transform:rotate(-18deg)} 40%{transform:rotate(14deg)} 65%{transform:rotate(-9deg)} 82%{transform:rotate(5deg)} 100%{transform:rotate(0)} }
+.card-offers:hover .ico { animation:tagSwing 0.65s cubic-bezier(0.34,1.56,0.64,1) forwards; transform-origin:22px 6px; }
 
-  .dl-preview {
-    width: 90px; height: 90px;
-    border-radius: 20px;
-    margin: 0 auto 24px;
-    display: flex; align-items: center; justify-content: center;
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(255,255,255,0.1);
-  }
-  .dl-preview svg { width: 52px; height: 52px; }
-
-  .dl-icon-name {
-    font-family: 'Syne', sans-serif;
-    font-size: 18px;
-    font-weight: 800;
-    text-align: center;
-    margin-bottom: 4px;
-  }
-  .dl-icon-sub {
-    font-size: 11px;
-    color: #444;
-    text-align: center;
-    margin-bottom: 24px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-  }
-
-  .dl-section-label {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    color: #444;
-    margin-bottom: 10px;
-  }
-
-  /* SIZE PILLS */
-  .dl-sizes {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-  }
-  .dl-size {
-    padding: 6px 14px;
-    border-radius: 20px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.04);
-    color: #888;
-    font-size: 12px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .dl-size:hover { border-color: rgba(255,255,255,0.25); color: #ccc; }
-  .dl-size.active { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); color: #fff; }
-
-  /* FORMAT BUTTONS */
-  .dl-formats {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 24px;
-  }
-  .dl-format {
-    flex: 1;
-    padding: 10px;
-    border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.1);
-    background: rgba(255,255,255,0.04);
-    color: #888;
-    font-size: 12px;
-    font-weight: 600;
-    cursor: pointer;
-    text-align: center;
-    transition: all 0.2s;
-    font-family: 'Syne', sans-serif;
-  }
-  .dl-format:hover { border-color: rgba(255,255,255,0.25); color: #ccc; }
-  .dl-format.active { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); color: #fff; }
-  .dl-format small { display: block; font-size: 9px; opacity: 0.5; margin-top: 2px; letter-spacing: 0.5px; font-family: 'DM Sans', sans-serif; }
-
-  /* DOWNLOAD BUTTON */
-  #dl-go {
-    width: 100%;
-    padding: 14px;
-    border-radius: 14px;
-    border: none;
-    background: linear-gradient(135deg, #4F8DFD, #7c3aed);
-    color: #fff;
-    font-family: 'Syne', sans-serif;
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    box-shadow: 0 8px 20px rgba(79,141,253,0.3);
-  }
-  #dl-go:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(79,141,253,0.45);
-  }
-  #dl-go:active { transform: translateY(0); }
-
-  .dl-divider {
-    height: 1px;
-    background: rgba(255,255,255,0.06);
-    margin: 20px 0;
-  }
-
-  /* =============================================
-     CARD BASE STYLES
-  ============================================= */
-
-  /* GLASSMORPHISM */
-  .glass-bg {
-    padding: 32px;
-    border-radius: 28px;
-    background: linear-gradient(135deg, #0c0c18, #0a1020);
-    position: relative;
-    overflow: hidden;
-  }
-  .glass-bg::before {
-    content: '';
-    position: absolute;
-    width: 250px; height: 250px;
-    background: radial-gradient(circle, rgba(100,140,255,0.13) 0%, transparent 70%);
-    top: -60px; left: -60px; pointer-events: none;
-  }
-  .glass-bg::after {
-    content: '';
-    position: absolute;
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(180,100,255,0.09) 0%, transparent 70%);
-    bottom: -40px; right: -40px; pointer-events: none;
-  }
-  .glass-card {
-    width: 84px; height: 96px;
-    border-radius: 22px;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    cursor: pointer;
-    position: relative; overflow: hidden;
-    transition: all 0.3s ease;
-    background: rgba(255,255,255,0.055);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.12);
-    box-shadow: 0 8px 32px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.13);
-  }
-  .glass-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; height: 45%;
-    background: linear-gradient(180deg, rgba(255,255,255,0.07) 0%, transparent 100%);
-    border-radius: 22px 22px 0 0;
-    pointer-events: none;
-  }
-  .glass-card:hover {
-    transform: translateY(-7px);
-    box-shadow: 0 24px 48px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.22);
-    border-color: rgba(255,255,255,0.22);
-    background: rgba(255,255,255,0.09);
-  }
-
-  /* NEOMORPHISM */
-  .neo-bg { padding: 32px; border-radius: 28px; background: #dde4ed; }
-  .neo-card {
-    width: 84px; height: 96px;
-    border-radius: 22px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    background: #dde4ed;
-    box-shadow: 7px 7px 16px #b8bec8, -7px -7px 16px #ffffff;
-  }
-  .neo-card:hover { box-shadow: 4px 4px 10px #b8bec8, -4px -4px 10px #ffffff; transform: scale(0.97); }
-  .neo-card:active { box-shadow: inset 5px 5px 12px #b8bec8, inset -5px -5px 12px #ffffff; transform: scale(0.95); }
-  .neo-wrap span { color: #8fa0b0 !important; }
-
-  /* HOLOGRAPHIC */
-  .holo-bg {
-    padding: 32px; border-radius: 28px; background: #060610;
-    position: relative; overflow: hidden;
-  }
-  .holo-bg::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.012) 3px, rgba(255,255,255,0.012) 4px);
-    pointer-events: none;
-  }
-  .holo-card {
-    width: 84px; height: 96px;
-    border-radius: 22px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: all 0.4s ease;
-    position: relative; overflow: hidden;
-    background: rgba(255,255,255,0.03);
-  }
-  .holo-card::before {
-    content: '';
-    position: absolute; inset: 0; border-radius: 22px; padding: 1px;
-    background: linear-gradient(135deg, #ff6ec4, #7873f5, #4adede, #ffe45e, #ff6ec4);
-    background-size: 400% 400%;
-    animation: holoShift 3s ease infinite;
-    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor; mask-composite: exclude; z-index: 0;
-  }
-  .holo-card::after {
-    content: '';
-    position: absolute; inset: 0;
-    background: linear-gradient(135deg, rgba(255,110,196,0.06), rgba(120,115,245,0.06), rgba(74,222,222,0.06));
-    background-size: 400% 400%;
-    animation: holoShift 3s ease infinite;
-    border-radius: 22px; z-index: 0;
-  }
-  @keyframes holoShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-  .holo-card > .ico { position: relative; z-index: 1; }
-  .holo-card:hover { transform: translateY(-7px); box-shadow: 0 20px 40px rgba(120,115,245,0.3); }
-
-  /* AURORA */
-  .aurora-bg {
-    padding: 32px; border-radius: 28px; background: #06060e;
-    position: relative; overflow: hidden;
-  }
-  .aurora-bg::before {
-    content: '';
-    position: absolute;
-    width: 300px; height: 300px;
-    background: radial-gradient(circle, rgba(99,102,241,0.12) 0%, transparent 70%);
-    top: -80px; left: -80px; pointer-events: none;
-  }
-  .aurora-card {
-    width: 84px; height: 96px;
-    border-radius: 24px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
-    position: relative; overflow: hidden;
-  }
-  .aurora-card.blue   { background: linear-gradient(145deg,#1a3a6b,#2563eb,#60a5fa); box-shadow: 0 8px 25px rgba(37,99,235,0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
-  .aurora-card.teal   { background: linear-gradient(145deg,#0a3d37,#0d9488,#5eead4); box-shadow: 0 8px 25px rgba(13,148,136,0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
-  .aurora-card.purple { background: linear-gradient(145deg,#2d1060,#7c3aed,#c084fc); box-shadow: 0 8px 25px rgba(124,58,237,0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
-  .aurora-card.green  { background: linear-gradient(145deg,#04391a,#16a34a,#4ade80); box-shadow: 0 8px 25px rgba(22,163,74,0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
-  .aurora-card.orange { background: linear-gradient(145deg,#5a2800,#d97706,#fbbf24); box-shadow: 0 8px 25px rgba(217,119,6,0.45), inset 0 1px 0 rgba(255,255,255,0.22); }
-  .aurora-card::before {
-    content: '';
-    position: absolute;
-    top: -35%; left: -35%; width: 75%; height: 75%;
-    background: radial-gradient(circle, rgba(255,255,255,0.28) 0%, transparent 70%);
-    border-radius: 50%;
-    pointer-events: none; transition: all 0.4s ease;
-  }
-  .aurora-card:hover::before { transform: translate(25%,25%) scale(1.3); }
-  .aurora-card:hover { transform: translateY(-8px); }
-
-  /* CLAY */
-  .clay-bg { padding: 32px; border-radius: 28px; background: linear-gradient(135deg,#f5f0ff,#eef4ff); }
-  .clay-card {
-    width: 84px; height: 96px;
-    border-radius: 24px;
-    display: flex; align-items: center; justify-content: center;
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.34,1.56,0.64,1);
-    position: relative;
-  }
-  .clay-card.blue   { background: linear-gradient(145deg,#7fbfff,#4F8DFD); box-shadow: 0 10px 0 #2250cc, 0 14px 22px rgba(79,141,253,0.32), inset 0 -3px 0 rgba(0,0,0,0.1), inset 0 3px 8px rgba(255,255,255,0.45); }
-  .clay-card.teal   { background: linear-gradient(145deg,#40e0ce,#14B8A6); box-shadow: 0 10px 0 #0a7a6e, 0 14px 22px rgba(20,184,166,0.32), inset 0 -3px 0 rgba(0,0,0,0.1), inset 0 3px 8px rgba(255,255,255,0.45); }
-  .clay-card.purple { background: linear-gradient(145deg,#cc8eff,#A855F7); box-shadow: 0 10px 0 #6b1aad, 0 14px 22px rgba(168,85,247,0.32), inset 0 -3px 0 rgba(0,0,0,0.1), inset 0 3px 8px rgba(255,255,255,0.45); }
-  .clay-card.green  { background: linear-gradient(145deg,#5de88e,#22C55E); box-shadow: 0 10px 0 #0f6e34, 0 14px 22px rgba(34,197,94,0.32), inset 0 -3px 0 rgba(0,0,0,0.1), inset 0 3px 8px rgba(255,255,255,0.45); }
-  .clay-card.orange { background: linear-gradient(145deg,#ffd55a,#F59E0B); box-shadow: 0 10px 0 #b36a00, 0 14px 22px rgba(245,158,11,0.32), inset 0 -3px 0 rgba(0,0,0,0.1), inset 0 3px 8px rgba(255,255,255,0.45); }
-  .clay-card:hover  { transform: translateY(-7px); }
-  .clay-card:active { transform: translateY(4px); box-shadow: 0 3px 0 rgba(0,0,0,0.15), 0 5px 8px rgba(0,0,0,0.1), inset 0 -1px 0 rgba(0,0,0,0.1), inset 0 2px 4px rgba(255,255,255,0.45); }
-  .clay-wrap span { color: #a0b0c8 !important; }
-
-
-  /* =============================================
-     ICON-SPECIFIC HOVER ANIMATIONS
-     Each icon gets a unique animation tied to its meaning
-  ============================================= */
-
-  /* CALENDAR — rings jiggle + date dot pulses */
-  @keyframes calRingLeft {
-    0%   { transform: translateY(0) rotate(0deg); }
-    20%  { transform: translateY(-4px) rotate(-12deg); }
-    50%  { transform: translateY(-2px) rotate(6deg); }
-    75%  { transform: translateY(-3px) rotate(-4deg); }
-    100% { transform: translateY(0) rotate(0deg); }
-  }
-  @keyframes calRingRight {
-    0%   { transform: translateY(0) rotate(0deg); }
-    20%  { transform: translateY(-4px) rotate(12deg); }
-    50%  { transform: translateY(-2px) rotate(-6deg); }
-    75%  { transform: translateY(-3px) rotate(4deg); }
-    100% { transform: translateY(0) rotate(0deg); }
-  }
-  @keyframes calDotPop {
-    0%,100% { r: 2.3; opacity: 1; }
-    50%      { r: 3.5; opacity: 0.7; }
-  }
-  @keyframes calBodyShake {
-    0%   { transform: rotate(0deg); }
-    15%  { transform: rotate(-3deg); }
-    35%  { transform: rotate(3deg); }
-    55%  { transform: rotate(-2deg); }
-    75%  { transform: rotate(1deg); }
-    100% { transform: rotate(0deg); }
-  }
-  .card-calendar:hover .ico { animation: calBodyShake 0.5s ease forwards; }
-  .card-calendar:hover .cal-ring-l { animation: calRingLeft 0.5s ease forwards; transform-origin: 15px 9px; }
-  .card-calendar:hover .cal-ring-r { animation: calRingRight 0.5s ease forwards; transform-origin: 29px 9px; }
-  .card-calendar:hover .cal-dot { animation: calDotPop 0.4s ease infinite; }
-
-  /* CLOCK — minute hand sweep (the .clock-hand element) */
-  @keyframes clockSpin {
-    0%   { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
-  .card-clock:hover .clock-hand {
-    animation: clockSpin 1.2s cubic-bezier(0.4,0,0.2,1) infinite;
-    transform-origin: 22px 22px;
-  }
-
-  /* GLOBE — continuous spin on Y axis */
-  @keyframes globeSpin {
-    0%   { transform: rotateY(0deg); }
-    100% { transform: rotateY(360deg); }
-  }
-  .card-globe:hover .ico {
-    animation: globeSpin 1.8s linear infinite;
-    transform-style: preserve-3d;
-  }
-
-  /* LUNCH BOX — lid pop open (lid element slides up) */
-  @keyframes lidPop {
-    0%   { transform: translateY(0) rotate(0deg); opacity: 1; }
-    35%  { transform: translateY(-6px) rotate(-8deg); opacity: 1; }
-    65%  { transform: translateY(-8px) rotate(-12deg); opacity: 0.7; }
-    100% { transform: translateY(0) rotate(0deg); opacity: 1; }
-  }
-  .card-lunchbox:hover .lunchbox-lid { animation: lidPop 0.7s ease forwards; transform-origin: 5px 17px; }
-
-  /* LOCATION — bounce drop */
-  @keyframes pinBounce {
-    0%   { transform: translateY(0) scaleY(1); }
-    25%  { transform: translateY(-10px) scaleY(1.05); }
-    50%  { transform: translateY(0) scaleY(0.92); }
-    70%  { transform: translateY(-5px) scaleY(1); }
-    85%  { transform: translateY(0) scaleY(0.96); }
-    100% { transform: translateY(0) scaleY(1); }
-  }
-  .card-location:hover .ico { animation: pinBounce 0.7s cubic-bezier(0.36,0.07,0.19,0.97) forwards; }
-
-  /* SEARCH — zoom in pulse + shake */
-  @keyframes searchZoom {
-    0%   { transform: scale(1) rotate(0deg); }
-    20%  { transform: scale(1.15) rotate(-8deg); }
-    40%  { transform: scale(1.15) rotate(6deg); }
-    60%  { transform: scale(1.15) rotate(-4deg); }
-    80%  { transform: scale(1.15) rotate(2deg); }
-    100% { transform: scale(1) rotate(0deg); }
-  }
-  .card-search:hover .ico { animation: searchZoom 0.6s ease forwards; }
-
-  /* CART — roll + item added bounce */
-  @keyframes cartRoll {
-    0%   { transform: translateX(0) rotate(0deg); }
-    20%  { transform: translateX(5px) rotate(3deg); }
-    40%  { transform: translateX(-3px) rotate(-2deg); }
-    60%  { transform: translateX(4px) rotate(2deg); }
-    80%  { transform: translateX(-2px) rotate(-1deg); }
-    100% { transform: translateX(0) rotate(0deg); }
-  }
-  .card-cart:hover .ico { animation: cartRoll 0.6s ease forwards; }
-  /* Wheel spin on cart */
-  @keyframes wheelSpin { 0% { transform: rotate(0); } 100% { transform: rotate(360deg); } }
-  .card-cart:hover .cart-wheel-l { animation: wheelSpin 0.6s linear infinite; transform-origin: 16px 34px; }
-  .card-cart:hover .cart-wheel-r { animation: wheelSpin 0.6s linear infinite; transform-origin: 29px 34px; }
-
-  /* TICK — draw checkmark stroke */
-  @keyframes tickDraw {
-    0%   { stroke-dashoffset: 40; opacity: 0.3; }
-    100% { stroke-dashoffset: 0; opacity: 1; }
-  }
-  .card-tick:hover .tick-check {
-    stroke-dasharray: 40;
-    stroke-dashoffset: 40;
-    animation: tickDraw 0.45s ease forwards;
-  }
-  /* Shield pulse */
-  @keyframes shieldPulse {
-    0%,100% { opacity: 0.17; }
-    50%      { opacity: 0.35; }
-  }
-  .card-tick:hover .tick-shield-fill { animation: shieldPulse 0.8s ease infinite; }
-
-  /* OFFERS — tag swings like a price label on a string */
-  @keyframes tagSwing {
-    0%   { transform: rotate(0deg); }
-    20%  { transform: rotate(-18deg); }
-    45%  { transform: rotate(14deg); }
-    65%  { transform: rotate(-9deg); }
-    80%  { transform: rotate(5deg); }
-    100% { transform: rotate(0deg); }
-  }
-  @keyframes pctPulse {
-    0%,100% { opacity: 0.9; transform: scale(1); }
-    50%      { opacity: 1; transform: scale(1.2); }
-  }
-  .card-offers:hover .ico { animation: tagSwing 0.65s cubic-bezier(0.34,1.56,0.64,1) forwards; transform-origin: 22px 6px; }
-  .card-offers:hover .offers-pct { animation: pctPulse 0.35s ease infinite; transform-origin: 22px 26px; }
-
-  /* MONEY — bills fan out like cash being spread */
-  @keyframes billFan {
-    0%   { transform: rotate(0deg) translateY(0); }
-    30%  { transform: rotate(-14deg) translateY(-4px); }
-    60%  { transform: rotate(-10deg) translateY(-3px); }
-    100% { transform: rotate(0deg) translateY(0); }
-  }
-  @keyframes billLift {
-    0%,100% { transform: translateY(0) rotate(0deg); }
-    40%     { transform: translateY(-6px) rotate(3deg); }
-    70%     { transform: translateY(-4px) rotate(2deg); }
-  }
-  @keyframes dollarPop {
-    0%,100% { transform: scale(1); opacity: 0.95; }
-    50%      { transform: scale(1.3); opacity: 1; }
-  }
-  .card-money:hover .money-wallet { animation: billFan 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards; transform-origin: 4px 40px; }
-  .card-money:hover .money-card   { animation: billLift 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards; }
-  .card-money:hover text          { animation: dollarPop 0.4s ease infinite; transform-origin: 22px 30px; }
-
+@keyframes billFan  { 0%{transform:rotate(0)} 30%{transform:rotate(-14deg)} 60%{transform:rotate(-10deg)} 100%{transform:rotate(0)} }
+@keyframes billLift { 0%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} 70%{transform:translateY(-4px)} }
+@keyframes dollarPop { 0%,100%{font-size:10px} 50%{font-size:13px} }
+.card-money:hover .bill-back { animation:billFan 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards; transform-origin:4px 40px; }
+.card-money:hover .bill-front { animation:billLift 0.55s cubic-bezier(0.34,1.56,0.64,1) forwards; }
 </style>
 </head>
 <body>
 
 <h1 class="page-title">Icon Style Showcase</h1>
-<p class="page-sub">5 design systems · unique per-icon animations · click any icon to download</p>
-
-<!-- DOWNLOAD MODAL -->
-<div id="dl-modal">
-  <div id="dl-panel">
-    <button id="dl-close" onclick="closeModal()">✕</button>
-
-    <div class="dl-preview" id="dl-preview"></div>
-    <div class="dl-icon-name" id="dl-icon-name"></div>
-    <div class="dl-icon-sub" id="dl-icon-style"></div>
-
-    <div class="dl-divider"></div>
-
-    <div class="dl-section-label">Size</div>
-    <div class="dl-sizes">
-      <div class="dl-size active" data-size="16">16px</div>
-      <div class="dl-size" data-size="24">24px</div>
-      <div class="dl-size" data-size="32">32px</div>
-      <div class="dl-size" data-size="48">48px</div>
-      <div class="dl-size" data-size="64">64px</div>
-      <div class="dl-size" data-size="128">128px</div>
-    </div>
-
-    <div class="dl-section-label">Format</div>
-    <div class="dl-formats">
-      <div class="dl-format active" data-fmt="svg">SVG<small>Vector · Scalable</small></div>
-      <div class="dl-format" data-fmt="png">PNG<small>Raster · Transparent</small></div>
-      <div class="dl-format" data-fmt="jsx">JSX<small>React Component</small></div>
-    </div>
-
-    <button id="dl-go" onclick="doDownload()">⬇ Download Icon</button>
-  </div>
-</div>
-<svg width="0" height="0" style="position:absolute;overflow:hidden">
-  <defs>
-
-    <!-- CALENDAR: animatable as whole (flip) -->
-    <symbol id="ico-calendar" viewBox="0 0 44 44">
-      <rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/>
-      <rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/>
-      <rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/>
-      <rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/>
-      <rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/>
-      <circle cx="14" cy="30" r="2.3" fill="currentColor"/>
-      <circle cx="22" cy="30" r="2.3" fill="currentColor"/>
-      <circle cx="30" cy="30" r="2.3" fill="currentColor"/>
-      <circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
-      <circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
-    </symbol>
-
-    <!-- GLOBE: whole SVG spins -->
-    <symbol id="ico-globe" viewBox="0 0 44 44">
-      <circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/>
-      <circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/>
-      <ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/>
-      <ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/>
-      <ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
-      <circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/>
-    </symbol>
-
-    <!-- LOCATION: whole bounces -->
-    <symbol id="ico-location" viewBox="0 0 44 44">
-      <ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/>
-      <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/>
-      <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/>
-      <circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/>
-      <circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/>
-    </symbol>
-
-    <!-- SEARCH: whole shakes -->
-    <symbol id="ico-search" viewBox="0 0 44 44">
-      <circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/>
-      <circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/>
-      <circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/>
-      <circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/>
-      <line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/>
-    </symbol>
-
-    <!-- OFFERS: whole spins, sparkle pulses -->
-    <symbol id="ico-offers" viewBox="0 0 44 44">
-      <polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/>
-      <polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/>
-      <polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/>
-      <line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
-      <line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
-      <line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
-      <circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/>
-      <circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/>
-    </symbol>
-
-  </defs>
-</svg>
+<p class="page-sub">5 design systems · hover to animate · click ↓ SVG to download animated file</p>
 
 
-<!-- Inline SVGs for icons needing per-part animation — rendered as templates via JS -->
+<!-- ═══════════════════════════════════════════
+     MACRO: builds one icon card + download btn
+     Usage: called by JS after page load
+════════════════════════════════════════════ -->
 
-
-<!-- =============================================
-     STYLE 1 — GLASSMORPHISM
-============================================= -->
+<!-- ── GLASSMORPHISM ── -->
 <div class="section">
   <div class="section-label">Style 01</div>
   <div class="section-title">✦ Glassmorphism</div>
   <div class="glass-bg">
-    <div class="icon-row">
-
-      <!-- CALENDAR: whole icon flips -->
-      <div class="icon-wrap">
-        <div class="glass-card card-calendar">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#6FAAFF;filter:drop-shadow(0 0 8px #6FAAFF99)">
-            <rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/>
-            <rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/>
-            <rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/>
-            <rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/>
-            <rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/>
-            <circle cx="14" cy="30" r="2.3" fill="currentColor"/>
-            <circle cx="22" cy="30" r="2.3" fill="currentColor"/>
-            <circle cx="30" cy="30" r="2.3" fill="currentColor"/>
-            <circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
-            <circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
-          </svg>
-        </div><span>Calendar</span>
-      </div>
-
-      <!-- CLOCK: minute hand spins independently -->
-      <div class="icon-wrap">
-        <div class="glass-card card-clock">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#2DD4BF;filter:drop-shadow(0 0 8px #2DD4BF99)">
-            <circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/>
-            <circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/>
-            <line x1="22" y1="8"  x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="8"  y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- hour hand — static -->
-            <line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-            <!-- minute hand — animated -->
-            <line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="22" cy="22" r="3.2" fill="currentColor"/>
-          </svg>
-        </div><span>Clock</span>
-      </div>
-
-      <!-- GLOBE: whole icon spins Y -->
-      <div class="icon-wrap">
-        <div class="glass-card card-globe">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#C084FC;filter:drop-shadow(0 0 8px #C084FC99)">
-            <circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/>
-            <circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/>
-            <ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/>
-            <ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/>
-            <ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
-            <circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/>
-          </svg>
-        </div><span>Globe</span>
-      </div>
-
-      <!-- LUNCH BOX: lid pops up -->
-      <div class="icon-wrap">
-        <div class="glass-card card-lunchbox">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#6FAAFF;filter:drop-shadow(0 0 8px #6FAAFF99)">
-            <rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/>
-            <rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/>
-            <path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
-            <rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/>
-            <rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/>
-            <rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/>
-          </svg>
-        </div><span>Lunch Box</span>
-      </div>
-
-      <!-- LOCATION: bounces -->
-      <div class="icon-wrap">
-        <div class="glass-card card-location">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#60dfff;filter:drop-shadow(0 0 8px #60dfff99)">
-            <ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/>
-            <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/>
-            <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/>
-            <circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/>
-            <circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/>
-          </svg>
-        </div><span>Location</span>
-      </div>
-
-      <!-- SEARCH: shakes -->
-      <div class="icon-wrap">
-        <div class="glass-card card-search">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#C084FC;filter:drop-shadow(0 0 8px #C084FC99)">
-            <circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/>
-            <circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/>
-            <circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/>
-            <circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/>
-            <line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/>
-          </svg>
-        </div><span>Search</span>
-      </div>
-
-      <!-- CART: rolls + wheels spin -->
-      <div class="icon-wrap">
-        <div class="glass-card card-cart">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#4ADE80;filter:drop-shadow(0 0 8px #4ADE8099)">
-            <path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/>
-            <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/>
-            <rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/>
-            <rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/>
-            <circle class="cart-wheel-l" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/>
-            <circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/>
-            <circle class="cart-wheel-r" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/>
-            <circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/>
-          </svg>
-        </div><span>Cart</span>
-      </div>
-
-      <!-- TICK: checkmark draws itself -->
-      <div class="icon-wrap">
-        <div class="glass-card card-tick">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#4ADE80;filter:drop-shadow(0 0 8px #4ADE8099)">
-            <path class="tick-shield-fill" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/>
-            <path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/>
-            <polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div><span>Tick</span>
-      </div>
-
-      <!-- OFFERS: gem spins + sparkle pulses -->
-      <div class="icon-wrap">
-        <div class="glass-card card-offers">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#FBBF24;filter:drop-shadow(0 0 8px #FBBF2499)">
-            <polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/>
-            <polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/>
-            <polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/>
-            <line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
-            <line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
-            <line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
-            <circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/>
-            <circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/>
-          </svg>
-        </div><span>Offers</span>
-      </div>
-
-      <!-- MONEY: coin stack rises in wave -->
-      <div class="icon-wrap">
-        <div class="glass-card card-money">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#4ADE80;filter:drop-shadow(0 0 8px #4ADE8099)">
-            <ellipse class="coin-4" cx="22" cy="35" rx="13" ry="4" fill="currentColor" opacity="0.18"/>
-            <ellipse class="coin-3" cx="22" cy="31" rx="13" ry="4" fill="currentColor" opacity="0.28"/>
-            <ellipse class="coin-2" cx="22" cy="27" rx="13" ry="4" fill="currentColor" opacity="0.38"/>
-            <ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="currentColor" opacity="0.7"/>
-            <ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/>
-            <line class="coin-1" x1="22" y1="19" x2="22" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
-            <path class="coin-1" d="M18 20.5 Q22 18 26 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
-            <path class="coin-1" d="M18 25 Q22 28 26 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
-          </svg>
-        </div><span>Money</span>
-      </div>
-
-    </div>
+    <div class="icon-row" id="row-glass"></div>
   </div>
 </div>
 
-
-<!-- =============================================
-     STYLE 2 — NEOMORPHISM
-============================================= -->
+<!-- ── NEOMORPHISM ── -->
 <div class="section">
   <div class="section-label">Style 02</div>
   <div class="section-title">◈ Neomorphism</div>
   <div class="neo-bg">
-    <div class="icon-row">
-
-      <div class="icon-wrap neo-wrap">
-        <div class="neo-card card-calendar">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#4F8DFD">
-            <rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/>
-            <rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/>
-            <rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/>
-            <rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/>
-            <rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/>
-            <circle cx="14" cy="30" r="2.3" fill="currentColor"/>
-            <circle cx="22" cy="30" r="2.3" fill="currentColor"/>
-            <circle cx="30" cy="30" r="2.3" fill="currentColor"/>
-            <circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
-            <circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/>
-          </svg>
-        </div><span>Calendar</span>
-      </div>
-
-      <div class="icon-wrap neo-wrap">
-        <div class="neo-card card-clock">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#14B8A6">
-            <circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/>
-            <circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/>
-            <line x1="22" y1="8"  x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="8"  y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-            <line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <circle cx="22" cy="22" r="3.2" fill="currentColor"/>
-          </svg>
-        </div><span>Clock</span>
-      </div>
-
-      <div class="icon-wrap neo-wrap">
-        <div class="neo-card card-globe">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#A855F7">
-            <circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/>
-            <circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/>
-            <ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/>
-            <ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/>
-            <ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/>
-            <circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/>
-          </svg>
-        </div><span>Globe</span>
-      </div>
-
-      <div class="icon-wrap neo-wrap">
-        <div class="neo-card card-lunchbox">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#4F8DFD">
-            <rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/>
-            <rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/>
-            <path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
-            <rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/>
-            <rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/>
-            <rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/>
-          </svg>
-        </div><span>Lunch Box</span>
-      </div>
-
-      <div class="icon-wrap neo-wrap">
-        <div class="neo-card card-location">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#0ea5e9">
-            <ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/>
-            <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/>
-            <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/>
-            <circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/>
-            <circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/>
-          </svg>
-        </div><span>Location</span>
-      </div>
-
-      <div class="icon-wrap neo-wrap">
-        <div class="neo-card card-search">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#A855F7">
-            <circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/>
-            <circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/>
-            <circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/>
-            <circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/>
-            <line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/>
-          </svg>
-        </div><span>Search</span>
-      </div>
-
-      <div class="icon-wrap neo-wrap">
-        <div class="neo-card card-cart">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#22C55E">
-            <path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/>
-            <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/>
-            <rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/>
-            <rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/>
-            <circle class="cart-wheel-l" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/>
-            <circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/>
-            <circle class="cart-wheel-r" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/>
-            <circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/>
-          </svg>
-        </div><span>Cart</span>
-      </div>
-
-      <div class="icon-wrap neo-wrap">
-        <div class="neo-card card-tick">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#22C55E">
-            <path class="tick-shield-fill" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/>
-            <path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/>
-            <polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div><span>Tick</span>
-      </div>
-
-      <div class="icon-wrap neo-wrap">
-        <div class="neo-card card-offers">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#F59E0B">
-            <polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/>
-            <polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/>
-            <polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/>
-            <line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/>
-            <line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
-            <line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/>
-            <circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/>
-            <circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/>
-          </svg>
-        </div><span>Offers</span>
-      </div>
-
-      <div class="icon-wrap neo-wrap">
-        <div class="neo-card card-money">
-          <svg class="ico" viewBox="0 0 44 44" style="color:#22C55E">
-            <ellipse class="coin-4" cx="22" cy="35" rx="13" ry="4" fill="currentColor" opacity="0.18"/>
-            <ellipse class="coin-3" cx="22" cy="31" rx="13" ry="4" fill="currentColor" opacity="0.28"/>
-            <ellipse class="coin-2" cx="22" cy="27" rx="13" ry="4" fill="currentColor" opacity="0.38"/>
-            <ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="currentColor" opacity="0.7"/>
-            <ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/>
-            <line class="coin-1" x1="22" y1="19" x2="22" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/>
-            <path class="coin-1" d="M18 20.5 Q22 18 26 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
-            <path class="coin-1" d="M18 25 Q22 28 26 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/>
-          </svg>
-        </div><span>Money</span>
-      </div>
-
-    </div>
+    <div class="icon-row" id="row-neo"></div>
   </div>
 </div>
 
-
-<!-- =============================================
-     STYLE 3 — HOLOGRAPHIC
-============================================= -->
+<!-- ── HOLOGRAPHIC ── -->
 <div class="section">
   <div class="section-label">Style 03</div>
   <div class="section-title">⬡ Liquid Crystal · Holographic</div>
   <div class="holo-bg">
-    <div class="icon-row">
-
-      <div class="icon-wrap"><div class="holo-card card-calendar"><svg class="ico" viewBox="0 0 44 44" style="color:#a0c4ff;filter:drop-shadow(0 0 10px #7ec8ff)"><rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/><rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/><rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/><rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/><rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/><circle cx="14" cy="30" r="2.3" fill="currentColor"/><circle cx="22" cy="30" r="2.3" fill="currentColor"/><circle cx="30" cy="30" r="2.3" fill="currentColor"/><circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/><circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/></svg></div><span>Calendar</span></div>
-
-      <div class="icon-wrap"><div class="holo-card card-clock"><svg class="ico" viewBox="0 0 44 44" style="color:#7fffff;filter:drop-shadow(0 0 10px #4adede)"><circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/><circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/><line x1="22" y1="8" x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="8" y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="22" cy="22" r="3.2" fill="currentColor"/></svg></div><span>Clock</span></div>
-
-      <div class="icon-wrap"><div class="holo-card card-globe"><svg class="ico" viewBox="0 0 44 44" style="color:#d4b3ff;filter:drop-shadow(0 0 10px #b47fff)"><circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/><circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/><ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/><ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/><ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/></svg></div><span>Globe</span></div>
-
-      <div class="icon-wrap"><div class="holo-card card-lunchbox"><svg class="ico" viewBox="0 0 44 44" style="color:#a0c4ff;filter:drop-shadow(0 0 10px #7ec8ff)"><rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/><rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/><path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/><rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/><rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/><rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/></svg></div><span>Lunch Box</span></div>
-
-      <div class="icon-wrap"><div class="holo-card card-location"><svg class="ico" viewBox="0 0 44 44" style="color:#80dfff;filter:drop-shadow(0 0 10px #40cfff)"><ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/><circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/><circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/></svg></div><span>Location</span></div>
-
-      <div class="icon-wrap"><div class="holo-card card-search"><svg class="ico" viewBox="0 0 44 44" style="color:#d4b3ff;filter:drop-shadow(0 0 10px #b47fff)"><circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/><circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/><circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/><circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/><line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/></svg></div><span>Search</span></div>
-
-      <div class="icon-wrap"><div class="holo-card card-cart"><svg class="ico" viewBox="0 0 44 44" style="color:#a8ffcc;filter:drop-shadow(0 0 10px #3effb0)"><path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/><rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/><rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/><circle class="cart-wheel-l" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/><circle class="cart-wheel-r" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/></svg></div><span>Cart</span></div>
-
-      <div class="icon-wrap"><div class="holo-card card-tick"><svg class="ico" viewBox="0 0 44 44" style="color:#a8ffcc;filter:drop-shadow(0 0 10px #3effb0)"><path class="tick-shield-fill" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/><path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/><polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Tick</span></div>
-
-      <div class="icon-wrap"><div class="holo-card card-offers"><svg class="ico" viewBox="0 0 44 44" style="color:#ffd6a0;filter:drop-shadow(0 0 10px #ffbd59)"><polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/><polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/><polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/><line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/><line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/><circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/></svg></div><span>Offers</span></div>
-
-      <div class="icon-wrap"><div class="holo-card card-money"><svg class="ico" viewBox="0 0 44 44" style="color:#a8ffcc;filter:drop-shadow(0 0 10px #3effb0)"><ellipse class="coin-4" cx="22" cy="35" rx="13" ry="4" fill="currentColor" opacity="0.18"/><ellipse class="coin-3" cx="22" cy="31" rx="13" ry="4" fill="currentColor" opacity="0.28"/><ellipse class="coin-2" cx="22" cy="27" rx="13" ry="4" fill="currentColor" opacity="0.38"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="currentColor" opacity="0.7"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/><line class="coin-1" x1="22" y1="19" x2="22" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 20.5 Q22 18 26 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 25 Q22 28 26 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/></svg></div><span>Money</span></div>
-
-    </div>
+    <div class="icon-row" id="row-holo"></div>
   </div>
 </div>
 
-
-<!-- =============================================
-     STYLE 4 — AURORA
-============================================= -->
+<!-- ── AURORA ── -->
 <div class="section">
   <div class="section-label">Style 04</div>
   <div class="section-title">◉ Aurora Gradient Bubble</div>
   <div class="aurora-bg">
-    <div class="icon-row">
-
-      <div class="icon-wrap"><div class="aurora-card blue card-calendar"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/><rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/><rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/><rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/><rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/><circle cx="14" cy="30" r="2.3" fill="currentColor"/><circle cx="22" cy="30" r="2.3" fill="currentColor"/><circle cx="30" cy="30" r="2.3" fill="currentColor"/><circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/><circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/></svg></div><span>Calendar</span></div>
-
-      <div class="icon-wrap"><div class="aurora-card teal card-clock"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/><circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/><line x1="22" y1="8" x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="8" y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="22" cy="22" r="3.2" fill="currentColor"/></svg></div><span>Clock</span></div>
-
-      <div class="icon-wrap"><div class="aurora-card purple card-globe"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/><circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/><ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/><ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/><ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/></svg></div><span>Globe</span></div>
-
-      <div class="icon-wrap"><div class="aurora-card blue card-lunchbox"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/><rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/><path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/><rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/><rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/><rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/></svg></div><span>Lunch Box</span></div>
-
-      <div class="icon-wrap"><div class="aurora-card blue card-location"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/><circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/><circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/></svg></div><span>Location</span></div>
-
-      <div class="icon-wrap"><div class="aurora-card purple card-search"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/><circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/><circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/><circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/><line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/></svg></div><span>Search</span></div>
-
-      <div class="icon-wrap"><div class="aurora-card green card-cart"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/><rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/><rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/><circle class="cart-wheel-l" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/><circle class="cart-wheel-r" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/></svg></div><span>Cart</span></div>
-
-      <div class="icon-wrap"><div class="aurora-card green card-tick"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><path class="tick-shield-fill" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/><path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/><polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Tick</span></div>
-
-      <div class="icon-wrap"><div class="aurora-card orange card-offers"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/><polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/><polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/><line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/><line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/><circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/></svg></div><span>Offers</span></div>
-
-      <div class="icon-wrap"><div class="aurora-card green card-money"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.93)"><ellipse class="coin-4" cx="22" cy="35" rx="13" ry="4" fill="currentColor" opacity="0.18"/><ellipse class="coin-3" cx="22" cy="31" rx="13" ry="4" fill="currentColor" opacity="0.28"/><ellipse class="coin-2" cx="22" cy="27" rx="13" ry="4" fill="currentColor" opacity="0.38"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="currentColor" opacity="0.7"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/><line class="coin-1" x1="22" y1="19" x2="22" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 20.5 Q22 18 26 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 25 Q22 28 26 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/></svg></div><span>Money</span></div>
-
-    </div>
+    <div class="icon-row" id="row-aurora"></div>
   </div>
 </div>
 
-
-<!-- =============================================
-     STYLE 5 — CLAY 3D
-============================================= -->
+<!-- ── CLAY 3D ── -->
 <div class="section">
   <div class="section-label">Style 05</div>
   <div class="section-title">⬤ Clay 3D Inflated</div>
   <div class="clay-bg">
-    <div class="icon-row">
-
-      <div class="icon-wrap clay-wrap"><div class="clay-card blue card-calendar"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><rect x="5" y="10" width="34" height="28" rx="7" fill="currentColor" opacity="0.18"/><rect x="5" y="10" width="34" height="11" rx="7" fill="currentColor" opacity="0.55"/><rect x="5" y="17" width="34" height="4" fill="currentColor" opacity="0.55"/><rect x="13" y="5" width="4" height="9" rx="2" fill="currentColor"/><rect x="27" y="5" width="4" height="9" rx="2" fill="currentColor"/><circle cx="14" cy="30" r="2.3" fill="currentColor"/><circle cx="22" cy="30" r="2.3" fill="currentColor"/><circle cx="30" cy="30" r="2.3" fill="currentColor"/><circle cx="14" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/><circle cx="22" cy="36.5" r="2.3" fill="currentColor" opacity="0.45"/></svg></div><span>Calendar</span></div>
-
-      <div class="icon-wrap clay-wrap"><div class="clay-card teal card-clock"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/><circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/><line x1="22" y1="8" x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="8" y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="22" cy="22" r="3.2" fill="currentColor"/></svg></div><span>Clock</span></div>
-
-      <div class="icon-wrap clay-wrap"><div class="clay-card purple card-globe"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/><circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/><ellipse cx="22" cy="22" rx="7.5" ry="15.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/><ellipse cx="22" cy="22" rx="15.5" ry="5.5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.55"/><ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/></svg></div><span>Globe</span></div>
-
-      <div class="icon-wrap clay-wrap"><div class="clay-card blue card-lunchbox"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/><rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/><path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/><rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/><rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/><rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/></svg></div><span>Lunch Box</span></div>
-
-      <div class="icon-wrap clay-wrap"><div class="clay-card blue card-location"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><ellipse cx="22" cy="40" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/><path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/><circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/><circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/></svg></div><span>Location</span></div>
-
-      <div class="icon-wrap clay-wrap"><div class="clay-card purple card-search"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/><circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/><circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/><circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/><line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/></svg></div><span>Search</span></div>
-
-      <div class="icon-wrap clay-wrap"><div class="clay-card green card-cart"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/><path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/><rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/><rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/><circle class="cart-wheel-l" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/><circle class="cart-wheel-r" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/><circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/></svg></div><span>Cart</span></div>
-
-      <div class="icon-wrap clay-wrap"><div class="clay-card green card-tick"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><path class="tick-shield-fill" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/><path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/><polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Tick</span></div>
-
-      <div class="icon-wrap clay-wrap"><div class="clay-card orange card-offers"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><polygon points="22,4 39,16 33,40 11,40 5,16" fill="currentColor" opacity="0.15"/><polygon points="22,4 39,16 33,40 11,40 5,16" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.72"/><polygon points="22,4 39,16 22,22 5,16" fill="currentColor" opacity="0.28"/><line x1="22" y1="22" x2="22" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.25"/><line x1="22" y1="22" x2="33" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><line x1="22" y1="22" x2="11" y2="40" stroke="currentColor" stroke-width="1.2" opacity="0.2"/><circle class="offers-sparkle" cx="22" cy="29" r="3.5" fill="currentColor" opacity="0.6"/><circle cx="22" cy="29" r="1.3" fill="currentColor" opacity="0.9"/></svg></div><span>Offers</span></div>
-
-      <div class="icon-wrap clay-wrap"><div class="clay-card green card-money"><svg class="ico" viewBox="0 0 44 44" style="color:rgba(255,255,255,0.95)"><ellipse class="coin-4" cx="22" cy="35" rx="13" ry="4" fill="currentColor" opacity="0.18"/><ellipse class="coin-3" cx="22" cy="31" rx="13" ry="4" fill="currentColor" opacity="0.28"/><ellipse class="coin-2" cx="22" cy="27" rx="13" ry="4" fill="currentColor" opacity="0.38"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="currentColor" opacity="0.7"/><ellipse class="coin-1" cx="22" cy="23" rx="13" ry="4" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/><line class="coin-1" x1="22" y1="19" x2="22" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 20.5 Q22 18 26 20.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/><path class="coin-1" d="M18 25 Q22 28 26 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.95"/></svg></div><span>Money</span></div>
-
-    </div>
+    <div class="icon-row" id="row-clay"></div>
   </div>
 </div>
 
 <script>
-// ── NEW CALENDAR SVG INNER HTML ──────────────────────────────────────────────
-// A cleaner calendar: rounded rect body, distinct header bar, ring pins,
-// a bold date "14" numeral in the body, and week-row dots
-const calSVG = `
-  <!-- body -->
-  <rect x="4" y="11" width="36" height="30" rx="7" fill="currentColor" opacity="0.15"/>
-  <!-- header bar -->
-  <rect x="4" y="11" width="36" height="12" rx="7" fill="currentColor" opacity="0.6"/>
-  <rect x="4" y="18" width="36" height="5" fill="currentColor" opacity="0.6"/>
-  <!-- left ring pin -->
-  <rect class="cal-ring-l" x="13" y="5" width="5" height="11" rx="2.5" fill="currentColor"/>
-  <!-- right ring pin -->
-  <rect class="cal-ring-r" x="26" y="5" width="5" height="11" rx="2.5" fill="currentColor"/>
-  <!-- bold date "14" -->
-  <text x="22" y="34" text-anchor="middle" dominant-baseline="middle"
-        font-size="11" font-weight="800" fill="currentColor" opacity="0.85"
-        font-family="system-ui,sans-serif">14</text>
-  <!-- week dots row -->
-  <circle class="cal-dot" cx="10" cy="37" r="1.8" fill="currentColor" opacity="0.35"/>
-  <circle cx="16" cy="37" r="1.8" fill="currentColor" opacity="0.35"/>
-  <circle cx="22" cy="37" r="1.8" fill="currentColor" opacity="0.35"/>
-  <circle cx="28" cy="37" r="1.8" fill="currentColor" opacity="0.35"/>
-  <circle cx="34" cy="37" r="1.8" fill="currentColor" opacity="0.35"/>
-`;
 
-// ── NEW OFFERS SVG INNER HTML ─────────────────────────────────────────────────
-// A price / discount tag: rounded tag shape with hole + % sign + diagonal slash
-const offersSVG = `
-  <!-- tag body -->
-  <path d="M8 6 L32 6 Q38 6 38 14 L38 30 Q38 38 30 40 L22 42 L14 40 Q6 38 6 30 L6 14 Q6 6 8 6 Z"
-        fill="currentColor" opacity="0.15"/>
-  <path d="M8 6 L32 6 Q38 6 38 14 L38 30 Q38 38 30 40 L22 42 L14 40 Q6 38 6 30 L6 14 Q6 6 8 6 Z"
-        fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.75"/>
-  <!-- hang hole -->
-  <circle cx="22" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/>
-  <!-- top-left % dot -->
-  <circle cx="15" cy="20" r="3" fill="currentColor" opacity="0.8"/>
-  <!-- bottom-right % dot -->
-  <circle cx="29" cy="32" r="3" fill="currentColor" opacity="0.8"/>
-  <!-- diagonal slash -->
-  <line x1="13" y1="33" x2="31" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
-  <!-- pct symbol glow -->
-  <circle class="offers-pct" cx="15" cy="20" r="3" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
-  <circle class="offers-pct" cx="29" cy="32" r="3" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.4"/>
-`;
-
-// ── NEW MONEY SVG INNER HTML ──────────────────────────────────────────────────
-// A stacked dollar bill: two bills fanned slightly, with $ symbol, corner ovals, deco lines
-const moneySVG = `
-  <!-- back bill (slightly rotated) -->
-  <g class="money-wallet" transform="rotate(-6, 22, 26)">
-    <rect x="4" y="17" width="36" height="20" rx="5" fill="currentColor" opacity="0.18"/>
-    <rect x="4" y="17" width="36" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
+// ═══════════════════════════════════════════════════════
+//  ICON DEFINITIONS
+//  Each icon has:
+//    svgInner  — the inner SVG markup for the preview (uses currentColor)
+//    smil      — the standalone animated SVG string (hardcoded color, SMIL animations)
+//    cardClass — card-* class for CSS hover animations
+// ═══════════════════════════════════════════════════════
+const ICONS = [
+  {
+    name: 'Calendar',
+    cardClass: 'card-calendar',
+    svgInner: `
+      <rect x="4" y="11" width="36" height="30" rx="7" fill="currentColor" opacity="0.15"/>
+      <rect x="4" y="11" width="36" height="12" rx="7" fill="currentColor" opacity="0.6"/>
+      <rect x="4" y="18" width="36" height="5" fill="currentColor" opacity="0.6"/>
+      <rect class="cal-ring-l" x="13" y="5" width="5" height="11" rx="2.5" fill="currentColor"/>
+      <rect class="cal-ring-r" x="26" y="5" width="5" height="11" rx="2.5" fill="currentColor"/>
+      <text x="22" y="32" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="800" fill="currentColor" opacity="0.85" font-family="system-ui,sans-serif">14</text>
+      <circle cx="10" cy="37" r="1.8" fill="currentColor" opacity="0.4"/>
+      <circle cx="16" cy="37" r="1.8" fill="currentColor" opacity="0.4"/>
+      <circle cx="22" cy="37" r="1.8" fill="currentColor" opacity="0.4"/>
+      <circle cx="28" cy="37" r="1.8" fill="currentColor" opacity="0.4"/>
+      <circle cx="34" cy="37" r="1.8" fill="currentColor" opacity="0.4"/>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <rect x="4" y="11" width="36" height="30" rx="7" fill="${c}" opacity="0.15"/>
+  <rect x="4" y="11" width="36" height="12" rx="7" fill="${c}" opacity="0.6"/>
+  <rect x="4" y="18" width="36" height="5" fill="${c}" opacity="0.6"/>
+  <rect x="13" y="5" width="5" height="11" rx="2.5" fill="${c}">
+    <animateTransform attributeName="transform" type="rotate" values="0 15 9;-12 15 9;6 15 9;-4 15 9;0 15 9" keyTimes="0;0.2;0.5;0.75;1" dur="1.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.6;1" dur="1.8s" repeatCount="indefinite"/>
+  </rect>
+  <rect x="26" y="5" width="5" height="11" rx="2.5" fill="${c}">
+    <animateTransform attributeName="transform" type="rotate" values="0 29 9;12 29 9;-6 29 9;4 29 9;0 29 9" keyTimes="0;0.2;0.5;0.75;1" dur="1.8s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="1;0.6;1" dur="1.8s" repeatCount="indefinite"/>
+  </rect>
+  <text x="22" y="32" text-anchor="middle" dominant-baseline="middle" font-size="11" font-weight="800" fill="${c}" opacity="0.85" font-family="system-ui,sans-serif">14<animate attributeName="opacity" values="0.85;0.4;0.85" dur="1.8s" repeatCount="indefinite"/></text>
+  <circle cx="10" cy="37" r="1.8" fill="${c}" opacity="0.4"><animate attributeName="r" values="1.8;2.8;1.8" dur="1.8s" begin="0s" repeatCount="indefinite"/></circle>
+  <circle cx="16" cy="37" r="1.8" fill="${c}" opacity="0.4"><animate attributeName="r" values="1.8;2.8;1.8" dur="1.8s" begin="0.12s" repeatCount="indefinite"/></circle>
+  <circle cx="22" cy="37" r="1.8" fill="${c}" opacity="0.4"><animate attributeName="r" values="1.8;2.8;1.8" dur="1.8s" begin="0.24s" repeatCount="indefinite"/></circle>
+  <circle cx="28" cy="37" r="1.8" fill="${c}" opacity="0.4"><animate attributeName="r" values="1.8;2.8;1.8" dur="1.8s" begin="0.36s" repeatCount="indefinite"/></circle>
+  <circle cx="34" cy="37" r="1.8" fill="${c}" opacity="0.4"><animate attributeName="r" values="1.8;2.8;1.8" dur="1.8s" begin="0.48s" repeatCount="indefinite"/></circle>
+</svg>`
+  },
+  {
+    name: 'Clock',
+    cardClass: 'card-clock',
+    svgInner: `
+      <circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.14"/>
+      <circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5" opacity="0.65"/>
+      <line x1="22" y1="8"  x2="22" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="36" y1="22" x2="32" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="22" y1="36" x2="22" y2="32" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="8"  y1="22" x2="12" y2="22" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="22" y1="22" x2="22" y2="13" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+      <line class="clock-hand" x1="22" y1="22" x2="30" y2="27" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <circle cx="22" cy="22" r="3.2" fill="currentColor"/>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <circle cx="22" cy="22" r="16" fill="${c}" opacity="0.14"/>
+  <circle cx="22" cy="22" r="16" fill="none" stroke="${c}" stroke-width="2.5" opacity="0.65"/>
+  <line x1="22" y1="8"  x2="22" y2="12" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="36" y1="22" x2="32" y2="22" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="22" y1="36" x2="22" y2="32" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="8"  y1="22" x2="12" y2="22" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+  <line x1="22" y1="22" x2="22" y2="13" stroke="${c}" stroke-width="3" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="60s" repeatCount="indefinite"/>
+  </line>
+  <line x1="22" y1="22" x2="30" y2="27" stroke="${c}" stroke-width="2.5" stroke-linecap="round">
+    <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="2s" repeatCount="indefinite"/>
+  </line>
+  <circle cx="22" cy="22" r="3.2" fill="${c}"/>
+</svg>`
+  },
+  {
+    name: 'Globe',
+    cardClass: 'card-globe',
+    svgInner: `
+      <circle cx="22" cy="22" r="15.5" fill="currentColor" opacity="0.13"/>
+      <circle cx="22" cy="22" r="15.5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.6"/>
+      <ellipse cx="22" cy="22" rx="15.5" ry="5.5"  fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.45"/>
+      <ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.28"/>
+      <ellipse cx="22" cy="22" rx="7.5" ry="15.5"  fill="none" stroke="currentColor" stroke-width="2" opacity="0.75"/>
+      <circle cx="15" cy="15" r="3.5" fill="currentColor" opacity="0.3"/>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <circle cx="22" cy="22" r="15.5" fill="${c}" opacity="0.13"/>
+  <circle cx="22" cy="22" r="15.5" fill="none" stroke="${c}" stroke-width="2.2" opacity="0.6"/>
+  <ellipse cx="22" cy="22" rx="15.5" ry="5.5"  fill="none" stroke="${c}" stroke-width="1.8" opacity="0.45"/>
+  <ellipse cx="22" cy="22" rx="15.5" ry="10.5" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.28"/>
+  <ellipse cx="22" cy="22" ry="15.5" fill="none" stroke="${c}" stroke-width="2" opacity="0.8">
+    <animate attributeName="rx" values="7.5;15;0.5;15;7.5" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </ellipse>
+  <ellipse cx="22" cy="22" ry="15.5" fill="none" stroke="${c}" stroke-width="1.4" opacity="0.4">
+    <animate attributeName="rx" values="15;0.5;15;7.5;15" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+  </ellipse>
+  <circle cx="15" cy="15" r="3.5" fill="${c}" opacity="0.3"/>
+</svg>`
+  },
+  {
+    name: 'Lunch Box',
+    cardClass: 'card-lunchbox',
+    svgInner: `
+      <rect x="5" y="17" width="34" height="22" rx="7" fill="currentColor" opacity="0.17"/>
+      <rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="currentColor" stroke-width="2.4" opacity="0.72"/>
+      <path class="lunchbox-lid" d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
+      <rect x="5" y="26" width="34" height="3" rx="1.5" fill="currentColor" opacity="0.38"/>
+      <rect x="17" y="23.5" width="10" height="6" rx="3" fill="currentColor" opacity="0.9"/>
+      <rect x="20" y="25.5" width="4" height="2" rx="1" fill="currentColor" opacity="0.35"/>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <rect x="5" y="17" width="34" height="22" rx="7" fill="${c}" opacity="0.17"/>
+  <rect x="5" y="17" width="34" height="22" rx="7" fill="none" stroke="${c}" stroke-width="2.4" opacity="0.72"/>
+  <rect x="5" y="26" width="34" height="3" rx="1.5" fill="${c}" opacity="0.38"/>
+  <rect x="17" y="23.5" width="10" height="6" rx="3" fill="${c}" opacity="0.9"/>
+  <rect x="20" y="25.5" width="4" height="2" rx="1" fill="${c}" opacity="0.35"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0;0,-7;0,-5;0,-7.5;0,0" keyTimes="0;0.25;0.5;0.7;1" dur="2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+    <path d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
   </g>
-  <!-- front bill -->
-  <rect class="money-card" x="4" y="20" width="36" height="20" rx="5" fill="currentColor" opacity="0.25"/>
-  <rect class="money-card" x="4" y="20" width="36" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.85"/>
-  <!-- inner border lines -->
-  <rect class="money-card" x="7" y="23" width="30" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
-  <!-- left corner oval -->
-  <ellipse class="money-card" cx="11" cy="30" rx="3.5" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
-  <!-- right corner oval -->
-  <ellipse class="money-card" cx="33" cy="30" rx="3.5" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
-  <!-- center $ symbol -->
-  <text class="money-card" x="22" y="31.5" text-anchor="middle" dominant-baseline="middle"
-        font-size="10" font-weight="900" fill="currentColor" opacity="0.95"
-        font-family="system-ui,sans-serif">$</text>
-  <!-- deco micro lines left -->
-  <line class="money-card" x1="16" y1="27" x2="20" y2="27" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
-  <line class="money-card" x1="16" y1="33" x2="20" y2="33" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
-  <!-- deco micro lines right -->
-  <line class="money-card" x1="24" y1="27" x2="28" y2="27" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
-  <line class="money-card" x1="24" y1="33" x2="28" y2="33" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
-`;
-
-// ── APPLY ICON OVERRIDES ──────────────────────────────────────────────────────
-document.querySelectorAll('.card-calendar svg').forEach(svg => { svg.innerHTML = calSVG; });
-document.querySelectorAll('.card-offers svg').forEach(svg => { svg.innerHTML = offersSVG; });
-document.querySelectorAll('.card-money svg').forEach(svg => { svg.innerHTML = moneySVG; });
-
-// ── ADD DOWNLOAD BUTTON TO EVERY ICON WRAP ────────────────────────────────────
-document.querySelectorAll('.icon-wrap').forEach(wrap => {
-  const card = wrap.querySelector('[class*="card-"]');
-  if (!card) return;
-  const label = wrap.querySelector('span');
-  const iconName = label ? label.textContent.trim() : 'icon';
-
-  const bg = wrap.closest('[class*="-bg"]');
-  let styleName = 'Glassmorphism';
-  if (bg) {
-    const cls = bg.className;
-    if (cls.includes('neo'))    styleName = 'Neomorphism';
-    else if (cls.includes('holo'))   styleName = 'Holographic';
-    else if (cls.includes('aurora')) styleName = 'Aurora Bubble';
-    else if (cls.includes('clay'))   styleName = 'Clay 3D';
+</svg>`
+  },
+  {
+    name: 'Location',
+    cardClass: 'card-location',
+    svgInner: `
+      <ellipse cx="22" cy="41" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/>
+      <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/>
+      <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/>
+      <circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/>
+      <circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <ellipse cx="22" cy="41" rx="7" ry="2.2" fill="${c}" opacity="0.17">
+    <animate attributeName="rx" values="7;4;7" dur="1.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
+    <animate attributeName="opacity" values="0.17;0.06;0.17" dur="1.4s" repeatCount="indefinite"/>
+  </ellipse>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0;0,-10;0,0;0,-5;0,0" keyTimes="0;0.25;0.5;0.7;1" dur="1.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.6 0 1 1;0.4 0 0.6 1;0.6 0 1 1"/>
+    <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="${c}" opacity="0.2"/>
+    <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="${c}" stroke-width="2.3" opacity="0.8"/>
+    <circle cx="22" cy="17.5" r="6" fill="${c}" opacity="0.85"/>
+    <circle cx="22" cy="17.5" r="2.4" fill="${c}" opacity="0.28"/>
+  </g>
+</svg>`
+  },
+  {
+    name: 'Search',
+    cardClass: 'card-search',
+    svgInner: `
+      <circle cx="19" cy="19" r="12" fill="currentColor" opacity="0.14"/>
+      <circle cx="19" cy="19" r="12" fill="none" stroke="currentColor" stroke-width="2.6" opacity="0.68"/>
+      <circle cx="19" cy="19" r="6.5" fill="currentColor" opacity="0.22"/>
+      <circle cx="19" cy="19" r="3" fill="currentColor" opacity="0.5"/>
+      <line x1="28" y1="28" x2="38.5" y2="38.5" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <g>
+    <animateTransform attributeName="transform" type="rotate" values="0 22 22;-10 22 22;8 22 22;-5 22 22;3 22 22;0 22 22" keyTimes="0;0.15;0.35;0.55;0.75;1" dur="2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+    <circle cx="19" cy="19" r="12" fill="${c}" opacity="0.14"/>
+    <circle cx="19" cy="19" r="12" fill="none" stroke="${c}" stroke-width="2.6" opacity="0.68"/>
+    <circle cx="19" cy="19" r="6.5" fill="${c}" opacity="0.22">
+      <animate attributeName="r" values="6.5;8.5;6.5" dur="2s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" values="0.22;0.38;0.22" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="19" cy="19" r="3" fill="${c}" opacity="0.55"/>
+    <line x1="28" y1="28" x2="38.5" y2="38.5" stroke="${c}" stroke-width="4.5" stroke-linecap="round" opacity="0.82"/>
+  </g>
+</svg>`
+  },
+  {
+    name: 'Cart',
+    cardClass: 'card-cart',
+    svgInner: `
+      <path d="M4 6 h5 l1.5 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="currentColor" opacity="0.2"/>
+      <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/>
+      <rect x="15" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.5"/>
+      <rect x="23" y="16" width="5" height="5" rx="1.5" fill="currentColor" opacity="0.35"/>
+      <circle class="cart-wl" cx="16" cy="34" r="3.8" fill="currentColor" opacity="0.88"/>
+      <circle cx="16" cy="34" r="1.4" fill="currentColor" opacity="0.28"/>
+      <circle class="cart-wr" cx="29" cy="34" r="3.8" fill="currentColor" opacity="0.88"/>
+      <circle cx="29" cy="34" r="1.4" fill="currentColor" opacity="0.28"/>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0;4,0;-2,0;3,0;-1,0;0,0" keyTimes="0;0.2;0.4;0.6;0.8;1" dur="1.6s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+    <path d="M4 6 h5 l1.5 6" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
+    <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="${c}" opacity="0.2"/>
+    <path d="M9.5 12 l2.5 13 h20 l4-13 Z" fill="none" stroke="${c}" stroke-width="2.3" stroke-linejoin="round" opacity="0.82"/>
+    <rect x="15" y="16" width="5" height="5" rx="1.5" fill="${c}" opacity="0.5"/>
+    <rect x="23" y="16" width="5" height="5" rx="1.5" fill="${c}" opacity="0.35"/>
+    <g><animateTransform attributeName="transform" type="rotate" from="0 16 34" to="360 16 34" dur="0.8s" repeatCount="indefinite"/>
+      <circle cx="16" cy="34" r="3.8" fill="${c}" opacity="0.88"/>
+      <circle cx="16" cy="34" r="1.4" fill="${c}" opacity="0.28"/>
+    </g>
+    <g><animateTransform attributeName="transform" type="rotate" from="0 29 34" to="360 29 34" dur="0.8s" repeatCount="indefinite"/>
+      <circle cx="29" cy="34" r="3.8" fill="${c}" opacity="0.88"/>
+      <circle cx="29" cy="34" r="1.4" fill="${c}" opacity="0.28"/>
+    </g>
+  </g>
+</svg>`
+  },
+  {
+    name: 'Tick',
+    cardClass: 'card-tick',
+    svgInner: `
+      <path class="tick-shield" d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="currentColor" opacity="0.17"/>
+      <path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/>
+      <polyline class="tick-check" points="14,22 20,29 31,16" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="${c}" opacity="0.17">
+    <animate attributeName="opacity" values="0.17;0.35;0.17" dur="2s" repeatCount="indefinite"/>
+  </path>
+  <path d="M22 4 L37 11 V22 C37 32 22 40 22 40 C22 40 7 32 7 22 V11 Z" fill="none" stroke="${c}" stroke-width="2.3" stroke-linejoin="round" opacity="0.72"/>
+  <polyline points="14,22 20,29 31,16" fill="none" stroke="${c}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="42" stroke-dashoffset="42">
+    <animate attributeName="stroke-dashoffset" values="42;0;0;42" keyTimes="0;0.4;0.7;1" dur="2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0 0 1 1;0.4 0 0.6 1"/>
+    <animate attributeName="opacity" values="0.4;1;1;0.4" keyTimes="0;0.4;0.7;1" dur="2s" repeatCount="indefinite"/>
+  </polyline>
+</svg>`
+  },
+  {
+    name: 'Offers',
+    cardClass: 'card-offers',
+    svgInner: `
+      <path d="M8 6 L32 6 Q38 6 38 14 L38 30 Q38 38 30 40 L22 42 L14 40 Q6 38 6 30 L6 14 Q6 6 8 6 Z" fill="currentColor" opacity="0.15"/>
+      <path d="M8 6 L32 6 Q38 6 38 14 L38 30 Q38 38 30 40 L22 42 L14 40 Q6 38 6 30 L6 14 Q6 6 8 6 Z" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.75"/>
+      <circle cx="22" cy="9" r="2.5" fill="none" stroke="currentColor" stroke-width="2" opacity="0.85"/>
+      <circle cx="15" cy="20" r="3" fill="currentColor" opacity="0.8"/>
+      <circle cx="29" cy="32" r="3" fill="currentColor" opacity="0.8"/>
+      <line x1="13" y1="33" x2="31" y2="19" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <g>
+    <animateTransform attributeName="transform" type="rotate" values="0 22 6;-16 22 6;12 22 6;-7 22 6;4 22 6;0 22 6" keyTimes="0;0.18;0.4;0.6;0.8;1" dur="2.2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+    <path d="M8 6 L32 6 Q38 6 38 14 L38 30 Q38 38 30 40 L22 42 L14 40 Q6 38 6 30 L6 14 Q6 6 8 6 Z" fill="${c}" opacity="0.15"/>
+    <path d="M8 6 L32 6 Q38 6 38 14 L38 30 Q38 38 30 40 L22 42 L14 40 Q6 38 6 30 L6 14 Q6 6 8 6 Z" fill="none" stroke="${c}" stroke-width="2.2" opacity="0.75"/>
+    <circle cx="22" cy="9" r="2.5" fill="none" stroke="${c}" stroke-width="2" opacity="0.85"/>
+    <circle cx="15" cy="20" r="3" fill="${c}" opacity="0.8"><animate attributeName="r" values="3;4.5;3" dur="2.2s" repeatCount="indefinite"/></circle>
+    <circle cx="29" cy="32" r="3" fill="${c}" opacity="0.8"><animate attributeName="r" values="3;4.5;3" dur="2.2s" begin="0.1s" repeatCount="indefinite"/></circle>
+    <line x1="13" y1="33" x2="31" y2="19" stroke="${c}" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+  </g>
+</svg>`
+  },
+  {
+    name: 'Money',
+    cardClass: 'card-money',
+    svgInner: `
+      <g class="bill-back">
+        <rect x="4" y="17" width="36" height="20" rx="5" fill="currentColor" opacity="0.18"/>
+        <rect x="4" y="17" width="36" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="1.8" opacity="0.4"/>
+      </g>
+      <g class="bill-front">
+        <rect x="4" y="20" width="36" height="20" rx="5" fill="currentColor" opacity="0.25"/>
+        <rect x="4" y="20" width="36" height="20" rx="5" fill="none" stroke="currentColor" stroke-width="2.2" opacity="0.85"/>
+        <rect x="7" y="23" width="30" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+        <ellipse cx="11" cy="30" rx="3.5" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+        <ellipse cx="33" cy="30" rx="3.5" ry="4.5" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.55"/>
+        <line x1="16" y1="27" x2="20" y2="27" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+        <line x1="16" y1="33" x2="20" y2="33" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+        <line x1="24" y1="27" x2="28" y2="27" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+        <line x1="24" y1="33" x2="28" y2="33" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+        <text x="22" y="31" text-anchor="middle" dominant-baseline="middle" font-size="10" font-weight="900" fill="currentColor" opacity="0.95" font-family="system-ui,sans-serif">$</text>
+      </g>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <defs><style>text{font-family:system-ui,sans-serif}</style></defs>
+  <g>
+    <animateTransform attributeName="transform" type="rotate" values="0 4 40;-14 4 40;-10 4 40;0 4 40" keyTimes="0;0.3;0.6;1" dur="2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+    <rect x="4" y="17" width="36" height="20" rx="5" fill="${c}" opacity="0.18"/>
+    <rect x="4" y="17" width="36" height="20" rx="5" fill="none" stroke="${c}" stroke-width="1.8" opacity="0.4"/>
+  </g>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0;0,-5;0,-3;0,0" keyTimes="0;0.3;0.6;1" dur="2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
+    <rect x="4" y="20" width="36" height="20" rx="5" fill="${c}" opacity="0.25"/>
+    <rect x="4" y="20" width="36" height="20" rx="5" fill="none" stroke="${c}" stroke-width="2.2" opacity="0.85"/>
+    <rect x="7" y="23" width="30" height="14" rx="3" fill="none" stroke="${c}" stroke-width="1" opacity="0.35"/>
+    <ellipse cx="11" cy="30" rx="3.5" ry="4.5" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.55"/>
+    <ellipse cx="33" cy="30" rx="3.5" ry="4.5" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.55"/>
+    <line x1="16" y1="27" x2="20" y2="27" stroke="${c}" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+    <line x1="16" y1="33" x2="20" y2="33" stroke="${c}" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+    <line x1="24" y1="27" x2="28" y2="27" stroke="${c}" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+    <line x1="24" y1="33" x2="28" y2="33" stroke="${c}" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
+    <text x="22" y="31" text-anchor="middle" dominant-baseline="middle" font-weight="900" fill="${c}" opacity="0.95">$<animate attributeName="font-size" values="10;14;10" dur="2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.2 1;0.4 0 0.6 1"/></text>
+  </g>
+</svg>`
   }
+];
 
+// ═══════════════════════════════════════════════════════
+//  STYLE CONFIGS — card class, color, filter per style
+// ═══════════════════════════════════════════════════════
+const STYLES = [
+  {
+    rowId: 'row-glass',
+    cardType: 'glass-card',
+    colors: ['#6FAAFF','#2DD4BF','#C084FC','#6FAAFF','#60dfff','#C084FC','#4ADE80','#4ADE80','#FBBF24','#4ADE80'],
+    filter: (c) => `drop-shadow(0 0 8px ${c}99)`
+  },
+  {
+    rowId: 'row-neo',
+    cardType: 'neo-card',
+    wrapExtra: 'neo-wrap',
+    colors: ['#4F8DFD','#14B8A6','#A855F7','#4F8DFD','#0ea5e9','#A855F7','#22C55E','#22C55E','#F59E0B','#22C55E'],
+    filter: null
+  },
+  {
+    rowId: 'row-holo',
+    cardType: 'holo-card',
+    colors: ['#a0c4ff','#7fffff','#d4b3ff','#a0c4ff','#80dfff','#d4b3ff','#a8ffcc','#a8ffcc','#ffd6a0','#a8ffcc'],
+    filter: (c) => `drop-shadow(0 0 10px ${c})`
+  },
+  {
+    rowId: 'row-aurora',
+    cardType: 'aurora-card',
+    colorClass: ['blue','teal','purple','blue','blue','purple','green','green','orange','green'],
+    colors: Array(10).fill('rgba(255,255,255,0.93)'),
+    filter: null
+  },
+  {
+    rowId: 'row-clay',
+    cardType: 'clay-card',
+    wrapExtra: 'clay-wrap',
+    colorClass: ['blue','teal','purple','blue','blue','purple','green','green','orange','green'],
+    colors: Array(10).fill('rgba(255,255,255,0.95)'),
+    filter: null
+  }
+];
+
+// ═══════════════════════════════════════════════════════
+//  BUILD & INJECT ALL ICON CARDS
+// ═══════════════════════════════════════════════════════
+function buildCard(icon, style, idx) {
+  const color      = style.colors[idx];
+  const filterStr  = style.filter ? `filter:${style.filter(color)};` : '';
+  const colorClass = style.colorClass ? style.colorClass[idx] : '';
+
+  const wrap = document.createElement('div');
+  wrap.className = 'icon-wrap' + (style.wrapExtra ? ' ' + style.wrapExtra : '');
+
+  const card = document.createElement('div');
+  card.className = [style.cardType, colorClass, icon.cardClass].filter(Boolean).join(' ');
+
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('class', 'ico');
+  svg.setAttribute('viewBox', '0 0 44 44');
+  svg.setAttribute('style', `color:${color};${filterStr}`);
+  svg.innerHTML = icon.svgInner;
+
+  card.appendChild(svg);
+
+  const label = document.createElement('span');
+  label.textContent = icon.name;
+
+  // ── DOWNLOAD BUTTON ──
   const btn = document.createElement('button');
   btn.className = 'dl-btn';
-  btn.textContent = '↓ Download';
-  btn.onclick = (e) => { e.stopPropagation(); openModal(card, iconName, styleName); };
-  wrap.appendChild(btn);
-});
+  btn.textContent = '↓ SVG';
 
-// ── MODAL STATE ───────────────────────────────────────────────────────────────
-let currentSVGEl = null;
-let currentName  = '';
-let currentSize  = 16;
-let currentFmt   = 'svg';
-
-function openModal(card, name, style) {
-  currentName  = name;
-  currentSVGEl = card.querySelector('svg');
-
-  const preview = document.getElementById('dl-preview');
-  preview.innerHTML = '';
-  const clone = currentSVGEl.cloneNode(true);
-  clone.style.cssText = 'width:52px;height:52px;';
-  clone.querySelectorAll('*').forEach(el => el.style.animation = 'none');
-  preview.appendChild(clone);
-
-  document.getElementById('dl-icon-name').textContent = name;
-  document.getElementById('dl-icon-style').textContent = style + ' Style';
-
-  document.querySelectorAll('.dl-size').forEach(el => el.classList.remove('active'));
-  document.querySelector('.dl-size[data-size="48"]').classList.add('active');
-  document.querySelectorAll('.dl-format').forEach(el => el.classList.remove('active'));
-  document.querySelector('.dl-format[data-fmt="svg"]').classList.add('active');
-  currentSize = 48; currentFmt = 'svg';
-
-  document.getElementById('dl-modal').classList.add('open');
-}
-
-function closeModal() {
-  document.getElementById('dl-modal').classList.remove('open');
-}
-
-document.getElementById('dl-modal').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-
-document.querySelectorAll('.dl-size').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.dl-size').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentSize = parseInt(btn.dataset.size);
-  });
-});
-
-document.querySelectorAll('.dl-format').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.querySelectorAll('.dl-format').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    currentFmt = btn.dataset.fmt;
-  });
-});
-
-// ── DOWNLOAD LOGIC ────────────────────────────────────────────────────────────
-function doDownload() {
-  if (!currentSVGEl) return;
-
-  const clone = currentSVGEl.cloneNode(true);
-  clone.setAttribute('width', currentSize);
-  clone.setAttribute('height', currentSize);
-  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
-  clone.querySelectorAll('*').forEach(el => {
-    el.style.animation  = 'none';
-    el.style.transition = 'none';
-    el.removeAttribute('class');
-  });
-
-  const computedColor = currentSVGEl.style.color || '#ffffff';
-  let svgInner = clone.innerHTML.replace(/currentColor/g, computedColor);
-  clone.innerHTML = svgInner;
-
-  const svgStr = `<?xml version="1.0" encoding="UTF-8"?>\n${clone.outerHTML}`;
-  const slug   = currentName.toLowerCase().replace(/\s+/g, '-');
-  const fname  = `${slug}-${currentSize}px`;
-
-  if (currentFmt === 'svg') {
-    downloadBlob(new Blob([svgStr], { type: 'image/svg+xml' }), `${fname}.svg`);
-    flashSuccess();
-
-  } else if (currentFmt === 'png') {
-    const scale  = 2;
-    const canvas = Object.assign(document.createElement('canvas'), {
-      width:  currentSize * scale,
-      height: currentSize * scale
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    // Use the SMIL version with the actual color of THIS card
+    const smilSVG = '<?xml version="1.0" encoding="UTF-8"?>\n' + icon.smil(color);
+    const blob = new Blob([smilSVG], { type: 'image/svg+xml' });
+    const a = Object.assign(document.createElement('a'), {
+      href: URL.createObjectURL(blob),
+      download: `${icon.name.toLowerCase().replace(/\s+/g,'-')}-animated.svg`
     });
-    const ctx = canvas.getContext('2d');
-    const img = new Image();
-    img.onload = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-      canvas.toBlob(blob => { downloadBlob(blob, `${fname}.png`); flashSuccess(); }, 'image/png');
-    };
-    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgStr)));
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(a.href);
 
-  } else if (currentFmt === 'jsx') {
-    const componentName = currentName.replace(/\b\w/g, c => c.toUpperCase()).replace(/\s+/g, '') + 'Icon';
-    const inner = svgInner
-      .replace(/\bclass\b=/g, 'className=')
-      .replace(/stroke-width=/g, 'strokeWidth=')
-      .replace(/stroke-linecap=/g, 'strokeLinecap=')
-      .replace(/stroke-linejoin=/g, 'strokeLinejoin=')
-      .replace(/text-anchor=/g, 'textAnchor=')
-      .replace(/dominant-baseline=/g, 'dominantBaseline=')
-      .replace(/fill-opacity=/g, 'fillOpacity=')
-      .replace(/font-size=/g, 'fontSize=')
-      .replace(/font-weight=/g, 'fontWeight=')
-      .replace(/font-family=/g, 'fontFamily=');
-
-    const jsx = `import React from 'react';
-
-const ${componentName} = ({ size = ${currentSize}, color = '${computedColor}', style, ...props }) => (
-  <svg
-    width={size}
-    height={size}
-    viewBox="0 0 44 44"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-    style={{ color, ...style }}
-    {...props}
-  >
-    ${inner.trim()}
-  </svg>
-);
-
-export default ${componentName};
-`;
-    downloadBlob(new Blob([jsx], { type: 'text/plain' }), `${componentName}.jsx`);
-    flashSuccess();
-  }
-}
-
-function flashSuccess() {
-  const goBtn = document.getElementById('dl-go');
-  goBtn.textContent = '✓ Downloaded!';
-  goBtn.style.background = 'linear-gradient(135deg,#16a34a,#22c55e)';
-  goBtn.style.boxShadow  = '0 8px 20px rgba(34,197,94,0.35)';
-  setTimeout(() => {
-    goBtn.textContent = '⬇  Download Icon';
-    goBtn.style.background = '';
-    goBtn.style.boxShadow  = '';
-  }, 2000);
-}
-
-function downloadBlob(blob, filename) {
-  const a = Object.assign(document.createElement('a'), {
-    href: URL.createObjectURL(blob),
-    download: filename
+    // Flash feedback
+    btn.textContent = '✓ Saved!';
+    btn.classList.add('done');
+    setTimeout(() => {
+      btn.textContent = '↓ SVG';
+      btn.classList.remove('done');
+    }, 1800);
   });
-  a.click();
-  URL.revokeObjectURL(a.href);
+
+  wrap.appendChild(card);
+  wrap.appendChild(label);
+  wrap.appendChild(btn);
+  return wrap;
 }
+
+STYLES.forEach(style => {
+  const row = document.getElementById(style.rowId);
+  ICONS.forEach((icon, idx) => {
+    row.appendChild(buildCard(icon, style, idx));
+  });
+});
 </script>
 </body>
 </html>
