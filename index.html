@@ -83,6 +83,201 @@
   }
 
   /* =============================================
+     DOWNLOAD UI
+  ============================================= */
+  .icon-wrap { position: relative; }
+
+  .dl-btn {
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%) translateY(6px);
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(255,255,255,0.13);
+    border: 1px solid rgba(255,255,255,0.22);
+    backdrop-filter: blur(10px);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+  }
+  .neo-wrap .dl-btn {
+    background: rgba(0,0,0,0.08);
+    border-color: rgba(0,0,0,0.12);
+    color: #4a5568;
+  }
+  .clay-wrap .dl-btn {
+    background: rgba(255,255,255,0.5);
+    border-color: rgba(255,255,255,0.7);
+    color: #334155;
+  }
+  .icon-wrap:hover .dl-btn {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* MODAL OVERLAY */
+  #dl-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    backdrop-filter: blur(8px);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+  }
+  #dl-modal.open { display: flex; }
+
+  #dl-panel {
+    background: #12121e;
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 24px;
+    padding: 32px;
+    width: 380px;
+    box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+    position: relative;
+    animation: panelIn 0.3s cubic-bezier(0.34,1.56,0.64,1) forwards;
+  }
+  @keyframes panelIn {
+    from { transform: scale(0.88) translateY(20px); opacity: 0; }
+    to   { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  #dl-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.06);
+    color: #888;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+  #dl-close:hover { background: rgba(255,255,255,0.12); color: #fff; }
+
+  .dl-preview {
+    width: 90px; height: 90px;
+    border-radius: 20px;
+    margin: 0 auto 24px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .dl-preview svg { width: 52px; height: 52px; }
+
+  .dl-icon-name {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    text-align: center;
+    margin-bottom: 4px;
+  }
+  .dl-icon-sub {
+    font-size: 11px;
+    color: #444;
+    text-align: center;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .dl-section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  /* SIZE PILLS */
+  .dl-sizes {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .dl-size {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: #888;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .dl-size:hover { border-color: rgba(255,255,255,0.25); color: #ccc; }
+  .dl-size.active { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); color: #fff; }
+
+  /* FORMAT BUTTONS */
+  .dl-formats {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .dl-format {
+    flex: 1;
+    padding: 10px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: #888;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    font-family: 'Syne', sans-serif;
+  }
+  .dl-format:hover { border-color: rgba(255,255,255,0.25); color: #ccc; }
+  .dl-format.active { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.3); color: #fff; }
+  .dl-format small { display: block; font-size: 9px; opacity: 0.5; margin-top: 2px; letter-spacing: 0.5px; font-family: 'DM Sans', sans-serif; }
+
+  /* DOWNLOAD BUTTON */
+  #dl-go {
+    width: 100%;
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    background: linear-gradient(135deg, #4F8DFD, #7c3aed);
+    color: #fff;
+    font-family: 'Syne', sans-serif;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 8px 20px rgba(79,141,253,0.3);
+  }
+  #dl-go:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 28px rgba(79,141,253,0.45);
+  }
+  #dl-go:active { transform: translateY(0); }
+
+  .dl-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.06);
+    margin: 20px 0;
+  }
+
+  /* =============================================
      CARD BASE STYLES
   ============================================= */
 
@@ -413,10 +608,39 @@
 <body>
 
 <h1 class="page-title">Icon Style Showcase</h1>
-<p class="page-sub">5 design systems · unique per-icon animations on hover</p>
+<p class="page-sub">5 design systems · unique per-icon animations · click any icon to download</p>
 
+<!-- DOWNLOAD MODAL -->
+<div id="dl-modal">
+  <div id="dl-panel">
+    <button id="dl-close" onclick="closeModal()">✕</button>
 
-<!-- SHARED SVG SYMBOLS with named animatable parts -->
+    <div class="dl-preview" id="dl-preview"></div>
+    <div class="dl-icon-name" id="dl-icon-name"></div>
+    <div class="dl-icon-sub" id="dl-icon-style"></div>
+
+    <div class="dl-divider"></div>
+
+    <div class="dl-section-label">Size</div>
+    <div class="dl-sizes">
+      <div class="dl-size active" data-size="16">16px</div>
+      <div class="dl-size" data-size="24">24px</div>
+      <div class="dl-size" data-size="32">32px</div>
+      <div class="dl-size" data-size="48">48px</div>
+      <div class="dl-size" data-size="64">64px</div>
+      <div class="dl-size" data-size="128">128px</div>
+    </div>
+
+    <div class="dl-section-label">Format</div>
+    <div class="dl-formats">
+      <div class="dl-format active" data-fmt="svg">SVG<small>Vector · Scalable</small></div>
+      <div class="dl-format" data-fmt="png">PNG<small>Raster · Transparent</small></div>
+      <div class="dl-format" data-fmt="jsx">JSX<small>React Component</small></div>
+    </div>
+
+    <button id="dl-go" onclick="doDownload()">⬇ Download Icon</button>
+  </div>
+</div>
 <svg width="0" height="0" style="position:absolute;overflow:hidden">
   <defs>
 
@@ -976,16 +1200,186 @@ const moneySVG = `
   <line class="money-card" x1="24" y1="33" x2="28" y2="33" stroke="currentColor" stroke-width="1" stroke-linecap="round" opacity="0.3"/>
 `;
 
-// ── APPLY TO ALL .card-* CONTAINERS ─────────────────────────────────────────
-document.querySelectorAll('.card-calendar svg').forEach(svg => {
-  svg.innerHTML = calSVG;
+// ── APPLY ICON OVERRIDES ──────────────────────────────────────────────────────
+document.querySelectorAll('.card-calendar svg').forEach(svg => { svg.innerHTML = calSVG; });
+document.querySelectorAll('.card-offers svg').forEach(svg => { svg.innerHTML = offersSVG; });
+document.querySelectorAll('.card-money svg').forEach(svg => { svg.innerHTML = moneySVG; });
+
+// ── ADD DOWNLOAD BUTTON TO EVERY ICON WRAP ────────────────────────────────────
+document.querySelectorAll('.icon-wrap').forEach(wrap => {
+  const card = wrap.querySelector('[class*="card-"]');
+  if (!card) return;
+  const label = wrap.querySelector('span');
+  const iconName = label ? label.textContent.trim() : 'icon';
+
+  const bg = wrap.closest('[class*="-bg"]');
+  let styleName = 'Glassmorphism';
+  if (bg) {
+    const cls = bg.className;
+    if (cls.includes('neo'))    styleName = 'Neomorphism';
+    else if (cls.includes('holo'))   styleName = 'Holographic';
+    else if (cls.includes('aurora')) styleName = 'Aurora Bubble';
+    else if (cls.includes('clay'))   styleName = 'Clay 3D';
+  }
+
+  const btn = document.createElement('button');
+  btn.className = 'dl-btn';
+  btn.textContent = '↓ Download';
+  btn.onclick = (e) => { e.stopPropagation(); openModal(card, iconName, styleName); };
+  wrap.appendChild(btn);
 });
-document.querySelectorAll('.card-offers svg').forEach(svg => {
-  svg.innerHTML = offersSVG;
+
+// ── MODAL STATE ───────────────────────────────────────────────────────────────
+let currentSVGEl = null;
+let currentName  = '';
+let currentSize  = 16;
+let currentFmt   = 'svg';
+
+function openModal(card, name, style) {
+  currentName  = name;
+  currentSVGEl = card.querySelector('svg');
+
+  const preview = document.getElementById('dl-preview');
+  preview.innerHTML = '';
+  const clone = currentSVGEl.cloneNode(true);
+  clone.style.cssText = 'width:52px;height:52px;';
+  clone.querySelectorAll('*').forEach(el => el.style.animation = 'none');
+  preview.appendChild(clone);
+
+  document.getElementById('dl-icon-name').textContent = name;
+  document.getElementById('dl-icon-style').textContent = style + ' Style';
+
+  document.querySelectorAll('.dl-size').forEach(el => el.classList.remove('active'));
+  document.querySelector('.dl-size[data-size="48"]').classList.add('active');
+  document.querySelectorAll('.dl-format').forEach(el => el.classList.remove('active'));
+  document.querySelector('.dl-format[data-fmt="svg"]').classList.add('active');
+  currentSize = 48; currentFmt = 'svg';
+
+  document.getElementById('dl-modal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('dl-modal').classList.remove('open');
+}
+
+document.getElementById('dl-modal').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
 });
-document.querySelectorAll('.card-money svg').forEach(svg => {
-  svg.innerHTML = moneySVG;
+
+document.querySelectorAll('.dl-size').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.dl-size').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentSize = parseInt(btn.dataset.size);
+  });
 });
+
+document.querySelectorAll('.dl-format').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.dl-format').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFmt = btn.dataset.fmt;
+  });
+});
+
+// ── DOWNLOAD LOGIC ────────────────────────────────────────────────────────────
+function doDownload() {
+  if (!currentSVGEl) return;
+
+  const clone = currentSVGEl.cloneNode(true);
+  clone.setAttribute('width', currentSize);
+  clone.setAttribute('height', currentSize);
+  clone.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
+  clone.querySelectorAll('*').forEach(el => {
+    el.style.animation  = 'none';
+    el.style.transition = 'none';
+    el.removeAttribute('class');
+  });
+
+  const computedColor = currentSVGEl.style.color || '#ffffff';
+  let svgInner = clone.innerHTML.replace(/currentColor/g, computedColor);
+  clone.innerHTML = svgInner;
+
+  const svgStr = `<?xml version="1.0" encoding="UTF-8"?>\n${clone.outerHTML}`;
+  const slug   = currentName.toLowerCase().replace(/\s+/g, '-');
+  const fname  = `${slug}-${currentSize}px`;
+
+  if (currentFmt === 'svg') {
+    downloadBlob(new Blob([svgStr], { type: 'image/svg+xml' }), `${fname}.svg`);
+    flashSuccess();
+
+  } else if (currentFmt === 'png') {
+    const scale  = 2;
+    const canvas = Object.assign(document.createElement('canvas'), {
+      width:  currentSize * scale,
+      height: currentSize * scale
+    });
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.onload = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      canvas.toBlob(blob => { downloadBlob(blob, `${fname}.png`); flashSuccess(); }, 'image/png');
+    };
+    img.src = 'data:image/svg+xml;base64,' + btoa(unescape(encodeURIComponent(svgStr)));
+
+  } else if (currentFmt === 'jsx') {
+    const componentName = currentName.replace(/\b\w/g, c => c.toUpperCase()).replace(/\s+/g, '') + 'Icon';
+    const inner = svgInner
+      .replace(/\bclass\b=/g, 'className=')
+      .replace(/stroke-width=/g, 'strokeWidth=')
+      .replace(/stroke-linecap=/g, 'strokeLinecap=')
+      .replace(/stroke-linejoin=/g, 'strokeLinejoin=')
+      .replace(/text-anchor=/g, 'textAnchor=')
+      .replace(/dominant-baseline=/g, 'dominantBaseline=')
+      .replace(/fill-opacity=/g, 'fillOpacity=')
+      .replace(/font-size=/g, 'fontSize=')
+      .replace(/font-weight=/g, 'fontWeight=')
+      .replace(/font-family=/g, 'fontFamily=');
+
+    const jsx = `import React from 'react';
+
+const ${componentName} = ({ size = ${currentSize}, color = '${computedColor}', style, ...props }) => (
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 44 44"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+    style={{ color, ...style }}
+    {...props}
+  >
+    ${inner.trim()}
+  </svg>
+);
+
+export default ${componentName};
+`;
+    downloadBlob(new Blob([jsx], { type: 'text/plain' }), `${componentName}.jsx`);
+    flashSuccess();
+  }
+}
+
+function flashSuccess() {
+  const goBtn = document.getElementById('dl-go');
+  goBtn.textContent = '✓ Downloaded!';
+  goBtn.style.background = 'linear-gradient(135deg,#16a34a,#22c55e)';
+  goBtn.style.boxShadow  = '0 8px 20px rgba(34,197,94,0.35)';
+  setTimeout(() => {
+    goBtn.textContent = '⬇  Download Icon';
+    goBtn.style.background = '';
+    goBtn.style.boxShadow  = '';
+  }, 2000);
+}
+
+function downloadBlob(blob, filename) {
+  const a = Object.assign(document.createElement('a'), {
+    href: URL.createObjectURL(blob),
+    download: filename
+  });
+  a.click();
+  URL.revokeObjectURL(a.href);
+}
 </script>
 </body>
 </html>
