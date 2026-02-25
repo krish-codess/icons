@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Icon Style Showcase</title>
+<title>iOS App Onboarding Icons</title>
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -123,7 +123,34 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 .clay-card:active { transform:translateY(4px); }
 .clay-wrap span   { color:#a0b0c8 !important; }
 
-/* ── ICON HOVER ANIMATIONS (CSS) ── */
+
+/* ════════════════════════════════════════════════
+   ICON HOVER ANIMATIONS (CSS)
+═════════════════════════════════════════════════ */
+
+/* 1. GROW BUSINESS */
+.card-grow .grow-b1, .card-grow .grow-b2, .card-grow .grow-b3 { transform-origin: 50% 38px; }
+@keyframes barGrow { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(1.3); } }
+@keyframes arrShoot { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(3px,-3px); } }
+.card-grow:hover .grow-b1 { animation: barGrow 0.8s ease infinite; }
+.card-grow:hover .grow-b2 { animation: barGrow 0.8s ease infinite 0.1s; }
+.card-grow:hover .grow-b3 { animation: barGrow 0.8s ease infinite 0.2s; }
+.card-grow:hover .grow-arr { animation: arrShoot 0.8s ease infinite; }
+
+/* 2. EXCLUSIVE DEALS */
+@keyframes tagSwing { 0%, 100% { transform: rotate(0deg); } 25% { transform: rotate(-6deg); } 75% { transform: rotate(5deg); } }
+@keyframes starSparkle { 0%, 100% { transform: scale(1) rotate(0deg); opacity:0.95; } 50% { transform: scale(1.4) rotate(45deg); opacity:1; } }
+.card-deals:hover .deals-tag { animation: tagSwing 1s ease infinite; transform-origin: 12px 12px; }
+.card-deals:hover .deals-star { animation: starSparkle 1s ease infinite; }
+
+/* 3. LOCAL BUSINESS */
+@keyframes pinBounceLocal { 0%, 100% { transform: translateY(0); } 40% { transform: translateY(-6px); } 60% { transform: translateY(-2px); } }
+@keyframes awningPulse { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(2px); } }
+.card-local:hover .local-pin { animation: pinBounceLocal 1s ease infinite; }
+.card-local:hover .local-awning { animation: awningPulse 1s ease infinite; }
+
+
+/* PREVIOUS ICONS */
 @keyframes calBodyShake { 0%{transform:rotate(0)} 15%{transform:rotate(-3deg)} 35%{transform:rotate(3deg)} 55%{transform:rotate(-2deg)} 75%{transform:rotate(1deg)} 100%{transform:rotate(0)} }
 @keyframes calRingL { 0%{transform:rotate(0) translateY(0)} 20%{transform:rotate(-12deg) translateY(-4px)} 50%{transform:rotate(6deg) translateY(-2px)} 75%{transform:rotate(-4deg) translateY(-3px)} 100%{transform:rotate(0) translateY(0)} }
 @keyframes calRingR { 0%{transform:rotate(0) translateY(0)} 20%{transform:rotate(12deg) translateY(-4px)} 50%{transform:rotate(-6deg) translateY(-2px)} 75%{transform:rotate(4deg) translateY(-3px)} 100%{transform:rotate(0) translateY(0)} }
@@ -157,29 +184,14 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 .card-tick:hover .tick-check { animation:tickDraw 0.45s ease forwards; stroke-dasharray:42; stroke-dashoffset:42; }
 .card-tick:hover .tick-shield { animation:shieldPulse 0.8s ease infinite; }
 
-@keyframes pctWiggle {
-  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.95; }
-  20% { transform: scale(1.15) rotate(8deg); opacity: 1; }
-  50% { transform: scale(0.92) rotate(-5deg); opacity: 0.8; }
-  80% { transform: scale(1.08) rotate(3deg); opacity: 1; }
-}
-@keyframes ringPulse {
-  0%,100% { r: 13; opacity: 0.25; }
-  50%      { r: 18; opacity: 0; }
-}
-@keyframes ringPulse2 {
-  0%,100% { r: 18; opacity: 0.15; }
-  50%      { r: 22; opacity: 0; }
-}
+@keyframes pctWiggle { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.95; } 20% { transform: scale(1.15) rotate(8deg); opacity: 1; } 50% { transform: scale(0.92) rotate(-5deg); opacity: 0.8; } 80% { transform: scale(1.08) rotate(3deg); opacity: 1; } }
+@keyframes ringPulse { 0%,100% { r: 13; opacity: 0.25; } 50% { r: 18; opacity: 0; } }
+@keyframes ringPulse2 { 0%,100% { r: 18; opacity: 0.15; } 50% { r: 22; opacity: 0; } }
 .card-offers:hover .offers-pct   { animation: pctWiggle 0.6s ease infinite; transform-origin: 22px 22px; }
 .card-offers:hover .offers-ring1 { animation: ringPulse  0.7s ease infinite; }
 .card-offers:hover .offers-ring2 { animation: ringPulse2 0.7s 0.15s ease infinite; }
 
-@keyframes coinBob {
-  0%,100% { transform: translateY(0) rotate(0deg); }
-  40%      { transform: translateY(-5px) rotate(4deg); }
-  70%      { transform: translateY(-3px) rotate(-2deg); }
-}
+@keyframes coinBob { 0%,100% { transform: translateY(0) rotate(0deg); } 40% { transform: translateY(-5px) rotate(4deg); } 70% { transform: translateY(-3px) rotate(-2deg); } }
 @keyframes shineSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 .card-money:hover .ico         { animation: coinBob 0.7s cubic-bezier(0.34,1.56,0.64,1) forwards; }
 .card-money:hover .money-shine { animation: shineSpin 1s linear infinite; transform-origin: 22px 22px; }
@@ -187,7 +199,7 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 </head>
 <body>
 
-<h1 class="page-title">Icon Style Showcase</h1>
+<h1 class="page-title">iOS App Onboarding Icons</h1>
 <p class="page-sub">5 design systems · hover to animate · multiple formats and resolutions</p>
 
 <div class="section">
@@ -232,6 +244,101 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 
 <script>
 const ICONS = [
+  // ── NEW ONBOARDING ICONS ──
+  {
+    name: 'Grow Business',
+    cardClass: 'card-grow',
+    svgInner: `
+      <rect class="grow-b1" x="6" y="26" width="7" height="12" rx="2" fill="currentColor" opacity="0.3"/>
+      <rect class="grow-b2" x="18" y="16" width="7" height="22" rx="2" fill="currentColor" opacity="0.6"/>
+      <rect class="grow-b3" x="30" y="6" width="7" height="32" rx="2" fill="currentColor" opacity="0.9"/>
+      <g class="grow-arr">
+        <path d="M 6 18 L 18 8 L 25 14 L 38 2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M 28 2 L 38 2 L 38 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </g>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <rect x="6" y="26" width="7" height="12" rx="2" fill="${c}" opacity="0.3">
+    <animate attributeName="height" values="12;16;12" dur="0.8s" repeatCount="indefinite" />
+    <animate attributeName="y" values="26;22;26" dur="0.8s" repeatCount="indefinite" />
+  </rect>
+  <rect x="18" y="16" width="7" height="22" rx="2" fill="${c}" opacity="0.6">
+    <animate attributeName="height" values="22;26;22" dur="0.8s" begin="0.1s" repeatCount="indefinite" />
+    <animate attributeName="y" values="16;12;16" dur="0.8s" begin="0.1s" repeatCount="indefinite" />
+  </rect>
+  <rect x="30" y="6" width="7" height="32" rx="2" fill="${c}" opacity="0.9">
+    <animate attributeName="height" values="32;36;32" dur="0.8s" begin="0.2s" repeatCount="indefinite" />
+    <animate attributeName="y" values="6;2;6" dur="0.8s" begin="0.2s" repeatCount="indefinite" />
+  </rect>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 3,-3; 0,0" dur="0.8s" repeatCount="indefinite"/>
+    <path d="M 6 18 L 18 8 L 25 14 L 38 2" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 28 2 L 38 2 L 38 12" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>`
+  },
+  {
+    name: 'Exclusive Deals',
+    cardClass: 'card-deals',
+    svgInner: `
+      <g class="deals-tag">
+        <path d="M 20 5 L 8 5 A 3 3 0 0 0 5 8 L 5 20 L 22 37 A 4 4 0 0 0 28 37 L 37 28 A 4 4 0 0 0 37 22 L 20 5 Z" fill="currentColor" opacity="0.15"/>
+        <path d="M 20 5 L 8 5 A 3 3 0 0 0 5 8 L 5 20 L 22 37 A 4 4 0 0 0 28 37 L 37 28 A 4 4 0 0 0 37 22 L 20 5 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/>
+        <circle cx="12" cy="12" r="2.5" fill="currentColor" opacity="0.8"/>
+      </g>
+      <g class="deals-star" transform="translate(32,9)">
+        <path d="M 0 -5 L 2 0 L 7 2 L 2 4 L 0 9 L -2 4 L -7 2 L -2 0 Z" fill="currentColor" opacity="0.95"/>
+      </g>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <g>
+    <animateTransform attributeName="transform" type="rotate" values="0 12 12; -6 12 12; 5 12 12; 0 12 12" keyTimes="0; 0.25; 0.75; 1" dur="1s" repeatCount="indefinite"/>
+    <path d="M 20 5 L 8 5 A 3 3 0 0 0 5 8 L 5 20 L 22 37 A 4 4 0 0 0 28 37 L 37 28 A 4 4 0 0 0 37 22 L 20 5 Z" fill="${c}" opacity="0.15"/>
+    <path d="M 20 5 L 8 5 A 3 3 0 0 0 5 8 L 5 20 L 22 37 A 4 4 0 0 0 28 37 L 37 28 A 4 4 0 0 0 37 22 L 20 5 Z" fill="none" stroke="${c}" stroke-width="2.3" stroke-linejoin="round"/>
+    <circle cx="12" cy="12" r="2.5" fill="${c}" opacity="0.8"/>
+  </g>
+  <g transform="translate(32,9)">
+    <g>
+      <animateTransform attributeName="transform" type="scale" values="1; 1.4; 1" dur="1s" repeatCount="indefinite"/>
+      <g>
+        <animateTransform attributeName="transform" type="rotate" values="0; 45; 0" dur="1s" repeatCount="indefinite"/>
+        <path d="M 0 -5 L 2 0 L 7 2 L 2 4 L 0 9 L -2 4 L -7 2 L -2 0 Z" fill="${c}" opacity="0.95"/>
+      </g>
+    </g>
+  </g>
+</svg>`
+  },
+  {
+    name: 'Discover Local',
+    cardClass: 'card-local',
+    svgInner: `
+      <path d="M 6 20 L 38 20 L 38 38 A 2 2 0 0 1 36 40 L 8 40 A 2 2 0 0 1 6 38 Z" fill="currentColor" opacity="0.15"/>
+      <path d="M 6 20 L 38 20 L 38 38 A 2 2 0 0 1 36 40 L 8 40 A 2 2 0 0 1 6 38 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+      <rect x="17" y="26" width="10" height="14" rx="1.5" fill="none" stroke="currentColor" stroke-width="2.3"/>
+      <g class="local-awning">
+        <path d="M 4 20 L 8 10 H 36 L 40 20 Z" fill="currentColor" opacity="0.4"/>
+        <path d="M 4 20 L 8 10 H 36 L 40 20 Z" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/>
+        <path d="M 14 10 L 12 20 M 22 10 L 22 20 M 30 10 L 32 20" stroke="currentColor" stroke-width="2.3" stroke-linejoin="round"/>
+      </g>
+      <g class="local-pin">
+        <path d="M 32 14 C 32 14 26 7 26 4 A 6 6 0 1 1 38 4 C 38 7 32 14 32 14 Z M 32 2 A 2 2 0 1 0 32 6 A 2 2 0 1 0 32 2 Z" fill="currentColor" fill-rule="evenodd" opacity="0.95"/>
+      </g>`,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
+  <path d="M 6 20 L 38 20 L 38 38 A 2 2 0 0 1 36 40 L 8 40 A 2 2 0 0 1 6 38 Z" fill="${c}" opacity="0.15"/>
+  <path d="M 6 20 L 38 20 L 38 38 A 2 2 0 0 1 36 40 L 8 40 A 2 2 0 0 1 6 38 Z" fill="none" stroke="${c}" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="17" y="26" width="10" height="14" rx="1.5" fill="none" stroke="${c}" stroke-width="2.3"/>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,2; 0,0" dur="1s" repeatCount="indefinite"/>
+    <path d="M 4 20 L 8 10 H 36 L 40 20 Z" fill="${c}" opacity="0.4"/>
+    <path d="M 4 20 L 8 10 H 36 L 40 20 Z" fill="none" stroke="${c}" stroke-width="2.3" stroke-linejoin="round"/>
+    <path d="M 14 10 L 12 20 M 22 10 L 22 20 M 30 10 L 32 20" stroke="${c}" stroke-width="2.3" stroke-linejoin="round"/>
+  </g>
+  <g>
+    <animateTransform attributeName="transform" type="translate" values="0,0; 0,-6; 0,-2; 0,0" keyTimes="0; 0.4; 0.6; 1" dur="1s" repeatCount="indefinite"/>
+    <path d="M 32 14 C 32 14 26 7 26 4 A 6 6 0 1 1 38 4 C 38 7 32 14 32 14 Z M 32 2 A 2 2 0 1 0 32 6 A 2 2 0 1 0 32 2 Z" fill="${c}" fill-rule="evenodd" opacity="0.95"/>
+  </g>
+</svg>`
+  },
+  
+  // ── PREVIOUS ICONS ──
   {
     name: 'Calendar',
     cardClass: 'card-calendar',
@@ -339,29 +446,6 @@ const ICONS = [
   <g>
     <animateTransform attributeName="transform" type="translate" values="0,0;0,-7;0,-5;0,-7.5;0,0" keyTimes="0;0.25;0.5;0.7;1" dur="2s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1;0.4 0 0.6 1"/>
     <path d="M14 17 V13 Q14 7 22 7 Q30 7 30 13 V17" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
-  </g>
-</svg>`
-  },
-  {
-    name: 'Location',
-    cardClass: 'card-location',
-    svgInner: `
-      <ellipse cx="22" cy="41" rx="7" ry="2.2" fill="currentColor" opacity="0.17"/>
-      <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="currentColor" opacity="0.2"/>
-      <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="currentColor" stroke-width="2.3" opacity="0.8"/>
-      <circle cx="22" cy="17.5" r="6" fill="currentColor" opacity="0.85"/>
-      <circle cx="22" cy="17.5" r="2.4" fill="currentColor" opacity="0.28"/>`,
-    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44" height="44">
-  <ellipse cx="22" cy="41" rx="7" ry="2.2" fill="${c}" opacity="0.17">
-    <animate attributeName="rx" values="7;4;7" dur="1.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/>
-    <animate attributeName="opacity" values="0.17;0.06;0.17" dur="1.4s" repeatCount="indefinite"/>
-  </ellipse>
-  <g>
-    <animateTransform attributeName="transform" type="translate" values="0,0;0,-10;0,0;0,-5;0,0" keyTimes="0;0.25;0.5;0.7;1" dur="1.4s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.6 0 1 1;0.4 0 0.6 1;0.6 0 1 1"/>
-    <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="${c}" opacity="0.2"/>
-    <path d="M22 38.5 C22 38.5 8 27 8 17.5 a14 14 0 1 1 28 0 C36 27 22 38.5 22 38.5z" fill="none" stroke="${c}" stroke-width="2.3" opacity="0.8"/>
-    <circle cx="22" cy="17.5" r="6" fill="${c}" opacity="0.85"/>
-    <circle cx="22" cy="17.5" r="2.4" fill="${c}" opacity="0.28"/>
   </g>
 </svg>`
   },
@@ -502,11 +586,11 @@ const ICONS = [
 ];
 
 const STYLES = [
-  { rowId: 'row-glass', cardType: 'glass-card', colors: ['#6FAAFF','#2DD4BF','#C084FC','#6FAAFF','#60dfff','#C084FC','#4ADE80','#4ADE80','#FBBF24','#4ADE80'], filter: (c) => `drop-shadow(0 0 8px ${c}99)` },
-  { rowId: 'row-neo', cardType: 'neo-card', wrapExtra: 'neo-wrap', colors: ['#4F8DFD','#14B8A6','#A855F7','#4F8DFD','#0ea5e9','#A855F7','#22C55E','#22C55E','#F59E0B','#22C55E'] },
-  { rowId: 'row-holo', cardType: 'holo-card', colors: ['#a0c4ff','#7fffff','#d4b3ff','#a0c4ff','#80dfff','#d4b3ff','#a8ffcc','#a8ffcc','#ffd6a0','#a8ffcc'], filter: (c) => `drop-shadow(0 0 10px ${c})` },
-  { rowId: 'row-aurora', cardType: 'aurora-card', colorClass: ['blue','teal','purple','blue','blue','purple','green','green','orange','green'], colors: Array(10).fill('rgba(255,255,255,0.93)') },
-  { rowId: 'row-clay', cardType: 'clay-card', wrapExtra: 'clay-wrap', colorClass: ['blue','teal','purple','blue','blue','purple','green','green','orange','green'], colors: Array(10).fill('rgba(255,255,255,0.95)') }
+  { rowId: 'row-glass', cardType: 'glass-card', colors: ['#6FAAFF','#2DD4BF','#C084FC','#FBBF24','#ff6b6b','#60dfff','#4ADE80'], filter: (c) => `drop-shadow(0 0 8px ${c}99)` },
+  { rowId: 'row-neo', cardType: 'neo-card', wrapExtra: 'neo-wrap', colors: ['#4F8DFD','#14B8A6','#A855F7','#F59E0B','#ef4444','#0ea5e9','#22C55E'] },
+  { rowId: 'row-holo', cardType: 'holo-card', colors: ['#a0c4ff','#7fffff','#d4b3ff','#ffd6a0','#ff9999','#80dfff','#a8ffcc'], filter: (c) => `drop-shadow(0 0 10px ${c})` },
+  { rowId: 'row-aurora', cardType: 'aurora-card', colorClass: ['blue','teal','purple','orange','orange','blue','green'], colors: Array(7).fill('rgba(255,255,255,0.93)') },
+  { rowId: 'row-clay', cardType: 'clay-card', wrapExtra: 'clay-wrap', colorClass: ['blue','teal','purple','orange','orange','blue','green'], colors: Array(7).fill('rgba(255,255,255,0.95)') }
 ];
 
 // Utility: Trigger native download
@@ -523,9 +607,10 @@ function triggerDownload(blob, filename) {
 
 // ── BUILD AND INJECT CARDS ──
 function buildCard(icon, style, idx) {
-  const color = style.colors[idx];
+  // Safe color wrapping (supports any number of icons)
+  const color = style.colors[idx % style.colors.length];
   const filterStr = style.filter ? `filter:${style.filter(color)};` : '';
-  const colorClass = style.colorClass ? style.colorClass[idx] : '';
+  const colorClass = style.colorClass ? style.colorClass[idx % style.colorClass.length] : '';
 
   const wrap = document.createElement('div');
   wrap.className = 'icon-wrap' + (style.wrapExtra ? ' ' + style.wrapExtra : '');
@@ -573,7 +658,6 @@ function buildCard(icon, style, idx) {
     <button class="dl-action">Save Icon</button>
   `;
 
-  // Toggle Panel
   btn.addEventListener('click', (e) => {
     e.stopPropagation();
     document.querySelectorAll('.dl-panel.show').forEach(p => {
@@ -586,17 +670,14 @@ function buildCard(icon, style, idx) {
     btn.classList.toggle('active');
   });
 
-  // Prevent closing when interacting inside panel
   panel.addEventListener('click', e => e.stopPropagation());
 
-  // Handle Export
   const actionBtn = panel.querySelector('.dl-action');
   actionBtn.addEventListener('click', () => {
     const format = panel.querySelector('.dl-format').value;
     const size = parseInt(panel.querySelector('.dl-size').value, 10);
     const filename = icon.name.toLowerCase().replace(/\s+/g,'-');
 
-    // Close panel and show success state
     panel.classList.remove('show');
     btn.classList.remove('active');
     btn.textContent = '✓ Saved!';
@@ -607,13 +688,11 @@ function buildCard(icon, style, idx) {
     }, 1800);
 
     if (format === 'SVG') {
-      // Export animated SMIL SVG
       let rawSVG = icon.smil(color);
       const sizedSVG = rawSVG.replace(/width="44"/, `width="${size}"`).replace(/height="44"/, `height="${size}"`);
       const blob = new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n' + sizedSVG], { type: 'image/svg+xml' });
       triggerDownload(blob, `${filename}-${size}x${size}.svg`);
     } else {
-      // Export Static PNG
       const canvas = document.createElement('canvas');
       canvas.width = size;
       canvas.height = size;
@@ -653,7 +732,6 @@ STYLES.forEach(style => {
   });
 });
 
-// Global listener to close dropdowns when clicking outside
 document.addEventListener('click', () => {
   document.querySelectorAll('.dl-panel.show').forEach(p => {
     p.classList.remove('show');
