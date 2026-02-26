@@ -95,17 +95,17 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 .card-meals:hover .meal-dome { animation: domeLift 2s ease-in-out infinite; }
 .card-meals:hover .meal-steam { animation: steamRise 2s ease-in-out infinite; }
 
-/* BOXES */
+/* BOXES (3D Isometric) */
 @keyframes boxBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
-@keyframes itemPop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-@keyframes flapL { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(-10deg); } }
-@keyframes flapR { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(10deg); } }
+@keyframes itemPop { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+@keyframes flapL { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(-15deg); } }
+@keyframes flapR { 0%, 100% { transform: rotate(0deg); } 50% { transform: rotate(15deg); } }
 .card-boxes:hover .box-group { animation: boxBounce 1.5s ease-in-out infinite; }
 .card-boxes:hover .box-item { animation: itemPop 1.5s ease-in-out infinite; }
-.card-boxes:hover .box-flap-l { animation: flapL 1.5s ease-in-out infinite; transform-origin: 12px 22px; }
-.card-boxes:hover .box-flap-r { animation: flapR 1.5s ease-in-out infinite; transform-origin: 32px 22px; }
+.card-boxes:hover .box-flap-l { animation: flapL 1.5s ease-in-out infinite; transform-origin: 8px 20px; }
+.card-boxes:hover .box-flap-r { animation: flapR 1.5s ease-in-out infinite; transform-origin: 36px 20px; }
 
-/* PLANTS */
+/* PLANTS (Greener) */
 @keyframes plantSway { 0%, 100% { transform: rotate(0); } 30% { transform: rotate(3deg); } 70% { transform: rotate(-2deg); } }
 @keyframes leafGrow { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
 .card-plants:hover .plant-group { animation: plantSway 2s ease-in-out infinite; transform-origin: 22px 26px; }
@@ -276,29 +276,46 @@ const ICONS = [
     cardClass: 'card-boxes',
     svgInner: `
       <g class="box-group">
-        <rect class="box-item" x="17" y="10" width="10" height="12" rx="1.5" fill="currentColor" opacity="0.6"/>
-        <path class="box-flap-l" d="M 12 22 L 6 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-        <path class="box-flap-r" d="M 32 22 L 38 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 12 22 V 36 H 32 V 22 Z" fill="currentColor" opacity="0.15"/>
-        <path d="M 12 22 V 36 H 32 V 22 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
-        <path d="M 12 22 H 32" stroke="currentColor" stroke-width="2.5"/>
+        <path class="box-flap-l" d="M 8 20 L 4 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        <path class="box-flap-r" d="M 36 20 L 40 12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+        
+        <path d="M 8 20 L 22 14 L 36 20 L 22 26 Z" fill="currentColor" opacity="0.1"/>
+        
+        <g class="box-item">
+          <path d="M 16 15 L 22 12 L 28 15 L 22 18 Z" fill="currentColor" opacity="0.8"/>
+          <path d="M 16 15 L 22 18 V 24 L 16 21 Z" fill="currentColor" opacity="0.5"/>
+          <path d="M 28 15 L 22 18 V 24 L 28 21 Z" fill="currentColor" opacity="0.3"/>
+        </g>
+        
+        <path d="M 8 20 L 22 26 V 40 L 8 34 Z" fill="currentColor" opacity="0.15"/>
+        <path d="M 36 20 L 22 26 V 40 L 36 34 Z" fill="currentColor" opacity="0.25"/>
+        
+        <path d="M 8 20 L 22 26 L 36 20 M 22 26 V 40 M 8 20 V 34 L 22 40 L 36 34 V 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
       </g>
     `,
     smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
       <g>
         <animateTransform attributeName="transform" type="translate" values="0,0; 0,-3; 0,0" dur="1.5s" repeatCount="indefinite" />
-        <rect x="17" y="10" width="10" height="12" rx="1.5" fill="${c}" opacity="0.6">
-          <animateTransform attributeName="transform" type="translate" values="0,0; 0,-5; 0,0" dur="1.5s" repeatCount="indefinite" additive="sum"/>
-        </rect>
-        <path d="M 12 22 L 6 12" stroke="${c}" stroke-width="2.5" stroke-linecap="round">
-          <animateTransform attributeName="transform" type="rotate" values="0 12 22; -10 12 22; 0 12 22" dur="1.5s" repeatCount="indefinite" />
+        
+        <path d="M 8 20 L 4 12" stroke="${c}" stroke-width="2.5" stroke-linecap="round">
+          <animateTransform attributeName="transform" type="rotate" values="0 8 20; -15 8 20; 0 8 20" dur="1.5s" repeatCount="indefinite"/>
         </path>
-        <path d="M 32 22 L 38 12" stroke="${c}" stroke-width="2.5" stroke-linecap="round">
-          <animateTransform attributeName="transform" type="rotate" values="0 32 22; 10 32 22; 0 32 22" dur="1.5s" repeatCount="indefinite" />
+        <path d="M 36 20 L 40 12" stroke="${c}" stroke-width="2.5" stroke-linecap="round">
+          <animateTransform attributeName="transform" type="rotate" values="0 36 20; 15 36 20; 0 36 20" dur="1.5s" repeatCount="indefinite"/>
         </path>
-        <path d="M 12 22 V 36 H 32 V 22 Z" fill="${c}" opacity="0.15"/>
-        <path d="M 12 22 V 36 H 32 V 22 Z" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>
-        <path d="M 12 22 H 32" stroke="${c}" stroke-width="2.5"/>
+
+        <path d="M 8 20 L 22 14 L 36 20 L 22 26 Z" fill="${c}" opacity="0.1"/>
+
+        <g>
+          <animateTransform attributeName="transform" type="translate" values="0,0; 0,-6; 0,0" dur="1.5s" repeatCount="indefinite"/>
+          <path d="M 16 15 L 22 12 L 28 15 L 22 18 Z" fill="${c}" opacity="0.8"/>
+          <path d="M 16 15 L 22 18 V 24 L 16 21 Z" fill="${c}" opacity="0.5"/>
+          <path d="M 28 15 L 22 18 V 24 L 28 21 Z" fill="${c}" opacity="0.3"/>
+        </g>
+
+        <path d="M 8 20 L 22 26 V 40 L 8 34 Z" fill="${c}" opacity="0.15"/>
+        <path d="M 36 20 L 22 26 V 40 L 36 34 Z" fill="${c}" opacity="0.25"/>
+        <path d="M 8 20 L 22 26 L 36 20 M 22 26 V 40 M 8 20 V 34 L 22 40 L 36 34 V 20" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>
       </g>
     </svg>`
   },
@@ -307,9 +324,9 @@ const ICONS = [
     cardClass: 'card-plants',
     svgInner: `
       <g class="plant-group">
-        <path d="M 22 22 V 8" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
-        <path class="plant-leaf-l" d="M 22 18 C 12 18 12 8 22 10 Z" fill="currentColor" opacity="0.8"/>
-        <path class="plant-leaf-r" d="M 22 13 C 32 13 32 3 22 5 Z" fill="currentColor" opacity="0.8"/>
+        <path d="M 22 22 V 8" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+        <path class="plant-leaf-l" d="M 22 18 C 12 18 12 8 22 10 Z" fill="#10b981" opacity="0.9"/>
+        <path class="plant-leaf-r" d="M 22 13 C 32 13 32 3 22 5 Z" fill="#10b981" opacity="0.9"/>
       </g>
       <g class="plant-pot">
         <path d="M 14 26 L 16 38 H 28 L 30 26 Z" fill="currentColor" opacity="0.15"/>
@@ -321,12 +338,12 @@ const ICONS = [
     smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
       <g>
         <animateTransform attributeName="transform" type="rotate" values="0 22 26; 3 22 26; -2 22 26; 0 22 26" dur="2s" repeatCount="indefinite" />
-        <path d="M 22 22 V 8" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/>
-        <path d="M 22 18 C 12 18 12 8 22 10 Z" fill="${c}" opacity="0.8">
+        <path d="M 22 22 V 8" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M 22 18 C 12 18 12 8 22 10 Z" fill="#10b981" opacity="0.9">
           <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" repeatCount="indefinite" additive="sum"/>
           <animateTransform attributeName="transform" type="translate" values="0,0; -2,-1; 0,0" dur="2s" repeatCount="indefinite" additive="sum"/>
         </path>
-        <path d="M 22 13 C 32 13 32 3 22 5 Z" fill="${c}" opacity="0.8">
+        <path d="M 22 13 C 32 13 32 3 22 5 Z" fill="#10b981" opacity="0.9">
           <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="2s" begin="0.3s" repeatCount="indefinite" additive="sum"/>
           <animateTransform attributeName="transform" type="translate" values="0,0; -2,-1; 0,0" dur="2s" begin="0.3s" repeatCount="indefinite" additive="sum"/>
         </path>
