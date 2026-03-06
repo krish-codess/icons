@@ -245,12 +245,55 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 /* SEARCH */
 @keyframes searchShake { 0%{transform:rotate(0)} 15%{transform:rotate(-8deg)} 35%{transform:rotate(7deg)} 55%{transform:rotate(-5deg)} 75%{transform:rotate(3deg)} 100%{transform:rotate(0)} }
 .card-search:hover .ico { animation:searchShake 0.3s ease forwards; transform-origin: center; }
+
+/* ══════════════════════════════════════
+   NOTIFICATION BELL ANIMATION
+══════════════════════════════════════ */
+@keyframes bellShake {
+  0%   { transform: rotate(0deg); }
+  8%   { transform: rotate(-14deg); }
+  20%  { transform: rotate(16deg); }
+  32%  { transform: rotate(-12deg); }
+  44%  { transform: rotate(10deg); }
+  56%  { transform: rotate(-8deg); }
+  68%  { transform: rotate(5deg); }
+  80%  { transform: rotate(-2deg); }
+  100% { transform: rotate(0deg); }
+}
+@keyframes badgePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.35); opacity: 0.9; }
+}
+@keyframes badgeRipple {
+  0%   { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+@keyframes notifGlow {
+  0%, 100% { opacity: 0.18; }
+  50%       { opacity: 0.38; }
+}
+
+.card-notif:hover .notif-bell-group {
+  animation: bellShake 0.55s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite;
+  transform-origin: 22px 8px;
+}
+.card-notif:hover .notif-badge {
+  animation: badgePulse 0.4s ease-in-out infinite;
+  transform-origin: 32px 12px;
+}
+.card-notif:hover .notif-badge-ripple {
+  animation: badgeRipple 0.55s ease-out infinite;
+  transform-origin: 32px 12px;
+}
+.card-notif:hover .notif-fill {
+  animation: notifGlow 0.55s ease-in-out infinite;
+}
 </style>
 </head>
 <body>
 
 <h1 class="page-title">iOS App Onboarding Icons</h1>
-<p class="page-sub">27 Premium Icons · Compiled Showcase · Super Fast SMIL & CSS Animated</p>
+<p class="page-sub">28 Premium Icons · Compiled Showcase · Super Fast SMIL & CSS Animated</p>
 
 <div id="main-container"></div>
 
@@ -323,8 +366,6 @@ const ICONS = [
         <rect x="6" y="6" width="32" height="32" rx="8" fill="#f59e0b" opacity="0.15"/>
         <rect x="6" y="6" width="32" height="32" rx="8" fill="none" stroke="#f59e0b" stroke-width="2.5"/>
         <g>
-          <animateTransform attributeName="transform" type="translate" values="0,0; -2.2,-2.3; -2.2,-2.3; 0,0" keyTimes="0; 0.25; 0.75; 1" dur="0.4s" repeatCount="indefinite" additive="sum"/>
-          <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1.1; 1" keyTimes="0; 0.25; 0.75; 1" dur="0.4s" repeatCount="indefinite" additive="sum"/>
           <animateTransform attributeName="transform" type="rotate" values="0 22 23; 10 22 23; -10 22 23; 0 22 23" keyTimes="0; 0.25; 0.75; 1" dur="0.4s" repeatCount="indefinite" additive="sum"/>
           <ellipse cx="22" cy="23" rx="7" ry="9" fill="#f59e0b"/>
           <path d="M 20 17 A 3 3 0 0 1 24 17" fill="none" stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
@@ -333,7 +374,7 @@ const ICONS = [
     </svg>`
   },
 
-  // ── 2. PREVIOUS ICONS (Meals, Boxes, Plants, etc.) ──
+  // ── 2. PREVIOUS ICONS ──
   {
     name: 'Meals',
     cardClass: 'card-meals',
@@ -425,11 +466,9 @@ const ICONS = [
         <path d="M 22 22 V 8" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
         <path d="M 22 18 C 12 18 12 8 22 10 Z" fill="#10b981" opacity="0.9">
           <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="0.8s" repeatCount="indefinite" additive="sum"/>
-          <animateTransform attributeName="transform" type="translate" values="0,0; -2,-1; 0,0" dur="0.8s" repeatCount="indefinite" additive="sum"/>
         </path>
         <path d="M 22 13 C 32 13 32 3 22 5 Z" fill="#10b981" opacity="0.9">
           <animateTransform attributeName="transform" type="scale" values="1; 1.1; 1" dur="0.8s" begin="0.1s" repeatCount="indefinite" additive="sum"/>
-          <animateTransform attributeName="transform" type="translate" values="0,0; -2,-1; 0,0" dur="0.8s" begin="0.1s" repeatCount="indefinite" additive="sum"/>
         </path>
       </g>
       <g>
@@ -455,7 +494,6 @@ const ICONS = [
       </circle>
       <g>
         <animateTransform attributeName="transform" type="translate" values="0,-5; 0,0; 0,2; 0,-1; 0,0" keyTimes="0; 0.3; 0.5; 0.7; 1" dur="0.6s" repeatCount="indefinite" additive="sum"/>
-        <animateTransform attributeName="transform" type="scale" values="1 1.1; 1 1; 1 0.8; 1 1.05; 1 1" keyTimes="0; 0.3; 0.5; 0.7; 1" dur="0.6s" repeatCount="indefinite" additive="sum"/>
         <path d="M22 6 C 22 6 10 20 10 28 A 12 12 0 0 0 34 28 C 34 20 22 6 22 6 Z" fill="#0ea5e9" opacity="0.3"/>
         <path d="M22 6 C 22 6 10 20 10 28 A 12 12 0 0 0 34 28 C 34 20 22 6 22 6 Z" fill="none" stroke="#0ea5e9" stroke-width="2.5" stroke-linejoin="round"/>
       </g>
@@ -509,15 +547,9 @@ const ICONS = [
     smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
       <g>
         <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="1.2s" repeatCount="indefinite" />
-        <path d="M 22 4 A 18 18 0 0 1 36 12 L 39 8 V 19 H 28 L 32 15 A 14 14 0 0 0 22 8 Z" fill="${c}">
-          <animate attributeName="opacity" values="0.9; 0.3; 0.9" dur="0.5s" repeatCount="indefinite"/>
-        </path>
-        <path d="M 22 4 A 18 18 0 0 1 36 12 L 39 8 V 19 H 28 L 32 15 A 14 14 0 0 0 22 8 Z" fill="${c}" transform="rotate(120 22 22)">
-          <animate attributeName="opacity" values="0.9; 0.3; 0.9" dur="0.5s" begin="0.15s" repeatCount="indefinite"/>
-        </path>
-        <path d="M 22 4 A 18 18 0 0 1 36 12 L 39 8 V 19 H 28 L 32 15 A 14 14 0 0 0 22 8 Z" fill="${c}" transform="rotate(240 22 22)">
-          <animate attributeName="opacity" values="0.9; 0.3; 0.9" dur="0.5s" begin="0.3s" repeatCount="indefinite"/>
-        </path>
+        <path d="M 22 4 A 18 18 0 0 1 36 12 L 39 8 V 19 H 28 L 32 15 A 14 14 0 0 0 22 8 Z" fill="${c}"><animate attributeName="opacity" values="0.9; 0.3; 0.9" dur="0.5s" repeatCount="indefinite"/></path>
+        <path d="M 22 4 A 18 18 0 0 1 36 12 L 39 8 V 19 H 28 L 32 15 A 14 14 0 0 0 22 8 Z" fill="${c}" transform="rotate(120 22 22)"><animate attributeName="opacity" values="0.9; 0.3; 0.9" dur="0.5s" begin="0.15s" repeatCount="indefinite"/></path>
+        <path d="M 22 4 A 18 18 0 0 1 36 12 L 39 8 V 19 H 28 L 32 15 A 14 14 0 0 0 22 8 Z" fill="${c}" transform="rotate(240 22 22)"><animate attributeName="opacity" values="0.9; 0.3; 0.9" dur="0.5s" begin="0.3s" repeatCount="indefinite"/></path>
       </g>
       <circle cx="22" cy="22" r="6" fill="${c}" opacity="0.15"/>
     </svg>`
@@ -641,7 +673,6 @@ const ICONS = [
       </ellipse>
       <g>
         <animateTransform attributeName="transform" type="translate" values="0,0; 0,-8; 0,2; 0,0" keyTimes="0; 0.4; 0.6; 1" dur="0.5s" repeatCount="indefinite" additive="sum"/>
-        <animateTransform attributeName="transform" type="scale" values="1 1; 1 1.05; 1 0.9; 1 1" keyTimes="0; 0.4; 0.6; 1" dur="0.5s" repeatCount="indefinite" additive="sum"/>
         <path d="M22 4 C 13 4 8 12 8 18 C 8 28 22 40 22 40 C 22 40 36 28 36 18 C 36 12 31 4 22 4 Z" fill="${c}" opacity="0.15"/>
         <path d="M22 4 C 13 4 8 12 8 18 C 8 28 22 40 22 40 C 22 40 36 28 36 18 C 36 12 31 4 22 4 Z" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>
         <circle cx="22" cy="16" r="4" fill="${c}" opacity="0.8"/>
@@ -897,6 +928,61 @@ const ICONS = [
         <animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="0.5s" repeatCount="indefinite" />
         <animate attributeName="opacity" values="0.55;0.9;0.2;0.9;0.55" dur="0.5s" repeatCount="indefinite"/>
       </path>
+    </svg>`
+  },
+
+  // ── ✦ NEW: NOTIFICATION BELL ──
+  {
+    name: 'Notifications',
+    cardClass: 'card-notif',
+    svgInner: `
+      <g class="notif-bell-group">
+        <!-- Bell body fill -->
+        <path class="notif-fill" d="M22 7 C22 7 13 11 13 22 L13 30 L9 35 H35 L31 30 L31 22 C31 11 22 7 22 7 Z" fill="currentColor" opacity="0.18"/>
+        <!-- Bell body stroke -->
+        <path d="M22 7 C22 7 13 11 13 22 L13 30 L9 35 H35 L31 30 L31 22 C31 11 22 7 22 7 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
+        <!-- Clapper arc -->
+        <path d="M18 35 Q18 40 22 40 Q26 40 26 35" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+        <!-- Top hang stem -->
+        <line x1="22" y1="3" x2="22" y2="7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.85"/>
+      </g>
+      <!-- Notification badge -->
+      <circle class="notif-badge" cx="32" cy="11" r="6" fill="currentColor" opacity="1"/>
+      <circle class="notif-badge-ripple" cx="32" cy="11" r="6" fill="none" stroke="currentColor" stroke-width="2" opacity="0"/>
+      <text x="32" y="11.5" text-anchor="middle" dominant-baseline="middle" font-size="7" font-weight="900" fill="#fff" opacity="0.95" font-family="system-ui,sans-serif">3</text>
+    `,
+    smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44">
+      <!-- Badge ripple rings -->
+      <circle cx="32" cy="11" r="6" fill="none" stroke="${c}" stroke-width="1.8">
+        <animate attributeName="r" values="6;14;6" dur="0.65s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.65;0;0.65" dur="0.65s" repeatCount="indefinite"/>
+      </circle>
+      <circle cx="32" cy="11" r="6" fill="none" stroke="${c}" stroke-width="1">
+        <animate attributeName="r" values="6;20;6" dur="0.65s" begin="0.1s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0.4;0;0.4" dur="0.65s" begin="0.1s" repeatCount="indefinite"/>
+      </circle>
+      <!-- Bell shake group (pivot at top-center of bell) -->
+      <g>
+        <animateTransform attributeName="transform" type="rotate"
+          values="0 22 9; -13 22 9; 15 22 9; -11 22 9; 9 22 9; -6 22 9; 4 22 9; -2 22 9; 0 22 9"
+          keyTimes="0; 0.1; 0.22; 0.35; 0.48; 0.60; 0.72; 0.86; 1"
+          dur="0.58s" repeatCount="indefinite"/>
+        <!-- Bell body fill -->
+        <path d="M22 7 C22 7 13 11 13 22 L13 30 L9 35 H35 L31 30 L31 22 C31 11 22 7 22 7 Z" fill="${c}" opacity="0.2">
+          <animate attributeName="opacity" values="0.2;0.35;0.2" dur="0.58s" repeatCount="indefinite"/>
+        </path>
+        <!-- Bell body stroke -->
+        <path d="M22 7 C22 7 13 11 13 22 L13 30 L9 35 H35 L31 30 L31 22 C31 11 22 7 22 7 Z" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+        <!-- Clapper -->
+        <path d="M18 35 Q18 40 22 40 Q26 40 26 35" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
+        <!-- Stem -->
+        <line x1="22" y1="3" x2="22" y2="7.5" stroke="${c}" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/>
+      </g>
+      <!-- Badge: stays fixed, pulses independently -->
+      <circle cx="32" cy="11" r="6" fill="${c}">
+        <animate attributeName="r" values="6;7.5;5.8;6.8;6" keyTimes="0;0.2;0.45;0.7;1" dur="0.58s" repeatCount="indefinite"/>
+      </circle>
+      <text x="32" y="11.5" text-anchor="middle" dominant-baseline="middle" font-size="7" font-weight="900" fill="#fff" opacity="0.95" font-family="system-ui,sans-serif">3</text>
     </svg>`
   }
 ];
