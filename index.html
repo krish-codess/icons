@@ -17,7 +17,6 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 .icon-wrap span { font-size: 10px; font-weight: 500; letter-spacing: 0.5px; color: #555; text-transform: uppercase; text-align: center; max-width: 80px; line-height: 1.2; }
 .ico { width: 44px; height: 44px; display: block; }
 
-/* Tooltip & Download Button Styles */
 .dl-wrap { position: relative; display: flex; justify-content: center; }
 .dl-btn { padding: 5px 12px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); font-size: 10px; font-weight: 600; letter-spacing: 0.4px; cursor: pointer; transition: all 0.2s ease; font-family: 'DM Sans', sans-serif; }
 .dl-btn:hover, .dl-btn.active { background: rgba(79,141,253,0.22); border-color: rgba(79,141,253,0.5); color: #8bbfff; transform: translateY(-1px); }
@@ -28,8 +27,9 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 .dl-row label { font-size: 9px; color: #888; text-transform: uppercase; font-weight: 700; }
 .dl-row select { background: rgba(255,255,255,0.06); color: #fff; border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; padding: 4px; font-size: 10px; cursor: pointer; }
 .dl-action { background: #4f8dfd; color: #fff; border: none; border-radius: 6px; padding: 7px; font-size: 11px; font-weight: 600; cursor: pointer; }
+.neo-bg .dl-panel, .clay-bg .dl-panel { background: #fff; border-color: rgba(0,0,0,0.1); color: #333; }
+.neo-bg .dl-row select, .clay-bg .dl-row select { background: #f0f0f0; color: #333; border-color: #ddd; }
 
-/* Style Backgrounds */
 .glass-bg { padding: 32px; border-radius: 28px; background: linear-gradient(135deg,#0c0c18,#0a1020); position: relative; overflow: hidden; }
 .glass-card { width:84px; height:96px; border-radius:22px; display:flex; align-items:center; justify-content:center; cursor:pointer; background:rgba(255,255,255,0.05); backdrop-filter:blur(20px); border:1px solid rgba(255,255,255,0.1); transition: 0.3s; }
 .glass-card:hover { transform:translateY(-7px); background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.3); }
@@ -96,20 +96,21 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 @keyframes shieldPulse { 0%,100%{opacity:0.17} 50%{opacity:0.35} }
 @keyframes globeSpin { to { transform:rotateY(360deg); } }
 @keyframes calBodyShake { 0%{transform:rotate(0)} 15%{transform:rotate(-3deg)} 35%{transform:rotate(3deg)} 55%{transform:rotate(-2deg)} 75%{transform:rotate(1deg)} 100%{transform:rotate(0)} }
+@keyframes calRingL { 0%{transform:rotate(0) translateY(0)} 20%{transform:rotate(-12deg) translateY(-4px)} 50%{transform:rotate(6deg) translateY(-2px)} 75%{transform:rotate(-4deg) translateY(-3px)} 100%{transform:rotate(0) translateY(0)} }
+@keyframes calRingR { 0%{transform:rotate(0) translateY(0)} 20%{transform:rotate(12deg) translateY(-4px)} 50%{transform:rotate(-6deg) translateY(-2px)} 75%{transform:rotate(4deg) translateY(-3px)} 100%{transform:rotate(0) translateY(0)} }
 @keyframes lidPop { 0%{transform:translateY(0)} 35%{transform:translateY(-8px)} 65%{transform:translateY(-6px)} 100%{transform:translateY(0)} }
 @keyframes pctWiggle { 0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.95; } 20% { transform: scale(1.15) rotate(8deg); opacity: 1; } 50% { transform: scale(0.92) rotate(-5deg); opacity: 0.8; } 80% { transform: scale(1.08) rotate(3deg); opacity: 1; } }
 @keyframes coinBob { 0%,100% { transform: translateY(0) rotate(0deg); } 40% { transform: translateY(-5px) rotate(4deg); } 70% { transform: translateY(-3px) rotate(-2deg); } }
 @keyframes searchShake { 0%{transform:rotate(0)} 15%{transform:rotate(-8deg)} 35%{transform:rotate(7deg)} 55%{transform:rotate(-5deg)} 75%{transform:rotate(3deg)} 100%{transform:rotate(0)} }
 @keyframes bellShake { 0% { transform: rotate(0deg); } 8% { transform: rotate(-14deg); } 20% { transform: rotate(16deg); } 32% { transform: rotate(-12deg); } 44% { transform: rotate(10deg); } 56% { transform: rotate(-8deg); } 68% { transform: rotate(5deg); } 80% { transform: rotate(-2deg); } 100% { transform: rotate(0deg); } }
 
-/* NEW ICON ANIMATIONS */
-@keyframes boxSlide { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
-@keyframes crossRotate { to { transform: rotate(90deg); } }
+/* NEW ANIMATIONS */
+@keyframes gridBreathe { 0%, 100% { transform: scale(1); opacity: 0.8; } 50% { transform: scale(1.1); opacity: 1; } }
 @keyframes sandFlip { to { transform: rotate(180deg); } }
-@keyframes scalePulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-@keyframes shakeReject { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-3px); } 75% { transform: translateX(3px); } }
+@keyframes crossRotate { to { transform: rotate(90deg); } }
+@keyframes boxSlide { 0%, 100% { transform: translateX(0); } 50% { transform: translateX(4px); } }
 
-/* Hover classes */
+/* Hover states */
 .card-veg:hover .veg-dot { animation: popDot 0.3s ease-in-out infinite; transform-origin: 22px 22px; }
 .card-veg:hover .veg-group { animation: boxSqueeze 0.3s ease-in-out infinite; transform-origin: 22px 22px; }
 .card-nonveg:hover .nv-tri { animation: triJump 0.3s ease-in-out infinite; transform-origin: 22px 20px; }
@@ -150,6 +151,7 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 .card-grow:hover .grow-b2 { animation: barGrow 0.3s ease infinite 0.05s; transform-origin: bottom; }
 .card-grow:hover .grow-b3 { animation: barGrow 0.3s ease infinite 0.1s; transform-origin: bottom; }
 .card-deals:hover .deals-tag { animation: swing 0.4s ease-in-out infinite; transform-origin: 20px 5px; }
+.card-local:hover .local-pin { animation: bounce 0.3s ease infinite; }
 .card-location:hover .ico { animation:pinBounceOld 0.4s ease forwards; }
 .card-mappin:hover .pin-body { animation: pinJump 0.5s ease infinite; transform-origin: bottom; }
 .card-mappin:hover .pin-shadow { animation: pinShadow 0.5s ease infinite; transform-origin: center; }
@@ -161,23 +163,27 @@ body { font-family: 'DM Sans', sans-serif; background: #09090f; color: #fff; pad
 .card-tick:hover .tick-shield { animation:shieldPulse 0.4s ease infinite; }
 .card-globe:hover .ico { animation:globeSpin 0.8s linear infinite; transform-origin: center; }
 .card-calendar:hover .ico { animation:calBodyShake 0.25s ease forwards; transform-origin: center; }
+.card-calendar:hover .cal-ring-l { animation:calRingL 0.25s ease forwards; transform-origin:15px 9px; }
+.card-calendar:hover .cal-ring-r { animation:calRingR 0.25s ease forwards; transform-origin:29px 9px; }
 .card-lunchbox:hover .lunchbox-lid { animation:lidPop 0.35s ease infinite; }
 .card-offers:hover .offers-pct { animation: pctWiggle 0.3s ease infinite; transform-origin: 22px 22px; }
 .card-money:hover .ico { animation: coinBob 0.35s cubic-bezier(0.34,1.56,0.64,1) forwards; }
 .card-search:hover .ico { animation:searchShake 0.3s ease forwards; transform-origin: center; }
 .card-notif:hover .notif-bell-group { animation: bellShake 0.6s cubic-bezier(0.36, 0.07, 0.19, 0.97) infinite; transform-origin: 22px 8px; }
 
-/* New icon hovers */
-.card-delivered:hover .deliv-group { animation: boxSlide 0.4s ease infinite; }
+/* NEW HOVERS */
+.card-all:hover .ico { animation: gridBreathe 0.6s ease infinite; transform-origin: center; }
+.card-pending:hover .ico { animation: sandFlip 1s ease-in-out infinite; transform-origin: center; }
+.card-accepted:hover .ico { animation: popDot 0.4s ease-in-out infinite; transform-origin: center; }
+.card-out:hover .deliv-group { animation: boxSlide 0.4s ease infinite; }
+.card-delivered:hover .deliv-group { animation: popUp 0.4s ease infinite; }
 .card-cancelled:hover .ico { animation: crossRotate 0.5s linear infinite; transform-origin: center; }
-.card-pending:hover .ico { animation: sandFlip 1.5s ease-in-out infinite; transform-origin: center; }
-.card-accepted:hover .ico { animation: scalePulse 0.4s ease infinite; transform-origin: center; }
-.card-rejected:hover .ico { animation: shakeReject 0.2s ease infinite; transform-origin: center; }
+.card-rejected:hover .ico { animation: boxSqueeze 0.3s ease infinite; transform-origin: center; }
 </style>
 </head>
 <body>
 <h1 class="page-title">iOS App Onboarding Icons</h1>
-<p class="page-sub">33 Premium Icons · Compiled Showcase · Super Fast SMIL & CSS Animated</p>
+<p class="page-sub">35 Premium Icons · Compiled Showcase · Super Fast SMIL & CSS Animated</p>
 <div id="main-container"></div>
 <script>
 const BELL_BODY = `M22 8 C 17 8, 13 11, 13 18 C 13 25, 11 28, 8 32 Q 8 35, 11 35 L 33 35 Q 36 35, 36 32 C 33 28, 31 25, 31 18 C 31 11, 27 8, 22 8 Z`;
@@ -213,13 +219,15 @@ const ICONS = [
   { name: 'Offers', cardClass: 'card-offers', svgInner: `<circle class="offers-ring2" cx="22" cy="22" r="18" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.15"/><circle class="offers-ring1" cx="22" cy="22" r="13" fill="none" stroke="currentColor" stroke-width="2" opacity="0.25"/><circle cx="22" cy="22" r="9" fill="currentColor" opacity="0.18"/><g class="offers-pct"><line x1="16" y1="28" x2="28" y2="16" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="16" r="2.5" fill="currentColor"/><circle cx="28" cy="28" r="2.5" fill="currentColor"/></g>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="18" fill="none" stroke="${c}" stroke-width="1.5" opacity="0.15"><animate attributeName="r" values="14;20;14" dur="0.35s" repeatCount="indefinite"/></circle><circle cx="22" cy="22" r="13" fill="none" stroke="${c}" stroke-width="2" opacity="0.25"><animate attributeName="r" values="10;15;10" dur="0.35s" begin="0.08s" repeatCount="indefinite"/></circle><g stroke="${c}"><animateTransform attributeName="transform" type="scale" values="1 1;1.15 1.15;0.92 0.92;1.08 1.08;1 1" keyTimes="0;0.2;0.5;0.8;1" dur="0.3s" repeatCount="indefinite" additive="sum"/><animateTransform attributeName="transform" type="rotate" values="0 22 22;8 22 22;-5 22 22;3 22 22;0 22 22" keyTimes="0;0.2;0.5;0.8;1" dur="0.3s" repeatCount="indefinite" additive="sum"/><line x1="16" y1="28" x2="28" y2="16" stroke-width="3" stroke-linecap="round"/><circle cx="16" cy="16" r="2.5" fill="${c}" stroke-width="0"/><circle cx="28" cy="28" r="2.5" fill="${c}" stroke-width="0"/></g></svg>` },
   { name: 'Money', cardClass: 'card-money', svgInner: `<circle cx="22" cy="22" r="17" fill="currentColor" opacity="0.18"/><circle cx="22" cy="22" r="17" fill="none" stroke="currentColor" stroke-width="2.8" opacity="0.85"/><circle cx="22" cy="22" r="13" fill="none" stroke="currentColor" stroke-width="1.2" opacity="0.35"/><text x="22" y="23" text-anchor="middle" dominant-baseline="middle" font-size="15" font-weight="900" fill="currentColor" opacity="0.92" font-family="system-ui,sans-serif">$</text><path class="money-shine" d="M10 10 Q14 7 20 8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" opacity="0.55"/>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><circle cx="22" cy="22" r="17" fill="${c}" opacity="0.18"/><circle cx="22" cy="22" r="17" fill="none" stroke="${c}" stroke-width="2.8" opacity="0.85"/><circle cx="22" cy="22" r="13" fill="none" stroke="${c}" stroke-width="1.2" opacity="0.35"/><text x="22" text-anchor="middle" dominant-baseline="middle" font-size="15" font-weight="900" fill="${c}" opacity="0.92">$<animate attributeName="y" values="23;20;23" dur="0.35s" repeatCount="indefinite"/><animate attributeName="font-size" values="15;18;15" dur="0.35s" repeatCount="indefinite"/></text><path d="M10 10 Q14 7 20 8" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round"><animateTransform attributeName="transform" type="rotate" from="0 22 22" to="360 22 22" dur="0.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0.55;0.9;0.2;0.9;0.55" dur="0.5s" repeatCount="indefinite"/></path></svg>` },
   { name: 'Notifications', cardClass: 'card-notif', svgInner: `<g class="notif-bell-group"><path class="notif-fill" d="${BELL_BODY}" fill="currentColor" opacity="0.18"/><path d="${BELL_BODY}" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/><path d="${BELL_CLAPPER}" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/><path d="${BELL_STEM}" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" opacity="0.9"/></g><circle class="notif-badge" cx="33" cy="11" r="6.5" fill="currentColor"/><text x="33" y="11.5" text-anchor="middle" dominant-baseline="middle" font-size="7" font-weight="900" fill="#fff" font-family="system-ui,sans-serif">3</text>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="rotate" values="0 22 8;-15 22 8;15 22 8;0 22 8" dur="0.6s" repeatCount="indefinite"/><path d="${BELL_BODY}" fill="${c}" opacity="0.2"/><path d="${BELL_BODY}" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><path d="${BELL_CLAPPER}" fill="none" stroke="${c}" stroke-width="2.4" stroke-linecap="round"/></g><circle cx="33" cy="11" r="6.5" fill="${c}"><animate attributeName="r" values="6.5;8;6.5" dur="0.6s" repeatCount="indefinite"/></circle><text x="33" y="11.5" text-anchor="middle" dominant-baseline="middle" font-size="7" font-weight="900" fill="#fff" font-family="system-ui,sans-serif">3</text></svg>` },
-  
-  /* NEW ADDED ICONS */
-  { name: 'Delivered', cardClass: 'card-delivered', svgInner: `<g class="deliv-group"><path d="M 8 20 L 22 14 L 36 20 L 22 26 Z" fill="currentColor" opacity="0.1"/><path d="M 8 20 L 22 26 V 40 L 8 34 Z" fill="currentColor" opacity="0.15"/><path d="M 36 20 L 22 26 V 40 L 36 34 Z" fill="currentColor" opacity="0.25"/><path d="M 8 20 L 22 26 L 36 20 M 22 26 V 40 M 8 20 V 34 L 22 40 L 36 34 V 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><circle cx="34" cy="12" r="7" fill="#10b981"/><polyline points="31,12 33,14 37,10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="translate" values="0,0;2,0;0,0" dur="0.6s" repeatCount="indefinite"/><path d="M 8 20 L 22 14 L 36 20 L 22 26 Z" fill="${c}" opacity="0.1"/><path d="M 8 20 L 22 26 V 40 L 8 34 Z" fill="${c}" opacity="0.15"/><path d="M 36 20 L 22 26 V 40 L 36 34 Z" fill="${c}" opacity="0.25"/><path d="M 8 20 L 22 26 L 36 20 M 22 26 V 40 M 8 20 V 34 L 22 40 L 36 34 V 20" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/><circle cx="34" cy="12" r="7" fill="#10b981"><animate attributeName="r" values="7;8;7" dur="0.6s" repeatCount="indefinite"/></circle><polyline points="31,12 33,14 37,10" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg>` },
-  { name: 'Cancelled', cardClass: 'card-cancelled', svgInner: `<circle cx="22" cy="22" r="16" fill="#ef4444" opacity="0.15"/><circle cx="22" cy="22" r="16" fill="none" stroke="#ef4444" stroke-width="2.5"/><line x1="15" y1="15" x2="29" y2="29" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/><line x1="29" y1="15" x2="15" y2="29" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="rotate" values="0 22 22;90 22 22" dur="0.5s" repeatCount="indefinite"/><circle cx="22" cy="22" r="16" fill="#ef4444" opacity="0.15"/><circle cx="22" cy="22" r="16" fill="none" stroke="#ef4444" stroke-width="2.5"/><line x1="15" y1="15" x2="29" y2="29" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/><line x1="29" y1="15" x2="15" y2="29" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/></g></svg>` },
-  { name: 'Pending', cardClass: 'card-pending', svgInner: `<path d="M 12 6 H 32 L 22 22 L 32 38 H 12 L 22 22 Z" fill="currentColor" opacity="0.15"/><path d="M 10 6 H 34 M 10 38 H 34 M 12 6 L 22 22 L 12 38 M 32 6 L 22 22 L 32 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="30" r="3" fill="currentColor" opacity="0.8"/>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="rotate" values="0 22 22;180 22 22" dur="2s" repeatCount="indefinite"/><path d="M 12 6 H 32 L 22 22 L 32 38 H 12 L 22 22 Z" fill="${c}" opacity="0.15"/><path d="M 10 6 H 34 M 10 38 H 34 M 12 6 L 22 22 L 12 38 M 32 6 L 22 22 L 32 38" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="30" r="3" fill="${c}" opacity="0.8"><animate attributeName="cy" values="10;30" dur="1s" repeatCount="indefinite"/></circle></g></svg>` },
-  { name: 'Accepted', cardClass: 'card-accepted', svgInner: `<path d="M 8 6 H 28 L 36 14 V 38 H 8 Z" fill="#22c55e" opacity="0.15"/><path d="M 8 6 H 28 L 36 14 V 38 H 8 Z" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linejoin="round"/><polyline points="15,24 20,29 29,18" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="scale" values="1;1.05;1" dur="0.4s" repeatCount="indefinite" additive="sum"/><path d="M 8 6 H 28 L 36 14 V 38 H 8 Z" fill="#22c55e" opacity="0.15"/><path d="M 8 6 H 28 L 36 14 V 38 H 8 Z" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linejoin="round"/><polyline points="15,24 20,29 29,18" fill="none" stroke="#22c55e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><animate attributeName="stroke-dashoffset" values="40;0" dur="0.4s" repeatCount="indefinite" stroke-dasharray="40"/></polyline></g></svg>` },
-  { name: 'Rejected', cardClass: 'card-rejected', svgInner: `<path d="M 14 4 H 30 L 40 14 V 30 L 30 40 H 14 L 4 30 V 14 Z" fill="#ef4444" opacity="0.15"/><path d="M 14 4 H 30 L 40 14 V 30 L 30 40 H 14 L 4 30 V 14 Z" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linejoin="round"/><line x1="16" y1="16" x2="28" y2="28" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/><line x1="28" y1="16" x2="16" y2="28" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="translate" values="0,0;2,0;-2,0;0,0" dur="0.3s" repeatCount="indefinite"/><path d="M 14 4 H 30 L 40 14 V 30 L 30 40 H 14 L 4 30 V 14 Z" fill="#ef4444" opacity="0.15"/><path d="M 14 4 H 30 L 40 14 V 30 L 30 40 H 14 L 4 30 V 14 Z" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linejoin="round"/><line x1="16" y1="16" x2="28" y2="28" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/><line x1="28" y1="16" x2="16" y2="28" stroke="#ef4444" stroke-width="3" stroke-linecap="round"/></g></svg>` }
+
+  /* NEW ICONS */
+  { name: 'All', cardClass: 'card-all', svgInner: `<g class="grid-group"><rect x="8" y="8" width="12" height="12" rx="3" fill="currentColor" opacity="0.8"/><rect x="24" y="8" width="12" height="12" rx="3" fill="currentColor" opacity="0.4"/><rect x="8" y="24" width="12" height="12" rx="3" fill="currentColor" opacity="0.4"/><rect x="24" y="24" width="12" height="12" rx="3" fill="currentColor" opacity="0.15"/><rect x="8" y="8" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2.5" rx="4"/></g>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="scale" values="1;1.05;1" dur="1s" repeatCount="indefinite" additive="sum"/><rect x="8" y="8" width="12" height="12" rx="3" fill="${c}" opacity="0.8"/><rect x="24" y="8" width="12" height="12" rx="3" fill="${c}" opacity="0.4"/><rect x="8" y="24" width="12" height="12" rx="3" fill="${c}" opacity="0.4"/><rect x="24" y="24" width="12" height="12" rx="3" fill="${c}" opacity="0.15"/><rect x="8" y="8" width="28" height="28" fill="none" stroke="${c}" stroke-width="2.5" rx="4"/></g></svg>` },
+  { name: 'Pending', cardClass: 'card-pending', svgInner: `<path d="M 12 6 H 32 L 22 22 L 32 38 H 12 L 22 22 Z" fill="currentColor" opacity="0.15"/><path d="M 10 6 H 34 M 10 38 H 34 M 12 6 L 22 22 L 12 38 M 32 6 L 22 22 L 32 38" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="30" r="3" fill="currentColor" opacity="0.8"/>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="rotate" values="0 22 22;180 22 22" dur="1.5s" repeatCount="indefinite"/><path d="M 12 6 H 32 L 22 22 L 32 38 H 12 L 22 22 Z" fill="${c}" opacity="0.15"/><path d="M 10 6 H 34 M 10 38 H 34 M 12 6 L 22 22 L 12 38 M 32 6 L 22 22 L 32 38" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="22" cy="30" r="3" fill="${c}" opacity="0.8"><animate attributeName="cy" values="12;30;12" dur="1s" repeatCount="indefinite"/></circle></g></svg>` },
+  { name: 'Accepted', cardClass: 'card-accepted', svgInner: `<path d="M 8 6 H 28 L 36 14 V 38 H 8 Z" fill="currentColor" opacity="0.15"/><path d="M 8 6 H 28 L 36 14 V 38 H 8 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><polyline points="15,24 20,29 29,18" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><path d="M 8 6 H 28 L 36 14 V 38 H 8 Z" fill="${c}" opacity="0.15"/><path d="M 8 6 H 28 L 36 14 V 38 H 8 Z" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/><polyline points="15,24 20,29 29,18" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><animate attributeName="stroke-dashoffset" values="40;0" dur="0.4s" repeatCount="indefinite" stroke-dasharray="40"/></polyline></g></svg>` },
+  { name: 'Out for Delivery', cardClass: 'card-out', svgInner: `<g class="deliv-group"><path d="M 4 28 H 32 L 40 38 H 12 Z" fill="currentColor" opacity="0.15"/><path d="M 4 28 H 32 L 40 38 H 12 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><path d="M 32 28 V 18 H 12 V 28" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="38" r="4" fill="currentColor" opacity="0.8"/><circle cx="34" cy="38" r="4" fill="currentColor" opacity="0.8"/></g>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="translate" values="0,0;3,0;0,0" dur="0.6s" repeatCount="indefinite"/><path d="M 4 28 H 32 L 40 38 H 12 Z" fill="${c}" opacity="0.15"/><path d="M 4 28 H 32 L 40 38 H 12 Z" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/><path d="M 32 28 V 18 H 12 V 28" fill="none" stroke="${c}" stroke-width="2.5" stroke-linecap="round"/><circle cx="16" cy="38" r="4" fill="${c}" opacity="0.8"/><circle cx="34" cy="38" r="4" fill="${c}" opacity="0.8"/></g></svg>` },
+  { name: 'Delivered', cardClass: 'card-delivered', svgInner: `<g class="deliv-group"><path d="M 8 18 L 22 12 L 36 18 L 22 24 Z" fill="currentColor" opacity="0.1"/><path d="M 8 18 V 32 L 22 38 V 24 Z" fill="currentColor" opacity="0.15"/><path d="M 36 18 V 32 L 22 38 V 24 Z" fill="currentColor" opacity="0.25"/><path d="M 8 18 L 22 24 L 36 18 M 22 24 V 38 M 8 18 V 32 L 22 38 L 36 32 V 18 L 22 12 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/></g>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="translate" values="0,0;0,-4;0,0" dur="0.8s" repeatCount="indefinite"/><path d="M 8 18 L 22 12 L 36 18 L 22 24 Z" fill="${c}" opacity="0.1"/><path d="M 8 18 V 32 L 22 38 V 24 Z" fill="${c}" opacity="0.15"/><path d="M 36 18 V 32 L 22 38 V 24 Z" fill="${c}" opacity="0.25"/><path d="M 8 18 L 22 24 L 36 18 M 22 24 V 38 M 8 18 V 32 L 22 38 L 36 32 V 18 L 22 12 Z" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/></g></svg>` },
+  { name: 'Cancelled', cardClass: 'card-cancelled', svgInner: `<circle cx="22" cy="22" r="16" fill="currentColor" opacity="0.15"/><circle cx="22" cy="22" r="16" fill="none" stroke="currentColor" stroke-width="2.5"/><line x1="16" y1="16" x2="28" y2="28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="28" y1="16" x2="16" y2="28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="rotate" values="0 22 22;90 22 22" dur="0.4s" repeatCount="indefinite"/><circle cx="22" cy="22" r="16" fill="${c}" opacity="0.15"/><circle cx="22" cy="22" r="16" fill="none" stroke="${c}" stroke-width="2.5"/><line x1="16" y1="16" x2="28" y2="28" stroke="${c}" stroke-width="3" stroke-linecap="round"/><line x1="28" y1="16" x2="16" y2="28" stroke="${c}" stroke-width="3" stroke-linecap="round"/></g></svg>` },
+  { name: 'Rejected', cardClass: 'card-rejected', svgInner: `<path d="M 14 4 H 30 L 40 14 V 30 L 30 40 H 14 L 4 30 V 14 Z" fill="currentColor" opacity="0.15"/><path d="M 14 4 H 30 L 40 14 V 30 L 30 40 H 14 L 4 30 V 14 Z" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/><line x1="16" y1="16" x2="28" y2="28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/><line x1="28" y1="16" x2="16" y2="28" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>`, smil: (c) => `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44"><g><animateTransform attributeName="transform" type="scale" values="1;0.95;1" dur="0.3s" repeatCount="indefinite" additive="sum"/><path d="M 14 4 H 30 L 40 14 V 30 L 30 40 H 14 L 4 30 V 14 Z" fill="${c}" opacity="0.15"/><path d="M 14 4 H 30 L 40 14 V 30 L 30 40 H 14 L 4 30 V 14 Z" fill="none" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/><line x1="16" y1="16" x2="28" y2="28" stroke="${c}" stroke-width="3" stroke-linecap="round"/><line x1="28" y1="16" x2="16" y2="28" stroke="${c}" stroke-width="3" stroke-linecap="round"/></g></svg>` }
 ];
 
 const STYLES = [
@@ -251,13 +259,12 @@ function buildInterface() {
       svg.setAttribute('class', 'ico');
       svg.setAttribute('viewBox', '0 0 44 44');
       svg.style.color = color;
-      if((style.id === 'glass' || style.id === 'holo') && style.filter) svg.style.filter = style.filter(color);
+      if(style.id === 'glass' && style.filter) svg.style.filter = style.filter(color);
+      if(style.id === 'holo' && style.filter) svg.style.filter = style.filter(color);
       svg.innerHTML = icon.svgInner;
       card.appendChild(svg);
       wrap.appendChild(card);
       wrap.appendChild(Object.assign(document.createElement('span'), {textContent: icon.name}));
-      
-      // Download UI
       const dlWrap = document.createElement('div');
       dlWrap.className = 'dl-wrap';
       const btn = document.createElement('button');
@@ -265,30 +272,34 @@ function buildInterface() {
       btn.textContent = '↓ Download';
       const panel = document.createElement('div');
       panel.className = 'dl-panel';
-      panel.innerHTML = `<div class="dl-row"><label>Format</label><select class="fmt"><option value="SVG">SVG (Anim)</option><option value="PNG">PNG (Static)</option></select></div><div class="dl-row"><label>Size</label><select class="sz"><option value="256" selected>256px</option><option value="512">512px</option></select></div><button class="dl-action">Save Icon</button>`;
-      
+      panel.innerHTML = `<div class="dl-row"><label>Format</label><select class="fmt"><option value="SVG">SVG (Anim)</option><option value="PNG">PNG (Static)</option></select></div><div class="dl-row"><label>Size</label><select class="sz"><option value="64">64px</option><option value="128">128px</option><option value="256" selected>256px</option><option value="512">512px</option></select></div><button class="dl-action">Save Icon</button>`;
       btn.onclick = (e) => { e.stopPropagation(); document.querySelectorAll('.dl-panel').forEach(p => p !== panel && p.classList.remove('show')); panel.classList.toggle('show'); };
+      panel.onclick = (e) => e.stopPropagation();
       panel.querySelector('.dl-action').onclick = () => {
         const fmt = panel.querySelector('.fmt').value;
         const size = panel.querySelector('.sz').value;
+        const filename = icon.name.toLowerCase().replace(/\s+/g, '-');
         btn.textContent = '✓ Saved!'; btn.classList.add('done');
         setTimeout(() => { btn.textContent = '↓ Download'; btn.classList.remove('done'); }, 1800);
         if(fmt === 'SVG') {
           let smilStr = icon.smil(color).replace('<svg ', `<svg width="${size}" height="${size}" `);
           const blob = new Blob(['<?xml version="1.0" encoding="UTF-8"?>\n' + smilStr], {type: 'image/svg+xml'});
-          const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `${icon.name.toLowerCase().replace(/\s+/g, '-')}.svg`; a.click();
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a'); a.href = url; a.download = `${filename}-${size}x${size}.svg`; document.body.appendChild(a); a.click(); document.body.removeChild(a);
         } else {
-            const canvas = document.createElement('canvas');
-            canvas.width = size; canvas.height = size;
-            const img = new Image();
-            const svgData = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="${size}" height="${size}">${icon.svgInner.replace(/currentColor/g, color)}</svg>`;
-            const url = URL.createObjectURL(new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'}));
-            img.onload = () => { canvas.getContext('2d').drawImage(img, 0,0,size,size); canvas.toBlob(blob => { const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = `${icon.name.toLowerCase().replace(/\s+/g, '-')}.png`; a.click(); }); };
-            img.src = url;
+          const canvas = document.createElement('canvas');
+          canvas.width = size; canvas.height = size;
+          const img = new Image();
+          const svgData = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="${size}" height="${size}">${icon.svgInner.replace(/currentColor/g, color)}</svg>`;
+          const blob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+          const url = URL.createObjectURL(blob);
+          img.onload = () => { canvas.getContext('2d').drawImage(img, 0,0,size,size); URL.revokeObjectURL(url); canvas.toBlob(blob => { const url2 = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url2; a.download = `${filename}-${size}x${size}.png`; document.body.appendChild(a); a.click(); document.body.removeChild(a); }, 'image/png'); };
+          img.src = url;
         }
         panel.classList.remove('show');
       };
-      dlWrap.appendChild(btn); dlWrap.appendChild(panel); wrap.appendChild(dlWrap);
+      dlWrap.appendChild(btn); dlWrap.appendChild(panel);
+      wrap.appendChild(dlWrap);
       row.appendChild(wrap);
     });
     bg.appendChild(row); sec.appendChild(bg); container.appendChild(sec);
