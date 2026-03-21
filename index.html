@@ -239,11 +239,7 @@ const ICONS = [
 ];
 
 const STYLES = [
-  { id: 'glass', label: 'Style 01', title: '✦ Glassmorphism', class: 'glass-bg', card: 'glass-card', colors: ['#6FAAFF','#2DD4BF','#C084FC','#FBBF24','#ff6b6b','#60dfff','#4ADE80','#FFA07A'], filter: (c) => `drop-shadow(0 0 8px ${c}99)` },
-  { id: 'neo', label: 'Style 02', title: '◈ Neomorphism', class: 'neo-bg', card: 'neo-card', colors: ['#4F8DFD','#14B8A6','#A855F7','#F59E0B','#ef4444','#0ea5e9','#22C55E','#F97316'] },
-  { id: 'holo', label: 'Style 03', title: '⬡ Liquid Crystal · Holographic', class: 'holo-bg', card: 'holo-card', colors: ['#a0c4ff','#7fffff','#d4b3ff','#ffd6a0','#ff9999','#80dfff','#a8ffcc','#ffcc99'], filter: (c) => `drop-shadow(0 0 10px ${c})` },
-  { id: 'aurora', label: 'Style 04', title: '◉ Aurora Gradient Bubble', class: 'aurora-bg', card: 'aurora-card', colors: Array(8).fill('#fff'), colorClass: ['blue','teal','purple','orange','blue','teal','green','orange'] },
-  { id: 'clay', label: 'Style 05', title: '⬤ Clay 3D Inflated', class: 'clay-bg', card: 'clay-card', colors: Array(8).fill('#fff'), colorClass: ['blue','teal','purple','orange','blue','teal','green','orange'] }
+  { id: 'neo', label: 'Style 01', title: '◈ Neomorphism', class: 'neo-bg', card: 'neo-card', colors: ['#4F8DFD','#14B8A6','#A855F7','#F59E0B','#ef4444','#22C55E','#F97316','#A855F7'] }
 ];
 
 function buildInterface() {
@@ -251,7 +247,6 @@ function buildInterface() {
   STYLES.forEach(style => {
     const sec = document.createElement('div');
     sec.className = 'section';
-    sec.innerHTML = `<div class="section-label">${style.label}</div><div class="section-title">${style.title}</div>`;
     const bg = document.createElement('div');
     bg.className = style.class;
     const row = document.createElement('div');
