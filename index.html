@@ -294,21 +294,20 @@ function buildInterface() {
       ];
       let selectedColor = color;
       panel.innerHTML = `
-        <div class="dl-preview"><svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" class="preview-svg" style="color:${color}">${icon.svgInner}</svg></div>
+        <div class="dl-preview"><svg viewBox="0 0 44 44" xmlns="http://www.w3.org/2000/svg" class="preview-svg" style="color:${color};width:52px;height:52px;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;fill:none;overflow:visible">${icon.svgInner}</svg></div>
         <div class="dl-row"><label>Format</label><select class="fmt"><option value="SVG">SVG (Anim)</option><option value="PNG">PNG (Static)</option></select></div>
         <div class="dl-row"><label>Size</label><select class="sz"><option value="64">64px</option><option value="128">128px</option><option value="256" selected>256px</option><option value="512">512px</option></select></div>
-        <div class="dl-row color-row"><label>Color</label><div class="color-swatches">${ALL_COLORS.map(c => `<div class="color-swatch${c.hex === color ? ' selected' : ''}" style="background:${c.hex}" title="${c.label}" data-hex="${c.hex}"></div>`).join('')}</div></div>
+        <div class="dl-row color-row"><label>Color</label><div class="color-swatches">${ALL_COLORS.map(c => `<div class="color-swatch${c.hex.toUpperCase() === color.toUpperCase() ? ' selected' : ''}" style="background:${c.hex}" title="${c.label}" data-hex="${c.hex}"></div>`).join('')}</div></div>
         <button class="dl-action">Save Icon</button>`;
       const previewSvg = panel.querySelector('.preview-svg');
       const previewBox = panel.querySelector('.dl-preview');
       panel.querySelectorAll('.color-swatch').forEach(swatch => {
         swatch.onclick = (e) => {
-          e.stopPropagation();
           panel.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
           swatch.classList.add('selected');
           selectedColor = swatch.dataset.hex;
           previewSvg.style.color = selectedColor;
-          previewBox.style.background = selectedColor === '#FFFFFF' ? 'rgba(0,0,0,0.4)' : 'rgba(255,255,255,0.04)';
+          previewBox.style.background = selectedColor === '#FFFFFF' ? 'rgba(255,255,255,0.15)' : 'rgba(255,255,255,0.04)';
         };
       });
       btn.onclick = (e) => {
@@ -329,7 +328,6 @@ function buildInterface() {
         }
         panel.classList.toggle('show');
       };
-      panel.onclick = (e) => e.stopPropagation();
       panel.querySelector('.dl-action').onclick = () => {
         const fmt = panel.querySelector('.fmt').value;
         const size = panel.querySelector('.sz').value;
@@ -362,7 +360,11 @@ function buildInterface() {
   });
 }
 window.onload = buildInterface;
-document.onclick = () => document.querySelectorAll('.dl-panel').forEach(p => p.classList.remove('show'));
+document.onclick = (e) => {
+  if (!e.target.closest('.dl-panel') && !e.target.closest('.dl-btn')) {
+    document.querySelectorAll('.dl-panel').forEach(p => p.classList.remove('show'));
+  }
+};
 </script>
 </body>
 </html>
